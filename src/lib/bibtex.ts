@@ -22,6 +22,7 @@ export interface BibEntry {
 	abstract?: string;
 	category: string;
 	keywords: string[];
+	highlights: string[];
 }
 
 export const citationStyleLabels = {
@@ -267,6 +268,7 @@ export function parseBibtex(raw: string): BibEntry[] {
 			abstract: text('abstract'),
 			category: publicField === 'yes' || publicField === 'pub' ? 'Publication' : publicField === 'wp' ? 'Working Paper' : publicField === 'wip' ? 'Work in Progress' : 'Other',
 			keywords: text('keywords')?.split(',').map((keyword) => keyword.trim()).filter(Boolean) ?? [],
+			highlights: text('note')?.split(';').map((highlight) => highlight.trim()).filter(Boolean) ?? [],
 		});
 	}
 	return entries.sort((a, b) => (b.year ?? 0) - (a.year ?? 0));

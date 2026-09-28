@@ -77,6 +77,18 @@ describe("parseBibtex", () => {
 		expect(entries[0].url).toBe("https://example.com/paper");
 	});
 
+	test("parses semicolon-separated publication highlights", () => {
+		const [paper] = parseBibtex(`
+      @inproceedings{highlighted,
+        title = {Highlighted Paper},
+        booktitle = {SIGMOD 2027},
+        note = {Oral; Hugging Face Daily Papers #1}
+      }
+    `);
+
+		expect(paper.highlights).toEqual(["Oral", "Hugging Face Daily Papers #1"]);
+	});
+
 	test("sorts entries by year descending", () => {
 		const entries = parseBibtex(`
       @misc{old, title = {Old}, year = {2020}}

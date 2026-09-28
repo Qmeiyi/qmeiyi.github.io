@@ -15,20 +15,28 @@ const { papers, locale = "zh" } = Astro.props;
 const isEnglish = locale === "en";
 const citationStyles = Object.entries(citationStyleLabels) as [CitationStyle, string][];
 const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
+
+function getDisplayAuthors(authors: string[]): string[] {
+  if (authors.length <= 9) return authors;
+  const visible = authors.slice(0, 4);
+  if (!visible.includes("Meiyi Qiang")) visible.push("Meiyi Qiang");
+  return [...visible, "et al."];
+}
 ---
 
 <div data-publication-citations data-locale={locale}>
   <ol
     data-publication-list
-    class="m-0 list-none overflow-hidden rounded-xl border border-paper-300/90 bg-white/70 p-0 divide-y divide-paper-300/90 shadow-paper dark:border-ink-700 dark:bg-ink-900/65 dark:divide-ink-700"
+    class="m-0 grid list-none gap-4 p-0"
   >
     {papers.map((paper, index) => {
       const has摘要 = Boolean(paper.abstract);
       const citations = formatCitations(paper);
+      const displayAuthors = getDisplayAuthors(paper.authors);
 
       return (
-        <li>
-          <article class="group relative grid grid-cols-[min-content_minmax(0,1fr)] gap-2 px-4 py-4.5 transition-colors duration-200 hover:bg-accent-50/50 dark:hover:bg-accent-950/20 sm:px-6 sm:py-5 md:grid-cols-[3rem_minmax(0,1fr)] md:gap-5">
+        <li class="surface-card overflow-hidden transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-accent-300 hover:shadow-md dark:hover:border-accent-700">
+          <article class="group relative grid grid-cols-[min-content_minmax(0,1fr)] gap-2 px-4 py-5 sm:px-6 sm:py-6 md:grid-cols-[3rem_minmax(0,1fr)] md:gap-5">
             <p class="entry-index min-h-9">{String(index + 1).padStart(2, "0")}</p>
 
             <div class="col-span-2 min-w-0 space-y-2.5 md:col-span-1 md:col-start-2 md:row-start-1">
@@ -51,8 +59,17 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                   ) : paper.title}
                 </h3>
 
-                {paper.authors.length > 0 && (
-                  <p class="entry-supporting text-sm">{paper.authors.join(", ")}</p>
+                {displayAuthors.length > 0 && (
+                  <p class="entry-supporting text-sm leading-6">
+                    {displayAuthors.map((author, authorIndex) => (
+                      <>
+                        {authorIndex > 0 && ", "}
+                        <span class:list={[author === "Meiyi Qiang" && "font-bold text-ink-900 dark:text-paper-100"]}>
+                          {author}
+                        </span>
+                      </>
+                    ))}
+                  </p>
                 )}
               </div>
 
@@ -72,6 +89,14 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                   <span class="scholarly-pill ml-1">{paper.category === "Publication" ? (isEnglish ? "Paper / Preprint" : "论文 / 预印本") : paper.category}</span>
                 )}
               </div>
+
+              {paper.keywords.length > 0 && (
+                <ul class="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={isEnglish ? "Topics" : "研究主题"}>
+                  {paper.keywords.slice(0, 3).map((keyword) => (
+                    <li class="scholarly-pill">{keyword}</li>
+                  ))}
+                </ul>
+              )}
 
               <button
                 type="button"

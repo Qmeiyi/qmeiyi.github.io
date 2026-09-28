@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import FilterBar from "../components/FilterBar.astro";
 import PublicationList from "../components/PublicationList.astro";
 import { getAllPapers } from "../lib/papers";
-import { slugifySectionId } from "../lib/section-id";
 import siteConfig from "../side.config";
 
 interface Props {
@@ -14,39 +13,15 @@ const { locale = "zh" } = Astro.props;
 const isEnglish = locale === "en";
 
 const papers = getAllPapers();
-const categoryOrder = [
-  "Publication",
-  "Working Paper",
-  "Work in Progress",
-  "Other",
-] as const;
-const grouped = new Map<string, typeof papers>();
+const groupedByYear = new Map<number, typeof papers>();
 
 for (const paper of papers) {
-  const category = paper.category ?? "Other";
-  if (!grouped.has(category)) {
-    grouped.set(category, []);
-  }
-  grouped.get(category)?.push(paper);
+  const year = paper.year ?? 0;
+  if (!groupedByYear.has(year)) groupedByYear.set(year, []);
+  groupedByYear.get(year)?.push(paper);
 }
 
-const orderedCategories = [
-  ...categoryOrder.filter((category) => grouped.has(category)),
-  ...Array.from(grouped.keys())
-    .filter(
-      (category) =>
-        !categoryOrder.includes(category as (typeof categoryOrder)[number]),
-    )
-    .sort((a, b) => a.localeCompare(b)),
-];
-
-// Category icons mapping
-const categoryIcons: Record<string, string> = {
-  "Publication": "i-mdi:file-document-check",
-  "Working Paper": "i-mdi:file-document-edit",
-  "Work in Progress": "i-mdi:file-document-outline",
-  "Other": "i-mdi:file-document",
-};
+const years = Array.from(groupedByYear.keys()).sort((a, b) => b - a);
 
 // Count total papers
 const totalPapers = papers.length;
@@ -54,8 +29,8 @@ const pageTitle = isEnglish
   ? "Publications"
   : (siteConfig.pageTitles.researches.title || "研究成果");
 const pageDescription = isEnglish
-  ? "Selected papers and preprints on data-centric AI, LLM training data, data selection, and mathematical reasoning."
-  : (siteConfig.pageTitles.researches.description || "精选论文与预印本。");
+  ? "Publications and preprints listed on Google Scholar, organized by year."
+  : "Google Scholar 收录的论文、会议论文与预印本，按年份整理。";
 ---
 
 <Layout
@@ -68,17 +43,27 @@ const pageDescription = isEnglish
     <header class="page-header">
       <h1 class="page-title">{pageTitle}</h1>
       <p class="page-description">{pageDescription}</p>
+      <a
+        href="https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=zh-CN"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-link mt-3 px-0"
+      >
+        <span class="i-academicons:google-scholar text-base" aria-hidden="true"></span>
+        {isEnglish ? "Google Scholar profile" : "Google Scholar 主页"}
+        <span class="i-mdi:open-in-new text-sm" aria-hidden="true"></span>
+      </a>
 
 	  <FilterBar
 		total={totalPapers}
 		allIcon="i-mdi:file-document-multiple"
 		allLabel={isEnglish ? "All" : "全部"}
 		ariaLabel={isEnglish ? "Filter publications" : "筛选论文"}
-		items={orderedCategories.map((category) => ({
-		  filter: slugifySectionId(category),
-		  label: category === "Publication" ? (isEnglish ? "Papers & Preprints" : "论文与预印本") : category.toLowerCase(),
-		  count: grouped.get(category)?.length || 0,
-		  icon: categoryIcons[category] || "i-mdi:file-document",
+		items={years.map((year) => ({
+		  filter: `year-${year}`,
+		  label: String(year),
+		  count: groupedByYear.get(year)?.length || 0,
+		  icon: "i-mdi:calendar-blank-outline",
 		}))}
 	  />
     </header>
@@ -86,27 +71,27 @@ const pageDescription = isEnglish
     <div class="space-y-6 sm:space-y-7" id="papers-container" data-publication-total={totalPapers}>
       {papers.length === 0 && <p data-empty-publications class="body-copy">{isEnglish ? "No publications yet." : "暂无论文。"}</p>}
       {
-        orderedCategories.map((category) => {
-          const categoryPapers = grouped.get(category);
-          if (!categoryPapers?.length) {
+        years.map((year) => {
+          const yearPapers = groupedByYear.get(year);
+          if (!yearPapers?.length) {
             return null;
           }
-          const categorySlug = slugifySectionId(category);
+          const yearSlug = `year-${year}`;
 
           return (
             <section
-              id={categorySlug}
+              id={yearSlug}
               class="content-section paper-section scroll-mt-20 space-y-4"
-              data-filter-section={categorySlug}
+              data-filter-section={yearSlug}
             >
               <header class="flex items-end justify-between gap-4 border-b border-paper-300/90 pb-3 dark:border-ink-700">
-				<h2 class="section-heading">{category === "Publication" ? (isEnglish ? "Papers & Preprints" : "论文与预印本") : category}</h2>
+				<h2 class="section-heading">{year}</h2>
 				<p class="shrink-0 font-mono text-xs font-semibold tabular-nums text-ink-500 dark:text-paper-400">
-                  {isEnglish ? `${categoryPapers.length} ${categoryPapers.length === 1 ? "paper" : "papers"}` : `${categoryPapers.length} 篇`}
+                  {isEnglish ? `${yearPapers.length} ${yearPapers.length === 1 ? "paper" : "papers"}` : `${yearPapers.length} 篇`}
                 </p>
               </header>
 
-              <PublicationList papers={categoryPapers} locale={locale} />
+              <PublicationList papers={yearPapers} locale={locale} />
             </section>
           );
         })

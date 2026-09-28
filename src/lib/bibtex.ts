@@ -15,6 +15,10 @@ export interface BibEntry {
 	year?: number;
 	venue?: string;
 	url?: string;
+	github?: string;
+	githubStars?: number;
+	huggingFace?: string;
+	project?: string;
 	doi?: string;
 	volume?: string;
 	number?: string;
@@ -251,7 +255,9 @@ export function parseBibtex(raw: string): BibEntry[] {
 		const text = (key: string) => fields[key] ? displayText(fields[key]) : undefined;
 		const publicField = text('public')?.toLowerCase();
 		const year = fields.year ? Number(displayText(fields.year)) : undefined;
+		const githubStars = fields.githubstars ? Number(displayText(fields.githubstars)) : undefined;
 		if (year !== undefined && !Number.isInteger(year)) throw new Error(`Invalid BibTeX year in ${id}`);
+		if (githubStars !== undefined && !Number.isInteger(githubStars)) throw new Error(`Invalid GitHub star count in ${id}`);
 		entries.push({
 			id, type,
 			title: displayText(fields.title),
@@ -261,6 +267,10 @@ export function parseBibtex(raw: string): BibEntry[] {
 			year,
 			venue: text('journal') ?? text('booktitle'),
 			url: text('url'),
+			github: text('github'),
+			githubStars,
+			huggingFace: text('huggingface'),
+			project: text('project'),
 			doi: text('doi'),
 			volume: text('volume'),
 			number: text('number'),

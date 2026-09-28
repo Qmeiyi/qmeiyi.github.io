@@ -121,6 +121,48 @@ function highlightKind(label: string): string {
                   </a>
                 )}
 
+                {paper.github && (
+                  <a
+                    href={paper.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="publication-control resource-link resource-link--github"
+                    aria-label={`${paper.title} GitHub${paper.githubStars !== undefined ? `, ${paper.githubStars.toLocaleString("en-US")} stars` : ""}`}
+                  >
+                    <span class="i-mdi:github text-base" aria-hidden="true"></span>
+                    <span>GitHub</span>
+                    {paper.githubStars !== undefined && (
+                      <span class="resource-count">★ {paper.githubStars.toLocaleString("en-US")}</span>
+                    )}
+                  </a>
+                )}
+
+                {paper.huggingFace && (
+                  <a
+                    href={paper.huggingFace}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="publication-control resource-link resource-link--hf"
+                    aria-label={`${paper.title} Hugging Face`}
+                  >
+                    <span aria-hidden="true">🤗</span>
+                    <span>Hugging Face</span>
+                  </a>
+                )}
+
+                {paper.project && (
+                  <a
+                    href={paper.project}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="publication-control resource-link resource-link--project"
+                    aria-label={isEnglish ? `${paper.title} project website` : `${paper.title} 项目主页`}
+                  >
+                    <span class="i-mdi:web text-base" aria-hidden="true"></span>
+                    <span>{isEnglish ? "Project" : "项目主页"}</span>
+                  </a>
+                )}
+
                 {has摘要 && (
                   <details class="group">
                     <summary class="publication-control action-link glass-control min-h-9 cursor-pointer list-none px-2.5 text-xs font-semibold leading-none">
@@ -322,6 +364,70 @@ function highlightKind(label: string): string {
     border-color: rgb(126 105 181 / 0.62);
     background: rgb(53 42 85 / 0.75);
     color: #cec1f1;
+  }
+
+  .resource-link {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 0.625rem;
+    padding: 0.45rem 0.7rem;
+    color: #3f514d;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+  }
+
+  .resource-link:hover {
+    border-color: rgb(83 145 158 / 0.7);
+    background: rgb(237 247 247 / 0.95);
+    color: #225d69;
+  }
+
+  .resource-link--hf {
+    border-color: rgb(224 182 79 / 0.5);
+    background: rgb(255 249 230 / 0.72);
+    color: #74580e;
+  }
+
+  .resource-link--project {
+    border-color: rgb(112 181 164 / 0.48);
+    background: rgb(237 249 245 / 0.72);
+    color: #326c60;
+  }
+
+  .resource-count {
+    border-left: 1px solid currentColor;
+    margin-left: 0.1rem;
+    padding-left: 0.45rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    opacity: 0.82;
+  }
+
+  :global(.dark) .resource-link {
+    color: #d2dcda;
+  }
+
+  :global(.dark) .resource-link:hover {
+    border-color: rgb(86 153 167 / 0.75);
+    background: rgb(28 65 72 / 0.7);
+    color: #b7e4ec;
+  }
+
+  :global(.dark) .resource-link--hf {
+    border-color: rgb(174 136 49 / 0.6);
+    background: rgb(70 55 18 / 0.66);
+    color: #f0d17d;
+  }
+
+  :global(.dark) .resource-link--project {
+    border-color: rgb(75 139 124 / 0.62);
+    background: rgb(24 61 52 / 0.68);
+    color: #aae0d3;
   }
 
   .publication-control {

@@ -54,7 +54,12 @@ const pageDescription = isEnglish
         <span class="i-mdi:open-in-new text-sm" aria-hidden="true"></span>
       </a>
 
-	  <FilterBar
+      <p class="flex items-center gap-1.5 font-mono text-[11px] text-ink-500 dark:text-paper-400">
+        <span class="i-mdi:star-outline text-sm" aria-hidden="true"></span>
+        {isEnglish ? "GitHub star counts updated September 28, 2026" : "GitHub Star 数更新于 2026 年 9 月 28 日"}
+      </p>
+
+      <FilterBar
 		total={totalPapers}
 		allIcon="i-mdi:file-document-multiple"
 		allLabel={isEnglish ? "All" : "全部"}

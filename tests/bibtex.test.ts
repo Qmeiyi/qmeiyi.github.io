@@ -89,6 +89,23 @@ describe("parseBibtex", () => {
 		expect(paper.highlights).toEqual(["Oral", "Hugging Face Daily Papers #1"]);
 	});
 
+	test("parses verified publication resource links and GitHub stars", () => {
+		const [paper] = parseBibtex(`
+      @misc{resources,
+        title = {Paper with Resources},
+        github = {https://github.com/example/paper},
+        githubstars = {1234},
+        huggingface = {https://huggingface.co/datasets/example/paper},
+        project = {https://example.github.io/paper/}
+      }
+    `);
+
+		expect(paper.github).toBe("https://github.com/example/paper");
+		expect(paper.githubStars).toBe(1234);
+		expect(paper.huggingFace).toContain("huggingface.co");
+		expect(paper.project).toBe("https://example.github.io/paper/");
+	});
+
 	test("sorts entries by year descending", () => {
 		const entries = parseBibtex(`
       @misc{old, title = {Old}, year = {2020}}

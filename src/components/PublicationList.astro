@@ -8,14 +8,16 @@ import {
 
 interface Props {
   papers: BibEntry[];
+  locale?: "zh" | "en";
 }
 
-const { papers } = Astro.props;
+const { papers, locale = "zh" } = Astro.props;
+const isEnglish = locale === "en";
 const citationStyles = Object.entries(citationStyleLabels) as [CitationStyle, string][];
 const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
 ---
 
-<div data-publication-citations>
+<div data-publication-citations data-locale={locale}>
   <ol
     data-publication-list
     class="m-0 list-none overflow-hidden rounded-xl border border-paper-300/90 bg-white/70 p-0 divide-y divide-paper-300/90 shadow-paper dark:border-ink-700 dark:bg-ink-900/65 dark:divide-ink-700"
@@ -44,7 +46,7 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                         class="i-mdi:open-in-new ml-1 inline-block align-[0.05em] text-xs text-accent-600 dark:text-accent-300"
                         aria-hidden="true"
                       ></span>
-                      <span class="sr-only"> 将在新标签页打开</span>
+                      <span class="sr-only">{isEnglish ? " opens in a new tab" : " 将在新标签页打开"}</span>
                     </a>
                   ) : paper.title}
                 </h3>
@@ -67,7 +69,7 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                   </time>
                 )}
                 {paper.category && (
-                  <span class="scholarly-pill ml-1">{paper.category === "Publication" ? "论文 / 预印本" : paper.category}</span>
+                  <span class="scholarly-pill ml-1">{paper.category === "Publication" ? (isEnglish ? "Paper / Preprint" : "论文 / 预印本") : paper.category}</span>
                 )}
               </div>
 
@@ -77,13 +79,13 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                 data-citation-trigger
                 data-citation-title={paper.title}
                 data-citations={JSON.stringify(citations)}
-                aria-label={`引用 ${paper.title}`}
+                aria-label={isEnglish ? `Cite ${paper.title}` : `引用 ${paper.title}`}
                 aria-haspopup="dialog"
                 aria-controls={dialogId}
-                title="查看引用格式"
+                title={isEnglish ? "View citation formats" : "查看引用格式"}
               >
                 <span class="i-mdi:content-copy !text-sm" aria-hidden="true"></span>
-                <span>引用</span>
+                <span>{isEnglish ? "Cite" : "引用"}</span>
               </button>
 
               <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
@@ -95,8 +97,8 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                     class="publication-control action-link glass-control min-h-9 px-2.5 text-xs font-semibold leading-none"
                   >
                     <span class="i-mdi:file-document-outline !text-sm" aria-hidden="true"></span>
-                    <span>论文页面</span>
-                    <span class="sr-only"> for {paper.title}, 将在新标签页打开</span>
+                    <span>{isEnglish ? "Paper" : "论文页面"}</span>
+                    <span class="sr-only"> for {paper.title}, {isEnglish ? "opens in a new tab" : "将在新标签页打开"}</span>
                   </a>
                 )}
 
@@ -107,7 +109,7 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
                         class="i-mdi:chevron-down !text-sm transition-transform duration-200 group-open:rotate-180"
                         aria-hidden="true"
                       ></span>
-                      摘要
+                      {isEnglish ? "Abstract" : "摘要"}
                     </summary>
                     <div class="body-copy mt-3 border-l-2 border-accent-300/80 py-1 pl-4 text-sm leading-relaxed dark:border-accent-700/80">
                       <p>{paper.abstract}</p>
@@ -132,17 +134,17 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
     <div class="glass-popover max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-xl border border-paper-300/90 p-5 dark:border-ink-700 sm:p-6">
       <header class="flex items-start justify-between gap-5">
         <div class="min-w-0">
-          <h3 id={`${dialogId}-title`} class="section-heading text-[1.5rem]">引用这篇论文</h3>
+          <h3 id={`${dialogId}-title`} class="section-heading text-[1.5rem]">{isEnglish ? "Cite this paper" : "引用这篇论文"}</h3>
           <p data-citation-paper-title class="mt-1.5 line-clamp-2 text-sm leading-6 text-ink-600 dark:text-paper-300"></p>
         </div>
         <form method="dialog" class="shrink-0">
-          <button type="submit" class="icon-button" aria-label="关闭引用窗口">
+          <button type="submit" class="icon-button" aria-label={isEnglish ? "Close citation dialog" : "关闭引用窗口"}>
             <span class="i-ph-x-bold text-base" aria-hidden="true"></span>
           </button>
         </form>
       </header>
 
-      <div class="mt-5 flex flex-wrap gap-2" role="group" aria-label="引用格式">
+      <div class="mt-5 flex flex-wrap gap-2" role="group" aria-label={isEnglish ? "Citation format" : "引用格式"}>
         {citationStyles.map(([style, label]) => (
           <button
             type="button"
@@ -160,17 +162,17 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
 
       <section class="mt-4 overflow-hidden rounded-lg border border-paper-300/90 bg-paper-100/70 dark:border-ink-700 dark:bg-ink-950/55" aria-labelledby={`${dialogId}-format`}>
         <div class="flex items-center justify-between gap-3 border-b border-paper-300/80 px-4 py-2.5 dark:border-ink-700">
-          <h4 id={`${dialogId}-format`} data-citation-format-label class="font-sans text-xs font-semibold text-ink-700 dark:text-paper-200">BibTeX 引用</h4>
-          <span class="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-500 dark:text-paper-400">预览</span>
+          <h4 id={`${dialogId}-format`} data-citation-format-label class="font-sans text-xs font-semibold text-ink-700 dark:text-paper-200">{isEnglish ? "BibTeX citation" : "BibTeX 引用"}</h4>
+          <span class="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-500 dark:text-paper-400">{isEnglish ? "Preview" : "预览"}</span>
         </div>
         <pre tabindex="-1" class="m-0 max-h-72 overflow-auto whitespace-pre-wrap break-words p-4 font-mono text-[0.8125rem] leading-6 text-ink-800 dark:text-paper-200"><code data-citation-output></code></pre>
       </section>
 
       <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p data-copy-status aria-live="polite" class="min-h-5 text-xs text-ink-500 dark:text-paper-400">可复制引用。</p>
+        <p data-copy-status aria-live="polite" class="min-h-5 text-xs text-ink-500 dark:text-paper-400">{isEnglish ? "Ready to copy." : "可复制引用。"}</p>
         <button type="button" data-copy-citation class="glass-control glass-active inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 px-4 text-sm font-semibold text-accent-900 dark:text-accent-100">
           <span data-copy-icon class="i-mdi:content-copy text-base" aria-hidden="true"></span>
-          <span data-copy-label>复制引用</span>
+          <span data-copy-label>{isEnglish ? "Copy citation" : "复制引用"}</span>
         </button>
       </div>
     </div>
@@ -205,6 +207,7 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
     document.querySelectorAll<HTMLElement>("[data-publication-citations]").forEach((container) => {
       if (container.dataset.citationBound) return;
       container.dataset.citationBound = "true";
+      const isEnglish = container.dataset.locale === "en";
 
       const dialog = container.querySelector<HTMLDialogElement>("[data-citation-dialog]");
       const title = dialog?.querySelector<HTMLElement>("[data-citation-paper-title]");
@@ -225,8 +228,8 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
       const resetCopyState = () => {
         window.clearTimeout(resetTimer);
         copyIcon.className = "i-mdi:content-copy text-base";
-        copyLabel.textContent = "复制引用";
-        status.textContent = "可复制引用。";
+        copyLabel.textContent = isEnglish ? "Copy citation" : "复制引用";
+        status.textContent = isEnglish ? "Ready to copy." : "可复制引用。";
       };
 
       const selectStyle = (style: keyof typeof labels) => {
@@ -235,7 +238,9 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
         output.textContent = citations[style] ?? "";
         output.parentElement?.classList.toggle("font-mono", style === "bibtex");
         output.parentElement?.classList.toggle("font-sans", style !== "bibtex");
-        formatLabel.textContent = `${labels[style]} citation`;
+        formatLabel.textContent = isEnglish
+          ? `${labels[style]} citation`
+          : `${labels[style]} 引用`;
         styleButtons.forEach((button) => {
           const selected = button.dataset.citationStyle === style;
           button.setAttribute("aria-pressed", String(selected));
@@ -270,11 +275,15 @@ const dialogId = `citation-dialog-${papers[0]?.id ?? "empty"}`;
         try {
           await copyText(output.textContent);
           copyIcon.className = "i-mdi:check text-base text-emerald-600 dark:text-emerald-400";
-          copyLabel.textContent = "Copied";
-          status.textContent = `${labels[currentStyle]} citation copied.`;
+          copyLabel.textContent = isEnglish ? "Copied" : "已复制";
+          status.textContent = isEnglish
+            ? `${labels[currentStyle]} citation copied.`
+            : `已复制 ${labels[currentStyle]} 引用。`;
           resetTimer = window.setTimeout(resetCopyState, 2000);
         } catch {
-          status.textContent = "Copy unavailable. Select the citation text manually.";
+          status.textContent = isEnglish
+            ? "Copy unavailable. Select the citation text manually."
+            : "无法自动复制，请手动选择引用文本。";
           output.parentElement?.focus();
         }
       });

@@ -4,6 +4,14 @@ type ThemeMode = "dark" | "light";
 
 let layoutAbortController: AbortController | undefined;
 
+function usesEnglishUi(): boolean {
+	return (
+		typeof document === "undefined" ||
+		!document.documentElement ||
+		document.documentElement.lang.startsWith("en")
+	);
+}
+
 export function getBackToTopScrollBehavior(
 	prefersReducedMotion: boolean,
 ): ScrollBehavior {
@@ -33,8 +41,13 @@ function getAppliedTheme(): ThemeMode {
 
 export function updateThemeToggleLabels(root: ParentNode, mode: ThemeMode) {
 	const nextMode: ThemeMode = mode === "dark" ? "light" : "dark";
-	const label = `Switch to ${nextMode} mode`;
-	const visibleLabel = `${nextMode === "dark" ? "Dark" : "Light"} mode`;
+	const isEnglish = usesEnglishUi();
+	const label = isEnglish
+		? `Switch to ${nextMode} mode`
+		: `切换到${nextMode === "dark" ? "深色" : "浅色"}模式`;
+	const visibleLabel = isEnglish
+		? `${nextMode === "dark" ? "Dark" : "Light"} mode`
+		: `${nextMode === "dark" ? "深色" : "浅色"}模式`;
 
 	root.querySelectorAll<HTMLElement>("[data-theme-toggle]").forEach((button) => {
 		button.setAttribute("aria-label", label);
@@ -95,7 +108,10 @@ export function setupMobileMenu(signal: AbortSignal) {
 	if (!menuBtn || !menu || !iconMenu || !iconClose) return;
 
 	const updateMenuButtonLabel = (isOpen: boolean) => {
-		const label = isOpen ? "Close navigation menu" : "Open navigation menu";
+		const isEnglish = usesEnglishUi();
+		const label = isEnglish
+			? (isOpen ? "Close navigation menu" : "Open navigation menu")
+			: (isOpen ? "关闭导航菜单" : "打开导航菜单");
 		menuBtn.setAttribute("aria-label", label);
 		menuBtn.setAttribute("title", label);
 	};

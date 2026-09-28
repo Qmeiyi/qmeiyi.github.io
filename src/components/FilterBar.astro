@@ -10,9 +10,11 @@ interface Props {
   items: FilterItem[];
   allIcon: string;
   total: number;
+  allLabel?: string;
+  ariaLabel?: string;
 }
 
-const { items, allIcon, total } = Astro.props;
+const { items, allIcon, total, allLabel = "All", ariaLabel = "Filter sections" } = Astro.props;
 const visibleItems = items.filter((item) => item.count > 0);
 const shouldRender = visibleItems.length > 1;
 ---
@@ -22,7 +24,7 @@ const shouldRender = visibleItems.length > 1;
     <div
       class="filter-bar -mx-1 mt-2 inline-flex max-w-full flex-wrap items-center gap-1.5 rounded-xl border border-paper-300/80 bg-paper-100/60 p-1.5 dark:border-ink-700/80 dark:bg-ink-900/50"
       role="group"
-      aria-label="Filter sections"
+      aria-label={ariaLabel}
     >
       <button
         type="button"
@@ -32,7 +34,7 @@ const shouldRender = visibleItems.length > 1;
         class="filter-btn inline-flex h-10 min-h-10 cursor-pointer items-center gap-2 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all duration-150 focus-visible:ring-2 focus-visible:ring-accent-500 active"
       >
         <span data-filter-icon class={`${allIcon} text-base text-accent-700 dark:text-accent-300`} aria-hidden="true"></span>
-        <span data-filter-label class="font-semibold text-accent-800 dark:text-accent-200">All</span>
+        <span data-filter-label class="font-semibold text-accent-800 dark:text-accent-200">{allLabel}</span>
         <span data-filter-count class="font-mono text-xs text-accent-700 dark:text-accent-300">{total}</span>
       </button>
       {

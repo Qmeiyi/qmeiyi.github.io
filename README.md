@@ -38,7 +38,12 @@ pnpm build
 
 推送到 `main` 分支后，`.github/workflows/deploy-pages.yml` 会自动构建并发布到 GitHub Pages。
 
-网站采用单页履历结构，首页完整展示个人信息；`/researches` 是唯一独立内容页，用于论文列表。
+网站采用中英文双语的单页履历结构：首页完整展示个人信息，论文列表使用独立页面。
+
+| 语言 | 首页 | 论文页 |
+| --- | --- | --- |
+| 中文 | `/` | `/researches` |
+| English | `/en/` | `/en/researches` |
 
 ## 致谢
 

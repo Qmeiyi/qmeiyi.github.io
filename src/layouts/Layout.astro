@@ -27,10 +27,12 @@ export interface Props {
   modifiedAt?: Date;
   tags?: string[];
   noindex?: boolean;
+  language?: "zh" | "en";
 }
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
-const isHomePage = currentPath === "/";
+const isEnglishPath = currentPath === "/en" || currentPath.startsWith("/en/");
+const isHomePage = currentPath === "/" || currentPath === "/en";
 const {
   contentSource,
   title,
@@ -44,9 +46,12 @@ const {
   modifiedAt,
   tags,
   noindex = false,
+  language = isEnglishPath ? "en" : "zh",
 } = Astro.props;
+const isEnglish = language === "en";
 
-const seoTitle = title && !isHomePage ? `${title} | ${siteConfig.title}` : siteConfig.title;
+const localizedSiteTitle = isEnglish ? "Meiyi Qiang | Research & Practice" : siteConfig.title;
+const seoTitle = title && !isHomePage ? `${title} | ${localizedSiteTitle}` : localizedSiteTitle;
 const pageTitle = title || siteConfig.title;
 const seoDesc =
   description || siteConfig.description || siteConfig.hero.subheadline;
@@ -67,11 +72,31 @@ const publishedTime = publishedAt?.toISOString();
 const modifiedTime = modifiedAt?.toISOString() || publishedTime;
 
 const currentYear = new Date().getFullYear();
-const siteTitle = siteConfig.author || siteConfig.title;
-const navLinks = siteConfig.navLinks;
-const footerLinks = siteConfig.footer.showProfileLinks ? siteConfig.socialLinks : [];
+const siteTitle = isEnglish ? "Meiyi Qiang" : (siteConfig.author || siteConfig.title);
+const navLinks = isEnglish
+  ? [
+      { href: "/en/", label: "Home" },
+      { href: "/en/researches", label: "Publications" },
+    ]
+  : siteConfig.navLinks;
+const footerLinks = siteConfig.footer.showProfileLinks
+  ? siteConfig.socialLinks.map((link) => ({
+      ...link,
+      label: isEnglish
+        ? ({ "小红书": "RedNote", "邮件联系": "Email" }[link.label] ?? link.label)
+        : link.label,
+    }))
+  : [];
 const footerOwner = siteConfig.footer.showAuthor ? `${siteConfig.author}. ` : "";
-const footerCopyright = `${currentYear} ${footerOwner}${siteConfig.footer.copyright}`;
+const footerCopyright = isEnglish
+  ? `${currentYear} Meiyi Qiang. All rights reserved.`
+  : `${currentYear} ${footerOwner}${siteConfig.footer.copyright}`;
+
+const languageSwitchHref = isEnglish
+  ? (currentPath === "/en" ? "/" : currentPath.replace(/^\/en/, ""))
+  : (currentPath === "/" ? "/en/" : `/en${currentPath}`);
+const alternateLanguage = isEnglish ? "zh-CN" : "en";
+const alternateUrl = buildCanonicalUrl(languageSwitchHref, siteConfig.siteUrl);
 
 const siteRootUrl = buildCanonicalUrl("/", siteConfig.siteUrl);
 const parentNavLink = [...navLinks]
@@ -83,7 +108,7 @@ const parentNavLink = [...navLinks]
 const breadcrumbs: SeoBreadcrumb[] = isHomePage
   ? []
   : [
-      { name: "首页", url: siteRootUrl },
+      { name: isEnglish ? "Home" : "首页", url: siteRootUrl },
       ...(parentNavLink
         ? [
             {
@@ -125,7 +150,7 @@ function isActiveNav(href: string): boolean {
 ---
 
 <!doctype html>
-<html lang={siteConfig.language}>
+<html lang={isEnglish ? "en" : "zh-CN"}>
   <head>
     <meta charset="utf-8" />
     <meta
@@ -138,6 +163,7 @@ function isActiveNav(href: string): boolean {
       rel="sitemap"
       href={buildAbsoluteUrl("/sitemap-index.xml", siteConfig.siteUrl)}
     />
+    <link rel="alternate" hreflang={alternateLanguage} href={alternateUrl} />
 
     <SEO
       title={seoTitle}
@@ -656,7 +682,7 @@ function isActiveNav(href: string): boolean {
       href="#main-content"
       class="fixed left-4 top-0 z-[100] inline-flex min-h-11 -translate-y-full items-center rounded-lg bg-accent-800 px-4 py-2 text-sm font-bold text-white no-underline shadow-lg transition-transform focus:translate-y-3"
     >
-      Skip to main content
+      {isEnglish ? "Skip to main content" : "跳到主要内容"}
     </a>
 
     <div class="mx-auto flex min-h-[100dvh] max-w-6xl flex-col px-4 sm:px-6 md:px-8">
@@ -667,7 +693,7 @@ function isActiveNav(href: string): boolean {
           <a
             data-site-title
 	            class="group inline-flex min-h-11 min-w-0 items-center rounded-md text-ink-950 no-underline dark:text-paper-50"
-            href="/"
+            href={isEnglish ? "/en/" : "/"}
           >
             <span class="truncate font-heading text-2xl font-semibold tracking-[-0.015em]">
               {siteTitle}
@@ -676,7 +702,7 @@ function isActiveNav(href: string): boolean {
 
           <!-- Desktop navigation and actions -->
 	          <div class="desktop-nav-shell hidden lg:flex">
-            <nav aria-label="Primary navigation">
+            <nav aria-label={isEnglish ? "Primary navigation" : "主导航"}>
 	              <ul class="m-0 flex list-none items-center gap-1 p-0">
                 {
                   navLinks.map((link) => (
@@ -698,12 +724,20 @@ function isActiveNav(href: string): boolean {
                 }
               </ul>
             </nav>
+            <a
+              href={languageSwitchHref}
+              hreflang={alternateLanguage}
+              class="glass-control inline-flex min-h-9 items-center rounded-lg px-2.5 text-xs font-bold text-ink-600 no-underline hover:text-ink-950 dark:text-paper-300 dark:hover:text-paper-50"
+              aria-label={isEnglish ? "切换到中文" : "Switch to English"}
+            >
+              {isEnglish ? "中" : "EN"}
+            </a>
             <button
               type="button"
               data-theme-toggle
               class="glass-control theme-switch-button inline-flex shrink-0 cursor-pointer items-center justify-center text-ink-600 dark:text-paper-300"
-              aria-label="Switch to dark mode"
-              title="Switch to dark mode"
+              aria-label={isEnglish ? "Switch to dark mode" : "切换到深色模式"}
+              title={isEnglish ? "Switch to dark mode" : "切换到深色模式"}
             >
               <span class="theme-switch-visual" aria-hidden="true">
                 <span class="theme-switch-thumb"></span>
@@ -718,11 +752,11 @@ function isActiveNav(href: string): boolean {
             type="button"
             id="mobile-menu-toggle"
 	            class="icon-button z-50 lg:hidden"
-            aria-label="Open navigation menu"
+            aria-label={isEnglish ? "Open navigation menu" : "打开导航菜单"}
             aria-controls="mobile-menu"
             aria-expanded="false"
           >
-            <span class="sr-only">Toggle menu</span>
+            <span class="sr-only">{isEnglish ? "Toggle menu" : "切换菜单"}</span>
             <span
               id="icon-menu"
               class="i-ph-list-bold text-xl transition-transform duration-200"
@@ -739,7 +773,7 @@ function isActiveNav(href: string): boolean {
             hidden
             class="glass-popover invisible absolute inset-x-0 top-full z-40 mt-2 max-h-[calc(100dvh-5rem)] w-auto max-w-none origin-top scale-95 overflow-y-auto overscroll-contain rounded-xl p-2 opacity-0 transition-[opacity,transform,visibility] duration-200 sm:left-auto sm:w-64 sm:max-w-[calc(100vw-2rem)] sm:origin-top-right lg:hidden"
           >
-            <nav aria-label="Mobile navigation">
+            <nav aria-label={isEnglish ? "Mobile navigation" : "移动端导航"}>
               <ul class="m-0 flex list-none flex-col gap-1 p-0">
                 {
                   navLinks.map((link) => (
@@ -762,14 +796,22 @@ function isActiveNav(href: string): boolean {
               </ul>
             </nav>
             <div class="mt-2 border-t border-paper-300 pt-2 dark:border-ink-700">
+              <a
+                href={languageSwitchHref}
+                hreflang={alternateLanguage}
+                class="glass-nav-link mb-1 flex min-h-11 items-center justify-between rounded-[0.625rem] border border-transparent px-3 text-sm font-bold text-ink-700 no-underline dark:text-paper-300"
+              >
+                <span>{isEnglish ? "语言" : "Language"}</span>
+                <span>{isEnglish ? "中文" : "English"}</span>
+              </a>
               <button
                 type="button"
                 data-theme-toggle
                 class="glass-control theme-menu-button flex min-h-11 w-full cursor-pointer items-center gap-2 text-left text-sm font-bold text-ink-700 transition-colors dark:text-paper-300"
-                aria-label="Switch to dark mode"
-                title="Switch to dark mode"
+                aria-label={isEnglish ? "Switch to dark mode" : "切换到深色模式"}
+                title={isEnglish ? "Switch to dark mode" : "切换到深色模式"}
               >
-                <span data-theme-label class="whitespace-nowrap">Dark mode</span>
+                <span data-theme-label class="whitespace-nowrap">{isEnglish ? "Dark mode" : "深色模式"}</span>
                 <span class="theme-switch-visual" aria-hidden="true">
                   <span class="theme-switch-thumb"></span>
                   <span class="theme-switch-icon theme-switch-icon-sun i-ph-sun"></span>
@@ -790,7 +832,7 @@ function isActiveNav(href: string): boolean {
       >
 	        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 	          {footerLinks.length > 0 && (
-	            <nav aria-label="Profile links">
+	            <nav aria-label={isEnglish ? "Profile links" : "个人链接"}>
 	              <ul class="m-0 flex list-none flex-wrap gap-x-5 gap-y-2 p-0">
 	                {footerLinks.map((link) => {
 	                  const opensNewTab = /^https?:/i.test(link.href);
@@ -825,8 +867,8 @@ function isActiveNav(href: string): boolean {
         id="back-to-top"
 	        tabindex="-1"
         class="icon-button pointer-events-none translate-y-4 opacity-0 duration-300 data-[visible=true]:pointer-events-auto data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
-        aria-label="Back to top"
-        title="Back to top"
+        aria-label={isEnglish ? "Back to top" : "返回顶部"}
+        title={isEnglish ? "Back to top" : "返回顶部"}
       >
         <span class="i-ph-arrow-up-bold text-lg" aria-hidden="true"></span>
       </button>

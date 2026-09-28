@@ -1,0 +1,63 @@
+profile:
+  - label: 当前方向
+    value: 数据中心人工智能、大模型训练数据与数据质量
+  - label: 学术背景
+    value: 北京大学电子信息硕士在读；北京理工大学信息与计算科学本科
+  - label: 开源实践
+    value: DataFlow、DataFlex 核心贡献者
+  - label: 创业实践
+    value: 元枢智汇联合创始人，负责 AI 数据基础设施的解决方案与商业落地
+
+experience:
+  - role: 联合创始人
+    organization: 元枢智汇
+    period: 目前
+    bullets:
+      - 负责 AI 数据基础设施的解决方案与商业落地。
+      - 围绕数据准备、动态训练与企业 AI 应用，连接开源技术和行业场景。
+  - role: 科研实习
+    organization: 北京大学国际机器学习研究中心
+    period: 2024.04—至今
+    bullets:
+      - 研究数据选择优化、数学数据合成与清洗，探索有限算力下提升大模型训练效率。
+      - 参与多模态数据评估，并将研究方法落地到开源项目。
+  - role: 数据智能平台科研实习生
+    organization: 蚂蚁集团
+    period: 2024.11—2025.08
+    bullets:
+      - 设计大模型数学与多轮对话训练数据的构建、过滤和合成方案，并推动平台落地。
+      - 参与多模态数据评估方案、专利申请与论文研究。
+  - role: 大模型算法实习生
+    organization: 智谱AI
+    period: 2024.08—2024.10
+    bullets:
+      - 参与模型训练数据构建、专项任务效果评估与知识库维护。
+
+education:
+  - degree: 电子信息硕士（在读）
+    institution: 北京大学
+    year: 2025.09—2028.06（预计）
+  - degree: 信息与计算科学本科
+    institution: 北京理工大学
+    year: 2021.09—2025.06
+
+sections:
+  - title: 荣誉奖励
+    icon: i-mdi:trophy-award
+    items:
+      - 国家奖学金
+      - 北京市优秀毕业生
+      - 校级优秀学生一等奖学金
+  - title: 学术与传播
+    icon: i-mdi:account-group-outline
+    items:
+      - title: 学术研究
+        description: 研究成果涉及数学数据清洗、推理数据质量、数据选择与大模型训练；完整论文列表见研究成果页面。
+        links:
+          - label: Google Scholar
+            href: https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=zh-CN
+      - title: 科学与技术分享
+        description: 在小红书分享内容；据个人主页提供的信息，已收获 4377 次赞与收藏。
+        links:
+          - label: 小红书主页
+            href: https://xhslink.cn/o/84v0uHax500

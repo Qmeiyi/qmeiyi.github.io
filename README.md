@@ -23,9 +23,9 @@ pnpm dev
 | --- | --- |
 | 姓名、简介、链接和首页配置 | `site.config.ts` |
 | 近期动态 | `src/data/news.yml` |
-| 个人经历、教育和荣誉 | `src/data/about.yml` |
+| 首页经历、教育和荣誉 | `src/data/about.yml` |
 | 论文 | `src/data/publications.bib` |
-| 项目 | `src/content/projects/` |
+| 首页项目 | `src/content/projects/` |
 | 头像和图标 | `public/` |
 
 ## 构建与发布
@@ -37,6 +37,8 @@ pnpm build
 ```
 
 推送到 `main` 分支后，`.github/workflows/deploy-pages.yml` 会自动构建并发布到 GitHub Pages。
+
+网站采用单页履历结构，首页完整展示个人信息；`/researches` 是唯一独立内容页，用于论文列表。
 
 ## 致谢
 

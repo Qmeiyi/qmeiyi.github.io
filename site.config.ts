@@ -30,15 +30,11 @@ export const siteConfig = defineSiteConfig({
   ],
   navLinks: [
     { href: "/", label: "首页" },
-    { href: "/about", label: "关于" },
     { href: "/researches", label: "研究成果" },
-    { href: "/projects", label: "项目实践" },
   ],
   footer: { showProfileLinks: true, showAuthor: true, copyright: "保留所有权利。" },
   pageTitles: {
-    about: { title: "关于我", description: "教育背景、研究经历、产业实践与荣誉。" },
     researches: { title: "研究成果", description: "精选论文与预印本；论文状态以正式出版页面为准。" },
-    projects: { title: "项目实践", description: "从研究方法到可用工具：开源系统与产业实践。" },
   },
   homeBlocks: {
     hero: { enabled: true },

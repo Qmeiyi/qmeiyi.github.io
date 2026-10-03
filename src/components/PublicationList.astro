@@ -38,6 +38,16 @@ function displayHighlight(label: string): string {
   if (label.toLowerCase() === "core contributor") return "核心贡献者";
   return label;
 }
+
+function displayVenue(venue: string, isTechnicalReport: boolean, isArxivPreprint: boolean): string {
+  if (isTechnicalReport) return isEnglish ? "Technical Report" : "技术报告";
+  if (isArxivPreprint) {
+    const arxivId = venue.match(/arXiv:(\d+\.\d+)/i)?.[1];
+    const label = isEnglish ? "arXiv Preprint" : "arXiv 预印本";
+    return arxivId ? `${label} · ${arxivId}` : label;
+  }
+  return venue;
+}
 ---
 
 <div data-publication-citations data-locale={locale}>
@@ -49,7 +59,9 @@ function displayHighlight(label: string): string {
       const has摘要 = Boolean(paper.abstract);
       const citations = formatCitations(paper);
       const displayAuthors = getDisplayAuthors(paper.authors);
-      const isTechnicalReport = paper.venue?.toLowerCase().includes("technical report");
+      const isTechnicalReport = Boolean(paper.venue?.toLowerCase().includes("technical report"));
+      const isArxivPreprint = Boolean(paper.venue?.toLowerCase().includes("arxiv preprint"));
+      const venueKind = isTechnicalReport ? "report" : isArxivPreprint ? "preprint" : "accepted";
 
       return (
         <li class="publication-card">
@@ -57,9 +69,19 @@ function displayHighlight(label: string): string {
             <div class="min-w-0 space-y-3">
               <div class="flex flex-wrap items-center gap-2" aria-label={isEnglish ? "Publication details" : "论文信息"}>
                 {paper.venue && (
-                  <span class:list={["publication-badge publication-badge--venue", isTechnicalReport && "publication-badge--report"]}>
-                    <span class:list={[isTechnicalReport ? "i-mdi:file-document-edit-outline" : "i-mdi:school-outline", "text-sm"]} aria-hidden="true"></span>
-                    {paper.venue}
+                  <span class={`publication-badge publication-badge--venue publication-badge--${venueKind}`}>
+                    <span
+                      class:list={[
+                        isTechnicalReport
+                          ? "i-mdi:file-document-edit-outline"
+                          : isArxivPreprint
+                            ? "i-mdi:file-clock-outline"
+                            : "i-mdi:school-outline",
+                        "text-sm",
+                      ]}
+                      aria-hidden="true"
+                    ></span>
+                    {displayVenue(paper.venue, isTechnicalReport, isArxivPreprint)}
                   </span>
                 )}
                 {paper.highlights.map((highlight) => (
@@ -313,10 +335,22 @@ function displayHighlight(label: string): string {
     color: #276a7a;
   }
 
+  .publication-badge--accepted {
+    border-color: rgb(104 183 202 / 0.58);
+    background: rgb(232 247 250 / 0.86);
+    color: #276a7a;
+  }
+
   .publication-badge--report {
-    border-color: rgb(159 169 168 / 0.55);
-    background: rgb(239 242 241 / 0.9);
-    color: #4d5c59;
+    border-color: rgb(83 166 132 / 0.55);
+    background: rgb(232 248 241 / 0.92);
+    color: #276b54;
+  }
+
+  .publication-badge--preprint {
+    border-color: rgb(153 137 202 / 0.52);
+    background: rgb(242 238 253 / 0.92);
+    color: #5d4d91;
   }
 
   .publication-badge--hf {
@@ -369,6 +403,24 @@ function displayHighlight(label: string): string {
     border-color: rgb(71 151 170 / 0.65);
     background: rgb(24 66 76 / 0.75);
     color: #a8dfea;
+  }
+
+  :global(.dark) .publication-badge--accepted {
+    border-color: rgb(71 151 170 / 0.65);
+    background: rgb(24 66 76 / 0.75);
+    color: #a8dfea;
+  }
+
+  :global(.dark) .publication-badge--report {
+    border-color: rgb(68 139 111 / 0.68);
+    background: rgb(28 68 53 / 0.78);
+    color: #a9dfca;
+  }
+
+  :global(.dark) .publication-badge--preprint {
+    border-color: rgb(126 105 181 / 0.66);
+    background: rgb(53 42 85 / 0.78);
+    color: #cec1f1;
   }
 
   :global(.dark) .publication-badge--hf {

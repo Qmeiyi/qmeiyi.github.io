@@ -73,12 +73,31 @@ const modifiedTime = modifiedAt?.toISOString() || publishedTime;
 
 const currentYear = new Date().getFullYear();
 const siteTitle = isEnglish ? "Meiyi Qiang" : (siteConfig.author || siteConfig.title);
-const navLinks = isEnglish
+const homeSectionNavLinks = isEnglish
   ? [
-      { href: "/en/", label: "Home" },
-      { href: "/en/researches", label: "Publications" },
+      { href: "#about", label: "About" },
+      { href: "#updates", label: "Updates" },
+      { href: "#open-source", label: "Open Source" },
+      { href: "#research-interests", label: "Research" },
+      { href: "#publications", label: "Publications" },
+      { href: "#honors", label: "Honors" },
     ]
-  : siteConfig.navLinks;
+  : [
+      { href: "#about", label: "关于" },
+      { href: "#updates", label: "最新动态" },
+      { href: "#open-source", label: "开源项目" },
+      { href: "#research-interests", label: "研究方向" },
+      { href: "#publications", label: "研究成果" },
+      { href: "#honors", label: "荣誉奖项" },
+    ];
+const navLinks = isHomePage
+  ? homeSectionNavLinks
+  : isEnglish
+    ? [
+        { href: "/en/", label: "Home" },
+        { href: "/en/researches", label: "Publications" },
+      ]
+    : siteConfig.navLinks;
 const footerLinks = siteConfig.footer.showProfileLinks
   ? siteConfig.socialLinks.map((link) => ({
       ...link,
@@ -142,6 +161,7 @@ const extendedMeta = [
 ];
 
 function isActiveNav(href: string): boolean {
+  if (href.startsWith("#")) return false;
   const normalizedHref = href.replace(/\/$/, "") || "/";
   return normalizedHref === "/"
     ? currentPath === "/"

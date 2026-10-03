@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 import { parse } from "yaml";
 import siteConfig from "../side.config";
 import newsRaw from "../data/news.yml?raw";
+import { getAllPapers } from "../lib/papers";
 
 interface Props {
   locale?: "zh" | "en";
@@ -31,7 +32,7 @@ const copy = isEnglish
       ],
       profileName: "Meiyi Qiang",
       profileEnglishName: "强美伊",
-      profileTags: ["AI Data Researcher", "Open Source Contributor", "Entrepreneur"],
+      profileTags: ["Entrepreneur", "Open Source Contributor", "AI Data Researcher"],
       aboutLabel: "About",
       aboutHeading: "About",
       connectLabel: "Connect",
@@ -43,7 +44,7 @@ const copy = isEnglish
       paperCta: "Publications",
       status: "Research · Open Source · Entrepreneurship",
       newsLabel: "News",
-      newsHeading: "Recent Updates",
+      newsHeading: "Latest Updates",
       researchLabel: "Research Interests",
       researchHeading: "Research Interests",
       paperListCta: "View all publications",
@@ -52,6 +53,13 @@ const copy = isEnglish
       projectDescription: "I contribute research methods and production engineering to open-source AI data infrastructure.",
       active: "Active",
       completed: "Completed",
+      publicationsLabel: "Publications",
+      publicationsHeading: "Research Outputs",
+      publicationsDescription: "Selected work spanning data preparation, dynamic training, mathematical data quality, and data-centric AI.",
+      publicationCta: "View complete publication list",
+      paperLinkLabel: "Paper",
+      honorsLabel: "Honors",
+      honorsHeading: "Honors & Awards",
     }
   : {
       pageTitle: "首页",
@@ -59,7 +67,7 @@ const copy = isEnglish
       affiliations: siteConfig.affiliations,
       profileName: "强美伊",
       profileEnglishName: "Meiyi Qiang",
-      profileTags: ["AI Data 研究者", "开源技术贡献者", "创业者"],
+      profileTags: ["创业者", "开源技术贡献者", "AI Data 研究者"],
       aboutLabel: "About",
       aboutHeading: "关于",
       connectLabel: "Connect",
@@ -71,7 +79,7 @@ const copy = isEnglish
       paperCta: "研究成果与论文",
       status: siteConfig.hero.statusBadge,
       newsLabel: "News",
-      newsHeading: "最近动态",
+      newsHeading: "最新动态",
       researchLabel: "Research Interests",
       researchHeading: "研究方向",
       paperListCta: "查看完整论文列表",
@@ -80,6 +88,13 @@ const copy = isEnglish
       projectDescription: "将研究方法与工程能力沉淀到开源 AI 数据基础设施中。",
       active: "进行中",
       completed: "已完成",
+      publicationsLabel: "Publications",
+      publicationsHeading: "研究成果",
+      publicationsDescription: "聚焦数据准备、动态训练、数学数据质量与数据中心人工智能的代表性研究。",
+      publicationCta: "查看完整论文列表",
+      paperLinkLabel: "论文",
+      honorsLabel: "Honors",
+      honorsHeading: "荣誉奖项",
     };
 
 const news: NewsItem[] = isEnglish
@@ -104,6 +119,36 @@ const sidebarEducation = isEnglish
 const researchInterests = isEnglish
   ? ["Data-Centric AI", "LLM Training Data", "Data Selection", "Mathematical Reasoning & Data Quality"]
   : siteConfig.researchInterests;
+
+const featuredPaperIds = [
+  "liang2027dataflow",
+  "liang2026dataflex",
+  "liang2026datapreparation",
+  "liang2026mathdebugger",
+];
+const paperById = new Map(getAllPapers().map((paper) => [paper.id, paper]));
+const featuredPapers = featuredPaperIds
+  .map((id) => paperById.get(id))
+  .filter((paper) => paper !== undefined);
+
+const honors = isEnglish
+  ? ["National Scholarship", "Beijing Outstanding Graduate", "First-Class University Scholarship"]
+  : ["国家奖学金", "北京市优秀毕业生", "校级优秀学生一等奖学金"];
+
+function displayFeaturedAuthors(authors: string[]): string[] {
+  if (authors.length <= 5) return authors;
+  const visible = authors.slice(0, 3);
+  if (!visible.includes("Meiyi Qiang")) visible.push("Meiyi Qiang");
+  return visible;
+}
+
+function displayHighlight(highlight: string): string {
+  if (isEnglish) return highlight;
+  if (highlight.toLowerCase() === "core contributor") return "核心贡献者";
+  if (highlight.toLowerCase() === "co-first author") return "共同一作";
+  if (highlight.toLowerCase() === "survey") return "综述";
+  return highlight;
+}
 
 const projectCopy: Record<string, { title: string; subtitle: string; summary: string; highlights: string[]; linkLabels: string[] }> = {
   originhub: {
@@ -171,7 +216,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   language={locale}
 >
   <div class="profile-content space-y-14 pb-4 sm:space-y-20">
-    <section class="home-section-card profile-hero-card p-6 sm:p-8">
+    <section id="about" class="home-section-card profile-hero-card scroll-mt-24 p-6 sm:p-8">
       <div>
         <div class="min-w-0">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
@@ -182,7 +227,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           </p>
 
           <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3">
-            <a href={isEnglish ? "/en/researches" : "/researches"} class="action-link px-0">
+            <a href="#publications" class="action-link px-0">
               <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
               {copy.paperCta}
               <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
@@ -272,7 +317,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="news-heading">
+    <section id="updates" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="news-heading">
       <div class="section-title-box mb-5 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.newsLabel}</p>
         <h2 id="news-heading" class="section-heading mt-1">{copy.newsHeading}</h2>
@@ -294,7 +339,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </ol>
     </section>
 
-    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="projects-heading">
+    <section id="open-source" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="projects-heading">
       <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.projectLabel}</p>
         <h2 id="projects-heading" class="section-heading mt-1">{copy.projectHeading}</h2>
@@ -337,7 +382,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="research-heading">
+    <section id="research-interests" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="research-heading">
       <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.researchLabel}</p>
         <h2 id="research-heading" class="section-heading mt-1">{copy.researchHeading}</h2>
@@ -354,6 +399,75 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
         {copy.paperListCta}
         <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
       </a>
+    </section>
+
+    <section id="publications" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="publications-heading">
+      <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.publicationsLabel}</p>
+        <h2 id="publications-heading" class="section-heading mt-1">{copy.publicationsHeading}</h2>
+        <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.publicationsDescription}</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        {featuredPapers.map((paper) => (
+          <article class="surface-card flex h-full flex-col overflow-hidden !p-0">
+            <a href={paper.url} target="_blank" rel="noopener noreferrer" class="block border-b border-accent-200/70 bg-paper-50/80 p-3 dark:border-accent-800/60 dark:bg-ink-800/70">
+              <img
+                src={`/images/publications/${paper.id}.webp`}
+                alt={isEnglish ? `Main figure from ${paper.title}` : `论文《${paper.title}》核心配图`}
+                width="1200"
+                height="650"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[16/9] h-auto w-full rounded-xl object-contain"
+              />
+            </a>
+            <div class="flex flex-1 flex-col p-5">
+              <div class="flex flex-wrap items-center gap-2">
+                {paper.venue && <span class="rounded-full border border-cyan-300/70 bg-cyan-50 px-2.5 py-1 text-[11px] font-bold text-cyan-800 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-200">{paper.venue}</span>}
+                {paper.highlights.slice(0, 1).map((highlight) => <span class="rounded-full border border-emerald-300/70 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200">{displayHighlight(highlight)}</span>)}
+              </div>
+              <h3 class="entry-title mt-3 text-lg">{paper.title}</h3>
+              <p class="mt-2 text-sm leading-6 text-ink-600 dark:text-paper-300">
+                {displayFeaturedAuthors(paper.authors).map((author, authorIndex) => (
+                  <>
+                    {authorIndex > 0 && ", "}
+                    <span class:list={[author === "Meiyi Qiang" && "font-bold text-ink-900 dark:text-paper-100"]}>{author}</span>
+                  </>
+                ))}
+                {paper.authors.length > 5 ? ", et al." : ""}
+              </p>
+              {paper.url && (
+                <a href={paper.url} target="_blank" rel="noopener noreferrer" class="action-link mt-auto pt-4 text-xs">
+                  <span class="i-mdi:file-document-outline text-sm" aria-hidden="true"></span>{copy.paperLinkLabel}<span class="i-mdi:open-in-new text-sm" aria-hidden="true"></span>
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <a href={isEnglish ? "/en/researches" : "/researches"} class="action-link mt-6 px-0">
+        {copy.publicationCta}<span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <section id="honors" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="honors-heading">
+      <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
+        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.honorsLabel}</p>
+        <h2 id="honors-heading" class="section-heading mt-1">{copy.honorsHeading}</h2>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {honors.map((honor, index) => (
+          <article class="surface-card flex items-center gap-4 p-5">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-amber-300/70 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/45 dark:text-amber-300">
+              <span class="i-mdi:trophy-award text-xl" aria-hidden="true"></span>
+            </span>
+            <div>
+              <p class="font-mono text-[10px] font-semibold text-ink-400 dark:text-paper-500">0{index + 1}</p>
+              <h3 class="mt-1 font-heading text-lg font-semibold leading-6 text-ink-900 dark:text-paper-100">{honor}</h3>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   </div>
 </Layout>
@@ -411,14 +525,15 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 
   @media (min-width: 1024px) {
     .profile-content {
-      padding-right: 19rem;
+      padding-left: 19rem;
     }
 
     .profile-sidebar {
       position: fixed;
       z-index: 20;
       top: 6rem;
-      right: max(2rem, calc((100vw - 72rem) / 2 + 2rem));
+      left: max(2rem, calc((100vw - 72rem) / 2 + 2rem));
+      right: auto;
       width: 15rem;
       max-height: calc(100dvh - 7.5rem);
       overflow-y: auto;

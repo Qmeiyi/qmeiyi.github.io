@@ -24,10 +24,19 @@ function getDisplayAuthors(authors: string[]): string[] {
 }
 
 function highlightKind(label: string): string {
+  if (label.toLowerCase() === "co-first author") return "cofirst";
+  if (label.toLowerCase() === "core contributor") return "contributor";
   if (label.startsWith("Hugging Face")) return "hf";
   if (label.toLowerCase() === "oral") return "oral";
   if (label.toLowerCase() === "survey") return "survey";
   return "default";
+}
+
+function displayHighlight(label: string): string {
+  if (isEnglish) return label;
+  if (label.toLowerCase() === "co-first author") return "共同一作";
+  if (label.toLowerCase() === "core contributor") return "核心贡献者";
+  return label;
 }
 ---
 
@@ -55,10 +64,12 @@ function highlightKind(label: string): string {
                 )}
                 {paper.highlights.map((highlight) => (
                   <span class={`publication-badge publication-badge--${highlightKind(highlight)}`}>
+                    {highlightKind(highlight) === "cofirst" && <span class="i-mdi:account-star-outline text-sm" aria-hidden="true"></span>}
+                    {highlightKind(highlight) === "contributor" && <span class="i-mdi:account-group-outline text-sm" aria-hidden="true"></span>}
                     {highlightKind(highlight) === "hf" && <span class="i-ph:trophy-fill text-sm" aria-hidden="true"></span>}
                     {highlightKind(highlight) === "oral" && <span class="i-mdi:microphone-outline text-sm" aria-hidden="true"></span>}
                     {highlightKind(highlight) === "survey" && <span class="i-mdi:book-open-page-variant-outline text-sm" aria-hidden="true"></span>}
-                    {highlight}
+                    {displayHighlight(highlight)}
                   </span>
                 ))}
                 <span class="ml-auto font-mono text-[11px] font-semibold tabular-nums text-ink-400 dark:text-paper-500">
@@ -326,6 +337,18 @@ function highlightKind(label: string): string {
     color: #5d4d91;
   }
 
+  .publication-badge--cofirst {
+    border-color: rgb(176 122 193 / 0.48);
+    background: rgb(249 239 251 / 0.92);
+    color: #70427d;
+  }
+
+  .publication-badge--contributor {
+    border-color: rgb(80 160 128 / 0.48);
+    background: rgb(232 248 241 / 0.92);
+    color: #276b54;
+  }
+
   :global(.dark) .publication-card {
     border-color: rgb(66 74 71 / 0.88);
     background: rgb(31 36 34 / 0.82);
@@ -364,6 +387,18 @@ function highlightKind(label: string): string {
     border-color: rgb(126 105 181 / 0.62);
     background: rgb(53 42 85 / 0.75);
     color: #cec1f1;
+  }
+
+  :global(.dark) .publication-badge--cofirst {
+    border-color: rgb(155 100 173 / 0.65);
+    background: rgb(72 39 82 / 0.76);
+    color: #e2b9ec;
+  }
+
+  :global(.dark) .publication-badge--contributor {
+    border-color: rgb(68 139 111 / 0.68);
+    background: rgb(28 68 53 / 0.78);
+    color: #a9dfca;
   }
 
   .resource-link {

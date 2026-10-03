@@ -61,6 +61,11 @@ const copy = isEnglish
         { role: "M.Eng. Student", institution: "Peking University" },
         { role: "Co-founder", institution: "OriginHub", url: "https://originhub.tech/" },
       ],
+      profileLabel: "Profile",
+      profileName: "Meiyi Qiang",
+      profileTags: ["AI Data Researcher", "Open Source Contributor", "Serial Entrepreneur"],
+      educationShortLabel: "Education",
+      currentRole: "Co-founder · OriginHub",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Publications",
       status: "Research · Open Source · Entrepreneurship",
@@ -88,6 +93,11 @@ const copy = isEnglish
       pageTitle: "首页",
       description: siteConfig.hero.subheadline,
       affiliations: siteConfig.affiliations,
+      profileLabel: "个人信息",
+      profileName: "强美伊",
+      profileTags: ["AI Data 研究者", "开源技术贡献者", "连续创业者"],
+      educationShortLabel: "教育背景",
+      currentRole: "联合创始人 · 元枢智汇",
       socialLabels: {} as Record<string, string>,
       paperCta: "研究成果与论文",
       status: siteConfig.hero.statusBadge,
@@ -136,6 +146,16 @@ const education: Education[] = isEnglish
       { degree: "B.S. in Information and Computing Science", institution: "Beijing Institute of Technology", year: "Sep 2021 — Jun 2025" },
     ]
   : chineseEducation;
+
+const sidebarEducation = isEnglish
+  ? [
+      { institution: "Peking University", degree: "M.Eng. in Electronic Information" },
+      { institution: "Beijing Institute of Technology", degree: "B.S. in Information & Computing Science" },
+    ]
+  : [
+      { institution: "北京大学", degree: "电子信息硕士（在读）" },
+      { institution: "北京理工大学", degree: "信息与计算科学本科" },
+    ];
 
 const honors = isEnglish
   ? ["National Scholarship", "Beijing Outstanding Graduate", "First-Class University Scholarship"]
@@ -197,9 +217,9 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   schemaType="ProfilePage"
   language={locale}
 >
-  <div class="space-y-14 pb-4 sm:space-y-20">
+  <div class="profile-content space-y-14 pb-4 sm:space-y-20">
     <section class="border-b border-paper-300/90 pb-10 pt-3 dark:border-ink-700 sm:pb-14 sm:pt-6">
-      <div class="grid gap-7 lg:grid-cols-[minmax(0,1fr)_13rem] lg:gap-x-14">
+      <div>
         <div class="min-w-0">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">
             Research · Open Source · Entrepreneurship
@@ -211,27 +231,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             {isEnglish ? "强美伊" : "Meiyi Qiang"}
           </p>
 
-          <div class="mt-5 space-y-1">
-            {copy.affiliations.map((affiliation) => (
-              <p class="text-base leading-7 text-ink-600 dark:text-paper-300">
-                {affiliation.role}{isEnglish ? ", " : "，"}
-                {affiliation.url ? (
-                  <a
-                    href={affiliation.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="font-semibold text-accent-700 underline decoration-accent-300 underline-offset-4 dark:text-accent-300 dark:decoration-accent-700"
-                  >
-                    {affiliation.institution}
-                  </a>
-                ) : (
-                  affiliation.institution
-                )}
-              </p>
-            ))}
-          </div>
-
-          <p class="mt-6 max-w-[68ch] text-[1.08rem] leading-8 text-ink-700 dark:text-paper-300">
+          <p class="mt-6 max-w-[62ch] text-[1.08rem] leading-8 text-ink-700 dark:text-paper-300">
             {copy.description}
           </p>
 
@@ -241,36 +241,66 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               {copy.paperCta}
               <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
             </a>
-            {socialLinks.map((link) => (
-              <a
-                href={link.href}
-                target={/^https?:/i.test(link.href) ? "_blank" : undefined}
-                rel={/^https?:/i.test(link.href) ? "noopener noreferrer" : undefined}
-                class="action-link px-0"
-              >
-                <span class={`${link.icon} text-base`} aria-hidden="true"></span>
-                {link.label}
-              </a>
-            ))}
           </div>
         </div>
 
-        <aside class="flex items-start gap-4 lg:block">
-          <div class="w-24 overflow-hidden rounded-xl border border-paper-300/90 bg-white/70 p-1.5 shadow-paper dark:border-ink-700 dark:bg-ink-900/70 lg:w-full lg:p-2">
-            <Image
-              src={profileImageUrl}
-              alt={isEnglish ? "Portrait of Meiyi Qiang" : (siteConfig.hero.profileAlt || siteConfig.author)}
-              width={siteConfig.hero.profileImageWidth || 188}
-              height={siteConfig.hero.profileImageHeight || 252}
-              layout="constrained"
-              fit="cover"
-              priority
-              class="aspect-square h-auto w-full rounded-lg object-cover"
-            />
-          </div>
-          <div class="mt-1 inline-flex items-center gap-1.5 rounded-md border border-accent-300/40 bg-accent-50/70 px-2.5 py-1 text-xs font-semibold text-accent-800 dark:border-accent-700/50 dark:bg-accent-950/40 dark:text-accent-200 lg:mt-4">
-            <span class="h-1.5 w-1.5 rounded-full bg-accent-500" aria-hidden="true"></span>
-            {copy.status}
+        <aside class="profile-sidebar mt-8" aria-label={copy.profileLabel}>
+          <div class="surface-card p-3.5">
+            <div class="flex items-start gap-4 lg:block">
+              <div class="w-28 shrink-0 overflow-hidden rounded-xl border border-paper-300/90 bg-white/70 p-1.5 shadow-paper dark:border-ink-700 dark:bg-ink-900/70 lg:mx-auto lg:w-40 lg:p-1.5">
+                <Image
+                  src={profileImageUrl}
+                  alt={isEnglish ? "Portrait of Meiyi Qiang" : (siteConfig.hero.profileAlt || siteConfig.author)}
+                  width={siteConfig.hero.profileImageWidth || 188}
+                  height={siteConfig.hero.profileImageHeight || 252}
+                  layout="constrained"
+                  fit="cover"
+                  priority
+                  class="aspect-square h-auto w-full rounded-lg object-cover"
+                />
+              </div>
+              <div class="min-w-0 lg:mt-3">
+                <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.profileLabel}</p>
+                <p class="mt-1 font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.profileName}</p>
+                <p class="mt-1 text-xs font-medium text-ink-600 dark:text-paper-300">{copy.currentRole}</p>
+                <div class="mt-2.5 flex flex-wrap gap-1">
+                  {copy.profileTags.map((tag) => (
+                    <span class="rounded-full border border-accent-300/55 bg-accent-50/75 px-1.5 py-0.5 text-[10px] font-semibold leading-4 text-accent-800 dark:border-accent-700/60 dark:bg-accent-950/45 dark:text-accent-200">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 border-t border-paper-300/80 pt-3 dark:border-ink-700/80">
+              <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-500 dark:text-paper-400">{copy.educationShortLabel}</p>
+              <div class="mt-2 space-y-2">
+                {sidebarEducation.map((item) => (
+                  <div>
+                    <p class="text-sm font-semibold text-ink-900 dark:text-paper-100">{item.institution}</p>
+                    <p class="mt-0.5 text-[11px] leading-4 text-ink-600 dark:text-paper-300">{item.degree}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <nav class="mt-3 border-t border-paper-300/80 pt-2 dark:border-ink-700/80" aria-label={isEnglish ? "Profile links" : "个人链接"}>
+              <ul class="m-0 list-none space-y-0.5 p-0">
+                {socialLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      target={/^https?:/i.test(link.href) ? "_blank" : undefined}
+                      rel={/^https?:/i.test(link.href) ? "noopener noreferrer" : undefined}
+                      class="group flex min-h-8 items-center gap-2 rounded-lg px-2 text-xs font-semibold text-ink-700 transition-colors hover:bg-accent-50 hover:text-accent-800 dark:text-paper-200 dark:hover:bg-accent-950/45 dark:hover:text-accent-200"
+                    >
+                      <span class={`${link.icon} text-base text-accent-700 dark:text-accent-300`} aria-hidden="true"></span>
+                      <span>{link.label}</span>
+                      {/^https?:/i.test(link.href) && <span class="i-mdi:open-in-new ml-auto text-xs opacity-45 transition-opacity group-hover:opacity-80" aria-hidden="true"></span>}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </aside>
       </div>
@@ -323,7 +353,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
         <h2 id="projects-heading" class="section-heading mt-1">{copy.projectHeading}</h2>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.projectDescription}</p>
       </div>
-      <div class="grid gap-5 lg:grid-cols-3">
+      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, index) => {
           const translated = isEnglish ? projectCopy[project.id] : undefined;
           const subtitle = translated?.subtitle ?? project.data.subtitle;
@@ -433,3 +463,23 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
     </section>
   </div>
 </Layout>
+
+<style>
+  @media (min-width: 1024px) {
+    .profile-content {
+      padding-right: 19rem;
+    }
+
+    .profile-sidebar {
+      position: fixed;
+      z-index: 20;
+      top: 6rem;
+      right: max(2rem, calc((100vw - 72rem) / 2 + 2rem));
+      width: 15rem;
+      max-height: calc(100dvh - 7.5rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+  }
+</style>

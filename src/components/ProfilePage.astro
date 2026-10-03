@@ -171,7 +171,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   language={locale}
 >
   <div class="profile-content space-y-14 pb-4 sm:space-y-20">
-    <section class="home-section-card p-6 sm:p-8">
+    <section class="home-section-card profile-hero-card p-6 sm:p-8">
       <div>
         <div class="min-w-0">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
@@ -373,6 +373,10 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
     transform: translateY(-3px);
     border-color: rgb(83 184 181 / 0.72);
     box-shadow: 0 30px 64px -38px rgb(13 116 126 / 0.62);
+  }
+
+  .profile-hero-card:hover {
+    transform: none;
   }
 
   :global(.dark) .home-section-card {

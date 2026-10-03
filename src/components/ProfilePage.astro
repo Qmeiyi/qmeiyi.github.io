@@ -47,7 +47,6 @@ type AboutData = {
 const about = (parse(aboutRaw) ?? {}) as AboutData;
 const chineseNews = (parse(newsRaw) ?? []) as NewsItem[];
 const chineseExperience = about.experience ?? [];
-const chineseEducation = about.education ?? [];
 const chineseHonors =
   about.sections
     ?.find((section) => section.title === "荣誉奖励")
@@ -56,16 +55,15 @@ const chineseHonors =
 const copy = isEnglish
   ? {
       pageTitle: "Home",
-      description: "Peking University master's student and co-founder of OriginHub, working on data-centric AI, training data, open-source systems, and real-world AI infrastructure.",
+      description: "Peking University master's student working on data-centric AI and LLM training data, contributing to open-source systems and bringing AI data infrastructure into real-world applications.",
       affiliations: [
         { role: "M.Eng. Student", institution: "Peking University" },
         { role: "Co-founder", institution: "OriginHub", url: "https://originhub.tech/" },
       ],
-      profileLabel: "Profile",
       profileName: "Meiyi Qiang",
       profileTags: ["AI Data Researcher", "Open Source Contributor", "Serial Entrepreneur"],
-      educationShortLabel: "Education",
-      currentRole: "Co-founder · OriginHub",
+      aboutLabel: "About",
+      aboutHeading: "About",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Publications",
       status: "Research · Open Source · Entrepreneurship",
@@ -81,8 +79,6 @@ const copy = isEnglish
       completed: "Completed",
       experienceLabel: "Experience",
       experienceHeading: "Research & Industry Experience",
-      educationLabel: "Education",
-      educationHeading: "Education",
       honorsLabel: "Honors",
       honorsHeading: "Honors & Awards",
       connectLabel: "Let's Connect",
@@ -93,11 +89,10 @@ const copy = isEnglish
       pageTitle: "首页",
       description: siteConfig.hero.subheadline,
       affiliations: siteConfig.affiliations,
-      profileLabel: "个人信息",
       profileName: "强美伊",
       profileTags: ["AI Data 研究者", "开源技术贡献者", "连续创业者"],
-      educationShortLabel: "教育背景",
-      currentRole: "联合创始人 · 元枢智汇",
+      aboutLabel: "About",
+      aboutHeading: "关于",
       socialLabels: {} as Record<string, string>,
       paperCta: "研究成果与论文",
       status: siteConfig.hero.statusBadge,
@@ -113,8 +108,6 @@ const copy = isEnglish
       completed: "已完成",
       experienceLabel: "Experience",
       experienceHeading: "科研与产业经历",
-      educationLabel: "Education",
-      educationHeading: "教育背景",
       honorsLabel: "Honors",
       honorsHeading: "荣誉奖励",
       connectLabel: "Let’s Connect",
@@ -140,21 +133,12 @@ const experience: Experience[] = isEnglish
     ]
   : chineseExperience;
 
-const education: Education[] = isEnglish
-  ? [
-      { degree: "M.Eng. in Electronic Information (in progress)", institution: "Peking University", year: "Sep 2025 — Jun 2028 (expected)" },
-      { degree: "B.S. in Information and Computing Science", institution: "Beijing Institute of Technology", year: "Sep 2021 — Jun 2025" },
-    ]
-  : chineseEducation;
-
 const sidebarEducation = isEnglish
   ? [
       { institution: "Peking University", degree: "M.Eng. in Electronic Information" },
-      { institution: "Beijing Institute of Technology", degree: "B.S. in Information & Computing Science" },
     ]
   : [
       { institution: "北京大学", degree: "电子信息硕士（在读）" },
-      { institution: "北京理工大学", degree: "信息与计算科学本科" },
     ];
 
 const honors = isEnglish
@@ -191,7 +175,12 @@ const projectCopy: Record<string, { title: string; subtitle: string; summary: st
 
 const socialLinks = siteConfig.socialLinks.map((link) => ({
   ...link,
-  label: copy.socialLabels[link.label] ?? link.label,
+  label:
+    link.label === "小红书"
+      ? isEnglish
+        ? "RedNote · 1K+ followers"
+        : "小红书 · 1千+ 粉丝"
+      : copy.socialLabels[link.label] ?? link.label,
 }));
 
 const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
@@ -221,15 +210,8 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
     <section class="border-b border-paper-300/90 pb-10 pt-3 dark:border-ink-700 sm:pb-14 sm:pt-6">
       <div>
         <div class="min-w-0">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">
-            Research · Open Source · Entrepreneurship
-          </p>
-          <h1 class="mt-3 max-w-4xl font-heading text-[clamp(2.7rem,6vw,4.7rem)] font-semibold leading-none tracking-[-0.04em] text-ink-950 dark:text-paper-50">
-            {isEnglish ? "Meiyi Qiang" : siteConfig.author}
-          </h1>
-          <p class="mt-3 font-heading text-xl font-medium text-ink-700 dark:text-paper-200 sm:text-2xl">
-            {isEnglish ? "强美伊" : "Meiyi Qiang"}
-          </p>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
+          <h1 class="section-heading mt-2 text-3xl sm:text-4xl">{copy.aboutHeading}</h1>
 
           <p class="mt-6 max-w-[62ch] text-[1.08rem] leading-8 text-ink-700 dark:text-paper-300">
             {copy.description}
@@ -244,7 +226,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           </div>
         </div>
 
-        <aside class="profile-sidebar mt-8" aria-label={copy.profileLabel}>
+        <aside class="profile-sidebar mt-8" aria-label={isEnglish ? "Profile" : "个人简介"}>
           <div class="surface-card p-3.5">
             <div class="flex items-start gap-4 lg:block">
               <div class="w-28 shrink-0 overflow-hidden rounded-xl border border-paper-300/90 bg-white/70 p-1.5 shadow-paper dark:border-ink-700 dark:bg-ink-900/70 lg:mx-auto lg:w-40 lg:p-1.5">
@@ -260,9 +242,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 />
               </div>
               <div class="min-w-0 lg:mt-3">
-                <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.profileLabel}</p>
-                <p class="mt-1 font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.profileName}</p>
-                <p class="mt-1 text-xs font-medium text-ink-600 dark:text-paper-300">{copy.currentRole}</p>
+                <p class="font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.profileName}</p>
                 <div class="mt-2.5 flex flex-wrap gap-1">
                   {copy.profileTags.map((tag) => (
                     <span class="rounded-full border border-accent-300/55 bg-accent-50/75 px-1.5 py-0.5 text-[10px] font-semibold leading-4 text-accent-800 dark:border-accent-700/60 dark:bg-accent-950/45 dark:text-accent-200">{tag}</span>
@@ -272,8 +252,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </div>
 
             <div class="mt-3 border-t border-paper-300/80 pt-3 dark:border-ink-700/80">
-              <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-500 dark:text-paper-400">{copy.educationShortLabel}</p>
-              <div class="mt-2 space-y-2">
+              <div class="space-y-2">
                 {sidebarEducation.map((item) => (
                   <div>
                     <p class="text-sm font-semibold text-ink-900 dark:text-paper-100">{item.institution}</p>
@@ -416,24 +395,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
-      <section class="content-section" aria-labelledby="education-heading">
-        <div class="mb-5 border-b border-paper-300/90 pb-4 dark:border-ink-700">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.educationLabel}</p>
-          <h2 id="education-heading" class="section-heading mt-1">{copy.educationHeading}</h2>
-        </div>
-        <div class="space-y-4">
-          {education.map((item) => (
-            <article class="surface-card p-5">
-              <h3 class="entry-title text-lg">{item.institution}</h3>
-              <p class="mt-1 text-sm text-ink-700 dark:text-paper-300">{item.degree}</p>
-              <time class="mt-2 block font-mono text-xs text-ink-500 dark:text-paper-400">{item.year}</time>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section class="content-section" aria-labelledby="honors-heading">
+    <section class="content-section" aria-labelledby="honors-heading">
         <div class="mb-5 border-b border-paper-300/90 pb-4 dark:border-ink-700">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.honorsLabel}</p>
           <h2 id="honors-heading" class="section-heading mt-1">{copy.honorsHeading}</h2>
@@ -446,8 +408,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </li>
           ))}
         </ul>
-      </section>
-    </div>
+    </section>
 
     <section class="rounded-2xl border border-accent-300/50 bg-accent-50/60 p-6 dark:border-accent-800/70 dark:bg-accent-950/30 sm:p-8" aria-labelledby="contact-heading">
       <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.connectLabel}</p>

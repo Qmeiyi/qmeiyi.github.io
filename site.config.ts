@@ -10,7 +10,7 @@ export const siteConfig = defineSiteConfig({
   keywords: ["强美伊", "Meiyi Qiang", "数据中心人工智能", "大语言模型", "DataFlow", "DataFlex"],
   hero: {
     headline: "让高质量数据成为大模型进步的基础。",
-    subheadline: "北京大学电子信息硕士在读，元枢智汇联合创始人。研究数据中心人工智能与大模型训练数据，参与开源系统建设，推动 AI 数据基础设施走向真实应用。",
+    subheadline: "北京大学电子信息硕士在读，聚焦数据中心人工智能与大模型训练数据，参与开源系统建设，推动 AI 数据基础设施从研究走向真实应用。",
     profileImage: "/profile.png",
     profileAlt: "强美伊个人照片",
     profileImageWidth: 629,

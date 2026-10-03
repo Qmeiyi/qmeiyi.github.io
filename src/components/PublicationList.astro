@@ -313,7 +313,9 @@ function displayVenue(venue: string, isTechnicalReport: boolean, isArxivPreprint
     overflow: hidden;
     border: 1px solid rgb(147 213 211 / 0.78);
     border-radius: 1.6rem;
-    background: linear-gradient(145deg, rgb(255 255 255 / 0.96), rgb(235 250 251 / 0.82) 56%, rgb(236 251 245 / 0.78));
+    background:
+      radial-gradient(circle at 100% 0%, rgb(61 190 180 / 0.1), transparent 9rem),
+      rgb(255 255 255 / 0.98);
     box-shadow: 0 22px 48px -34px rgb(8 111 121 / 0.52);
     transition: border-color 240ms ease, box-shadow 240ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -343,7 +345,7 @@ function displayVenue(venue: string, isTechnicalReport: boolean, isArxivPreprint
     place-items: center;
     overflow: hidden;
     border-bottom: 1px solid rgb(147 213 211 / 0.68);
-    background: linear-gradient(145deg, rgb(229 248 250), rgb(232 250 244));
+    background: rgb(248 252 252);
     padding: 1rem;
   }
 
@@ -444,7 +446,9 @@ function displayVenue(venue: string, isTechnicalReport: boolean, isArxivPreprint
 
   :global(.dark) .publication-card {
     border-color: rgb(48 123 123 / 0.68);
-    background: linear-gradient(145deg, rgb(25 37 37 / 0.96), rgb(13 57 65 / 0.56), rgb(12 59 48 / 0.44));
+    background:
+      radial-gradient(circle at 100% 0%, rgb(45 159 151 / 0.11), transparent 9rem),
+      rgb(29 35 34 / 0.98);
     box-shadow: 0 24px 54px -34px rgb(0 0 0 / 0.86);
   }
 
@@ -454,7 +458,7 @@ function displayVenue(venue: string, isTechnicalReport: boolean, isArxivPreprint
 
   :global(.dark) .publication-figure {
     border-color: rgb(48 123 123 / 0.58);
-    background: linear-gradient(145deg, rgb(20 61 68 / 0.72), rgb(17 67 54 / 0.62));
+    background: rgb(24 41 40 / 0.98);
   }
 
   :global(.dark) .publication-badge {

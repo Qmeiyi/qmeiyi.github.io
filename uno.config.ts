@@ -106,7 +106,7 @@ export default defineConfig({
 		// Page structure
 		'page-stack': 'space-y-7 pb-2 sm:space-y-10 sm:pb-4',
 		'page-header':
-			'relative space-y-3 rounded-3xl border border-accent-200/80 bg-gradient-to-br from-white/95 via-cyan-50/65 to-emerald-50/60 p-6 shadow-paper-lg dark:border-accent-800/70 dark:from-ink-900/95 dark:via-accent-950/35 dark:to-emerald-950/25 sm:p-8',
+			'relative space-y-3 rounded-3xl border border-accent-300/75 bg-white/95 p-6 shadow-paper-lg dark:border-accent-800/70 dark:bg-ink-900/95 sm:p-8',
 		'page-title':
 			'font-heading text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.025em] text-ink-950 dark:text-paper-50 sm:text-[2.75rem]',
 		'page-description':
@@ -138,7 +138,7 @@ export default defineConfig({
 
 		// Surfaces and metadata
 		'surface-card':
-			'rounded-3xl border border-accent-200/75 bg-gradient-to-br from-white/95 via-cyan-50/55 to-emerald-50/55 p-5 shadow-paper transition-all duration-300 hover:-translate-y-1 hover:border-accent-400 hover:shadow-paper-lg dark:border-accent-800/70 dark:from-ink-900/95 dark:via-accent-950/30 dark:to-emerald-950/20 dark:hover:border-accent-600 sm:p-6',
+			'rounded-3xl border border-accent-300/75 bg-white/95 p-5 shadow-paper transition-all duration-300 hover:-translate-y-1 hover:border-teal-400 hover:shadow-paper-lg dark:border-accent-800/70 dark:bg-ink-900/95 dark:hover:border-teal-600 sm:p-6',
 		'surface-card-hover':
 			'surface-card focus-within:border-accent-400 dark:focus-within:border-accent-600',
 		'bento-card-hero':

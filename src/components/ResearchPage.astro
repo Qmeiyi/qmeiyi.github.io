@@ -89,7 +89,7 @@ const pageDescription = isEnglish
               class="content-section paper-section scroll-mt-20 space-y-4"
               data-filter-section={yearSlug}
             >
-              <header class="flex items-end justify-between gap-4 border-b border-paper-300/90 pb-3 dark:border-ink-700">
+              <header class="year-title-box flex items-end justify-between gap-4 rounded-2xl border border-cyan-200/80 px-4 py-3 dark:border-cyan-900/70">
 				<h2 class="section-heading">{year}</h2>
 				<p class="shrink-0 font-mono text-xs font-semibold tabular-nums text-ink-500 dark:text-paper-400">
                   {isEnglish ? `${yearPapers.length} ${yearPapers.length === 1 ? "paper" : "papers"}` : `${yearPapers.length} 篇`}
@@ -112,3 +112,13 @@ const pageDescription = isEnglish
     setupFilterControls();
   });
 </script>
+
+<style>
+  .year-title-box {
+    background: linear-gradient(90deg, rgb(230 248 250 / 0.82), rgb(235 251 245 / 0.78));
+  }
+
+  :global(.dark) .year-title-box {
+    background: linear-gradient(90deg, rgb(17 64 72 / 0.58), rgb(17 67 54 / 0.48));
+  }
+</style>

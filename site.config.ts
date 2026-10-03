@@ -24,8 +24,8 @@ export const siteConfig = defineSiteConfig({
   researchInterests: ["数据中心人工智能", "大模型训练数据", "数据选择", "数学推理与数据质量"],
   socialLinks: [
     { label: "Google Scholar", href: "https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=zh-CN", icon: "i-academicons:google-scholar" },
-    { label: "GitHub", href: "https://github.com/Qmeiyi", icon: "i-mdi:github" },
     { label: "小红书", href: "https://xhslink.cn/o/84v0uHax500", icon: "i-mdi:book-open-variant" },
+    { label: "GitHub", href: "https://github.com/Qmeiyi", icon: "i-mdi:github" },
     { label: "邮件联系", href: "mailto:qiangmeiyi@gmail.com", icon: "i-mdi:email-outline" },
   ],
   navLinks: [

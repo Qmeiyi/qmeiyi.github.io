@@ -171,7 +171,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   language={locale}
 >
   <div class="profile-content space-y-14 pb-4 sm:space-y-20">
-    <section class="border-b border-paper-300/90 pb-10 pt-3 dark:border-ink-700 sm:pb-14 sm:pt-6">
+    <section class="home-section-card p-6 sm:p-8">
       <div>
         <div class="min-w-0">
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
@@ -189,7 +189,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </a>
           </div>
 
-          <div class="mt-8 rounded-2xl border border-accent-300/55 bg-accent-50/65 p-5 dark:border-accent-800/70 dark:bg-accent-950/30 sm:p-6">
+          <div class="mt-8 rounded-3xl border border-teal-200/75 bg-gradient-to-br from-cyan-50/85 to-emerald-50/80 p-5 shadow-[0_14px_34px_-24px_rgba(13,148,136,0.55)] dark:border-teal-800/70 dark:from-cyan-950/45 dark:to-emerald-950/35 sm:p-6">
             <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.connectLabel}</p>
             <h2 class="mt-2 font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
             <p class="mt-2 max-w-[58ch] text-sm leading-7 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
@@ -272,14 +272,14 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <section class="content-section" aria-labelledby="news-heading">
+    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="news-heading">
       <div class="mb-5 border-b border-paper-300/90 pb-4 dark:border-ink-700">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.newsLabel}</p>
         <h2 id="news-heading" class="section-heading mt-1">{copy.newsHeading}</h2>
       </div>
-      <ol class="divide-y divide-paper-300/80 border-y border-paper-300/80 dark:divide-ink-700/80 dark:border-ink-700/80">
+      <ol class="grid gap-3">
         {news.map((item) => (
-          <li class="grid gap-2 py-4 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-5">
+          <li class="grid gap-2 rounded-2xl border border-accent-200/65 bg-white/70 px-4 py-4 shadow-[0_10px_26px_-24px_rgba(8,145,178,0.65)] transition-transform duration-300 hover:-translate-y-0.5 dark:border-accent-800/65 dark:bg-ink-900/65 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-5 sm:px-5">
             <time class="font-mono text-sm font-semibold tabular-nums text-accent-700 dark:text-accent-300">{item.date}</time>
             <p class="text-[0.98rem] leading-7 text-ink-700 dark:text-paper-300">
               {item.text}
@@ -294,7 +294,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </ol>
     </section>
 
-    <section class="content-section" aria-labelledby="projects-heading">
+    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="projects-heading">
       <div class="mb-6 border-b border-paper-300/90 pb-4 dark:border-ink-700">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.projectLabel}</p>
         <h2 id="projects-heading" class="section-heading mt-1">{copy.projectHeading}</h2>
@@ -337,7 +337,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <section class="content-section" aria-labelledby="research-heading">
+    <section class="content-section home-section-card p-6 sm:p-8" aria-labelledby="research-heading">
       <div class="mb-6 border-b border-paper-300/90 pb-4 dark:border-ink-700">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.researchLabel}</p>
         <h2 id="research-heading" class="section-heading mt-1">{copy.researchHeading}</h2>
@@ -359,6 +359,26 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 </Layout>
 
 <style>
+  .home-section-card {
+    border: 1px solid rgb(165 220 218 / 0.72);
+    border-radius: 1.75rem;
+    background: linear-gradient(145deg, rgb(255 255 255 / 0.9), rgb(236 251 251 / 0.68) 54%, rgb(237 252 246 / 0.72));
+    box-shadow: 0 24px 54px -38px rgb(13 116 126 / 0.52);
+    transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms ease, box-shadow 260ms ease;
+  }
+
+  .home-section-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(83 184 181 / 0.72);
+    box-shadow: 0 30px 64px -38px rgb(13 116 126 / 0.62);
+  }
+
+  :global(.dark) .home-section-card {
+    border-color: rgb(45 116 116 / 0.64);
+    background: linear-gradient(145deg, rgb(24 35 35 / 0.94), rgb(14 57 66 / 0.42) 54%, rgb(11 61 48 / 0.34));
+    box-shadow: 0 26px 58px -38px rgb(0 0 0 / 0.82);
+  }
+
   @media (min-width: 1024px) {
     .profile-content {
       padding-right: 19rem;

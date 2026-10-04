@@ -1,7 +1,7 @@
 ---
 title: DataFlow
 subtitle: 大模型驱动的数据准备与工作流
-summary: 作为核心贡献者，参与算子与流水线的工程化落地，聚焦数学和推理数据构建、增强与质量控制。
+summary: 面向大模型训练数据准备的统一开源基础设施，通过可组合的算子与 Pipeline，对 PDF、文本、网页、代码及多模态数据进行修正、扩增、评估与过滤。
 status: active
 period: 持续更新
 order: 1
@@ -15,9 +15,8 @@ tech:
   - 数据处理
   - LLM
 highlights:
-  - 参与算子与流水线工程化落地。
-  - 支持思维链扩写、推理错误识别和 QA 级质量控制。
-  - 维护测试用例与使用文档。
+  - 作为核心贡献者，持续推进高质量数据生成、质量评估相关算子与 Pipeline 的工程化，并参与教程体系建设与落地支持。
+  - 已在库帕斯、苏州实验室等机构场景中落地。
 metadata:
   - label: GitHub Stars
     value: 8,191
@@ -28,6 +27,10 @@ links:
     href: https://github.com/OpenDCAI/DataFlow
   - label: 项目文档
     href: https://opendcai.github.io/DataFlow-Doc/
+  - label: 图文教程
+    href: https://wcny4qa9krto.feishu.cn/wiki/I9tbw2qnBi0lEakmmAGclTysnFd?from=from_copylink
+  - label: 视频教程
+    href: https://space.bilibili.com/3546929239689711/lists/6761326?type=season
 ---
 
 DataFlow 面向数据中心人工智能的训练数据准备。我的工作集中在高质量数学与推理数据的构建、增强和质量控制，并参与相关功能的工程化与文档维护。

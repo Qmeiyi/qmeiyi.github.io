@@ -1,7 +1,7 @@
 ---
 title: DataFlex
-subtitle: 训练过程中的动态样本选择
-summary: 负责 Dynamic Select 模块的算法实现与工程落地，在 LLaMA-Factory 训练流程中支持动态样本选择。
+subtitle: 面向大模型的数据中心动态训练
+summary: 围绕数据选择、混合与重加权构建统一框架，使训练数据策略能够随模型状态和训练进程动态调整。
 status: active
 period: 持续更新
 order: 2
@@ -15,9 +15,8 @@ tech:
   - 数据选择
   - 模型训练
 highlights:
-  - 负责动态样本选择模块的算法实现。
-  - 扩展训练配置组件，并接入 LLaMA-Factory。
-  - 目标是在提高 SFT 训练效果的同时降低训练成本。
+  - 作为 Selection 模块负责人，主导动态样本选择算法、训练接口与工程实现。
+  - 已加入 LLaMA-Factory 新版本的官方数据处理模块，并在中国联通场景落地。
 metadata:
   - label: GitHub Stars
     value: 2,922
@@ -28,6 +27,8 @@ links:
     href: https://github.com/OpenDCAI/DataFlex
   - label: 项目文档
     href: https://opendcai.github.io/DataFlex-Doc/
+  - label: LLaMA-Factory
+    href: https://github.com/hiyouga/LlamaFactory
 ---
 
 DataFlex 将数据选择方法嵌入大模型训练流程。我的主要贡献是 Dynamic Select 模块的算法实现、配置扩展与工程落地。

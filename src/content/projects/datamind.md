@@ -16,8 +16,8 @@ tech:
   - GraphRAG
   - NL2SQL
 highlights:
-  - 统一多类数据访问与智能推理工作流。
-  - 支持 RAG、GraphRAG、NL2SQL、Skills、Memory 与多模态输入。
+  - 作为项目 Leader，统筹产品方向、技术路线、团队协作与交付。
+  - 与北京通明湖信息城发展中心联合研发。
 metadata:
   - label: GitHub Stars
     value: "335"

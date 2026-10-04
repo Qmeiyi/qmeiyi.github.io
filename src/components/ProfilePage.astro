@@ -163,14 +163,28 @@ const projectCopy: Record<string, { title: string; subtitle: string; summary: st
     subtitle: "LLM-driven data preparation and workflows",
     summary: "As a core contributor, I work on production-ready operators and pipelines for mathematical and reasoning data construction, augmentation, and quality control.",
     highlights: ["Contribute to operator and pipeline engineering.", "Support chain-of-thought expansion, reasoning-error detection, and QA-level quality control.", "Maintain tests and user documentation."],
-    linkLabels: ["GitHub repository"],
+    linkLabels: ["GitHub repository", "Documentation"],
   },
   dataflex: {
     title: "DataFlex",
     subtitle: "Dynamic sample selection during training",
     summary: "I lead the algorithm implementation and engineering of Dynamic Select, integrating dynamic sample selection into LLaMA-Factory training workflows.",
     highlights: ["Implement the dynamic sample selection algorithm.", "Extend training configuration and integrate with LLaMA-Factory.", "Improve SFT effectiveness while reducing training cost."],
-    linkLabels: ["GitHub repository"],
+    linkLabels: ["GitHub repository", "Documentation"],
+  },
+  "dataflex-rl": {
+    title: "DataFlex-RL",
+    subtitle: "Data-centric RL and on-policy distillation",
+    summary: "An evaluation and training framework for studying data selection, mixture, and reweighting policies in LLM reinforcement learning and on-policy distillation.",
+    highlights: ["Evaluate RLVR data policies in a unified workflow.", "Support data selection, mixture, and reweighting for post-training."],
+    linkLabels: ["GitHub repository", "Documentation"],
+  },
+  datamind: {
+    title: "DataMind",
+    subtitle: "All-in-one intelligent data assistant",
+    summary: "An intelligent assistant built around LlamaIndex that brings RAG, GraphRAG, NL2SQL, Skills, Memory, and multimodal data access into one open-source system.",
+    highlights: ["Unify multiple data access and reasoning workflows.", "Support RAG, GraphRAG, NL2SQL, Skills, Memory, and multimodal inputs."],
+    linkLabels: ["GitHub repository", "Documentation"],
   },
 };
 
@@ -348,19 +362,33 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
         <h2 id="projects-heading" class="section-heading mt-1">{copy.projectHeading}</h2>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.projectDescription}</p>
       </div>
-      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div class="grid gap-5 md:grid-cols-2">
         {projects.map((project, index) => {
           const translated = isEnglish ? projectCopy[project.id] : undefined;
           const subtitle = translated?.subtitle ?? project.data.subtitle;
           const summary = translated?.summary ?? project.data.summary;
           const highlights = translated?.highlights ?? project.data.highlights;
           return (
-          <article class="surface-card flex h-full flex-col p-5 sm:p-6">
+          <article class="surface-card flex min-w-0 flex-col overflow-hidden p-0">
+            {project.data.cover && (
+              <a href={project.data.links[0]?.href} target="_blank" rel="noopener noreferrer" class="group block overflow-hidden border-b border-cyan-100 bg-slate-50 dark:border-cyan-950 dark:bg-ink-950" aria-label={`${translated?.title ?? project.data.title} GitHub`}>
+                <Image src={project.data.cover} alt={project.data.coverAlt ?? ""} widths={[640, 960, 1280]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[2/1] h-auto w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
+              </a>
+            )}
+            <div class="flex flex-1 flex-col p-5 sm:p-6">
             <div class="flex items-center justify-between gap-3">
               <span class="font-mono text-xs font-semibold text-accent-700 dark:text-accent-300">0{index + 1}</span>
-              <span class={project.data.status === "active" ? "chip-status-active" : "chip-status-past"}>
-                {project.data.status === "active" ? copy.active : copy.completed}
-              </span>
+              <div class="flex flex-wrap items-center justify-end gap-2">
+                {project.data.metadata.find((item) => item.label === "GitHub Stars") && (
+                  <span class="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
+                    <span class="i-mdi:star text-sm" aria-hidden="true"></span>
+                    {project.data.metadata.find((item) => item.label === "GitHub Stars")?.value}
+                  </span>
+                )}
+                <span class={project.data.status === "active" ? "chip-status-active" : "chip-status-past"}>
+                  {project.data.status === "active" ? copy.active : copy.completed}
+                </span>
+              </div>
             </div>
             <h3 class="entry-title mt-4 text-xl">{translated?.title ?? project.data.title}</h3>
             {subtitle && <p class="mt-1 text-xs font-semibold text-accent-700 dark:text-accent-300">{subtitle}</p>}
@@ -378,6 +406,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                   {translated?.linkLabels[linkIndex] ?? link.label}<span class="i-mdi:open-in-new text-sm" aria-hidden="true"></span>
                 </a>
               ))}
+            </div>
             </div>
           </article>
           );

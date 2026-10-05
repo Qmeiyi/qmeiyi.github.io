@@ -18,9 +18,6 @@ tech:
 highlights:
   - 作为项目 Leader，统筹产品方向、技术路线、团队协作与交付。
   - 与北京通明湖信息城发展中心联合研发。
-metadata:
-  - label: GitHub Stars
-    value: "335"
 links:
   - label: GitHub 仓库
     href: https://github.com/OpenDCAI/DataMind

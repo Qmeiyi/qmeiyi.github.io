@@ -6,6 +6,7 @@ import { parse } from "yaml";
 import siteConfig from "../side.config";
 import newsRaw from "../data/news.yml?raw";
 import { getAllPapers } from "../lib/papers";
+import publicMetrics from "../data/public-metrics.json";
 import dataflowFeishuTutorial from "../assets/projects/tutorials/dataflow-feishu-tutorial.png";
 import dataflowBilibiliTutorial from "../assets/projects/tutorials/dataflow-bilibili-tutorial.png";
 
@@ -164,7 +165,7 @@ const projectCopy: Record<string, { title: string; subtitle: string; summary: st
     title: "DataFlow",
     subtitle: "Unified data preparation infrastructure for LLMs",
     summary: "DataFlow turns noisy PDFs, text, web content, code, and multimodal inputs into model-ready data through composable operators and pipelines for refinement, generation, evaluation, and filtering.",
-    highlights: ["Core contributor: advance the engineering of high-quality data generation and evaluation operators, reusable pipelines, and the tutorial ecosystem.", "Deployed in real-world projects with KuPas and the Suzhou Laboratory, among other partners."],
+    highlights: ["Core contributor: advance the engineering of high-quality data generation and evaluation operators and reusable pipelines.", "Deployed in real-world projects with KuPas and the Suzhou Laboratory, among other partners."],
     linkLabels: ["GitHub repository", "Documentation", "Visual tutorials", "Video tutorials"],
   },
   dataflex: {
@@ -193,11 +194,13 @@ const socialLinks = siteConfig.socialLinks.map((link) => ({
         : copy.socialLabels[link.label] ?? link.label,
   meta:
     link.label === "Google Scholar"
-      ? isEnglish ? "354 citations · h-index 8" : "引用 354 · h 指数 8"
+      ? isEnglish ? `${publicMetrics.scholar.citations.toLocaleString("en-US")} citations · h-index ${publicMetrics.scholar.hIndex}` : `引用 ${publicMetrics.scholar.citations.toLocaleString("zh-CN")} · h 指数 ${publicMetrics.scholar.hIndex}`
       : link.label === "小红书"
-        ? isEnglish ? "1K+ followers" : "1千+ 粉丝"
+        ? isEnglish ? `${publicMetrics.xiaohongshu.followers.toLocaleString("en-US")} followers` : `${publicMetrics.xiaohongshu.followers.toLocaleString("zh-CN")} 粉丝`
         : undefined,
 }));
+
+const githubStars: Record<string, number> = publicMetrics.github;
 
 const projects = (await getCollection("projects", ({ data }) => !data.draft))
   .filter((project) => project.id !== "originhub")
@@ -363,6 +366,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           const subtitle = translated?.subtitle ?? project.data.subtitle;
           const summary = translated?.summary ?? project.data.summary;
           const highlights = translated?.highlights ?? project.data.highlights;
+          const starCount = githubStars[project.id];
           return (
           <article class:list={["surface-card flex min-w-0 flex-col overflow-hidden p-0", project.id === "dataflow" && "md:col-span-2 !border-cyan-400/80 dark:!border-cyan-700/80"]}>
             {project.data.cover && (
@@ -374,10 +378,11 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             <div class="flex items-center justify-between gap-3">
               <span class="font-mono text-xs font-semibold text-accent-700 dark:text-accent-300">0{index + 1}</span>
               <div class="flex flex-wrap items-center justify-end gap-2">
-                {project.data.metadata.find((item) => item.label === "GitHub Stars") && (
+                {Number.isFinite(starCount) && (
                   <span class="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
                     <span class="i-mdi:star text-sm" aria-hidden="true"></span>
-                    {project.data.metadata.find((item) => item.label === "GitHub Stars")?.value}
+                    <span>GitHub</span>
+                    <span>{starCount.toLocaleString("en-US")}</span>
                   </span>
                 )}
               </div>
@@ -403,7 +408,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                       <h4 class="font-bold text-ink-900 dark:text-paper-100">{isEnglish ? "Visual Tutorial Series" : "DataFlow 系列图文教程"}</h4>
                       <span class="i-mdi:open-in-new shrink-0 text-accent-700" aria-hidden="true"></span>
                     </div>
-                    <p class="mt-2 text-xs font-semibold text-accent-700 dark:text-accent-300">{isEnglish ? "4,819 visitors · 7,617 views" : "4,819 人访问 · 7,617 次浏览"}</p>
+                    <p class="mt-2 text-xs font-semibold text-accent-700 dark:text-accent-300">{isEnglish ? `${publicMetrics.tutorials.feishuVisitors.toLocaleString("en-US")} visitors · ${publicMetrics.tutorials.feishuViews.toLocaleString("en-US")} views` : `${publicMetrics.tutorials.feishuVisitors.toLocaleString("zh-CN")} 人访问 · ${publicMetrics.tutorials.feishuViews.toLocaleString("zh-CN")} 次浏览`}</p>
                   </div>
                 </a>
                 <a href="https://space.bilibili.com/3546929239689711/lists/6761326?type=season" target="_blank" rel="noopener noreferrer" class="group overflow-hidden rounded-2xl border border-rose-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-rose-400 dark:border-rose-950 dark:bg-ink-950">
@@ -415,7 +420,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                       <h4 class="font-bold text-ink-900 dark:text-paper-100">{isEnglish ? "Bilibili Video Tutorials" : "B 站视频教程合集"}</h4>
                       <span class="i-mdi:open-in-new shrink-0 text-rose-500" aria-hidden="true"></span>
                     </div>
-                    <p class="mt-2 text-xs font-semibold text-rose-600 dark:text-rose-300">{isEnglish ? "21 episodes · 57,290 plays" : "21 期视频 · 累计 57,290 次播放"}</p>
+                    <p class="mt-2 text-xs font-semibold text-rose-600 dark:text-rose-300">{isEnglish ? `${publicMetrics.tutorials.bilibiliVideos} episodes · ${publicMetrics.tutorials.bilibiliViews.toLocaleString("en-US")} plays` : `${publicMetrics.tutorials.bilibiliVideos} 期视频 · 累计 ${publicMetrics.tutorials.bilibiliViews.toLocaleString("zh-CN")} 次播放`}</p>
                   </div>
                 </a>
               </div>

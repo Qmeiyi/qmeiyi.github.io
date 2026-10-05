@@ -16,6 +16,7 @@
     "test": "vitest run tests",
     "test:content": "node scripts/check-content-variants.mjs",
     "test:browser": "node scripts/check-content-variants.mjs --browser",
+    "metrics:update": "node scripts/update-public-metrics.mjs",
     "verify": "pnpm test && pnpm astro check && pnpm build && node scripts/assert-built-site.mjs && pnpm test:content",
     "check:release": "node scripts/check-release.mjs"
   },

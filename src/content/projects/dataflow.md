@@ -15,11 +15,9 @@ tech:
   - 数据处理
   - LLM
 highlights:
-  - 作为核心贡献者，持续推进高质量数据生成、质量评估相关算子与 Pipeline 的工程化，并参与教程体系建设与落地支持。
+  - 作为核心贡献者，持续推进高质量数据生成、质量评估相关算子与 Pipeline 的工程化。
   - 已在库帕斯、苏州实验室等机构场景中落地。
 metadata:
-  - label: GitHub Stars
-    value: 8,191
   - label: 角色
     value: 核心贡献者
 links:

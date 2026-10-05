@@ -18,8 +18,6 @@ highlights:
   - 作为 Selection 模块负责人，主导动态样本选择算法、训练接口与工程实现。
   - 已加入 LLaMA-Factory 新版本的官方数据处理模块，并在中国联通场景落地。
 metadata:
-  - label: GitHub Stars
-    value: 2,922
   - label: 角色
     value: 核心贡献者
 links:

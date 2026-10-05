@@ -44,17 +44,16 @@ const copy = isEnglish
       wechatLabel: "WeChat",
       emailLabel: "Email",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
-      paperCta: "Publications",
+      paperCta: "View complete publication list",
       status: "Research · Open Source · Entrepreneurship",
       newsLabel: "News",
       newsHeading: "Latest Updates",
       researchLabel: "Research Interests",
       researchHeading: "Research Interests",
       researchDescription: "Four connected directions spanning training data, data-centric systems, dynamic model training, and intelligent data management.",
-      currentFocus: "Current Focus",
       relatedWork: "Related work",
       keywordCloud: "Keyword Cloud",
-      paperListCta: "View all publications",
+      paperListCta: "View complete publication list",
       projectLabel: "Open Source",
       projectHeading: "Open Source Projects",
       projectDescription: "I contribute research methods and production engineering to open-source AI data infrastructure.",
@@ -83,14 +82,13 @@ const copy = isEnglish
       wechatLabel: "微信",
       emailLabel: "邮箱",
       socialLabels: {} as Record<string, string>,
-      paperCta: "研究成果与论文",
+      paperCta: "查看完整论文列表",
       status: siteConfig.hero.statusBadge,
       newsLabel: "News",
       newsHeading: "最新动态",
       researchLabel: "Research Interests",
       researchHeading: "研究方向",
       researchDescription: "围绕训练数据、数据中心系统、动态模型训练与智能数据管理形成四个相互连接的研究方向。",
-      currentFocus: "当前重点",
       relatedWork: "相关研究",
       keywordCloud: "关键词词云",
       paperListCta: "查看完整论文列表",
@@ -132,10 +130,9 @@ const researchDirections = isEnglish
       {
         title: "Training Data",
         subtitle: "Vertical, executable, and verifiable data for agents",
-        description: "Building high-quality training data for real tools and professional workflows. My current focus is on task paradigms represented by ALE and Terminal-Bench: environment construction, trajectory collection, hard-case mining, synthesis, and verification, extending my work on mathematical-data quality and training-data preparation.",
+        description: "Building high-quality training data for real tools and professional workflows, with task paradigms represented by ALE and Terminal-Bench: environment construction, trajectory collection, hard-case mining, synthesis, and verification, extending my work on mathematical-data quality and training-data preparation.",
         related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
         keywords: ["ALE", "Terminal-Bench", "Agent Trajectories", "Verifiable Tasks", "Long-Horizon", "Vertical Data"],
-        featured: true,
       },
       {
         title: "Data-Centric AI & Data Processing",
@@ -143,7 +140,6 @@ const researchDirections = isEnglish
         description: "Studying how refinement, generation, evaluation, filtering, lineage, and workflow automation turn noisy multimodal sources into model-ready data at scale.",
         related: "DataFlow · Data Preparation for LLMs · RayOrch",
         keywords: ["Data Preparation", "Operators", "Pipelines", "Data Quality", "Lineage", "Workflow Automation"],
-        featured: false,
       },
       {
         title: "Dynamic Training Data",
@@ -151,7 +147,6 @@ const researchDirections = isEnglish
         description: "Designing data selection, mixture, reweighting, and scheduling methods that adapt training data policies to model state and learning progress across SFT and reinforcement learning.",
         related: "DataFlex · IFT · Data-Centric LLM Training",
         keywords: ["Dynamic Selection", "Data Mixture", "Reweighting", "Scheduling", "SFT", "RLVR"],
-        featured: false,
       },
       {
         title: "Intelligent Data Management",
@@ -159,17 +154,15 @@ const researchDirections = isEnglish
         description: "Connecting structured and unstructured knowledge through RAG, GraphRAG, NL2SQL, knowledge graphs, skills, and memory to build intelligent data systems that can retrieve, reason, and act.",
         related: "DataMind · GraspLLM · K12-KGraph",
         keywords: ["Structured Data", "NL2SQL", "Knowledge Graph", "RAG", "Memory", "Data Agents"],
-        featured: false,
       },
     ]
   : [
       {
         title: "Training Data",
         subtitle: "面向智能体的垂类、可执行、可验证训练数据",
-        description: "面向真实工具与专业工作流构建高质量训练数据。当前重点关注 ALE、Terminal-Bench 所代表的任务范式，研究环境构建、轨迹采集、难例挖掘、数据合成与结果验证，并延续数学数据质量和训练数据准备方面的研究积累。",
+        description: "面向真实工具与专业工作流构建高质量训练数据，围绕 ALE、Terminal-Bench 所代表的任务范式，研究环境构建、轨迹采集、难例挖掘、数据合成与结果验证，并延续数学数据质量和训练数据准备方面的研究积累。",
         related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
         keywords: ["ALE", "Terminal-Bench", "智能体轨迹", "可验证任务", "长程任务", "垂类数据"],
-        featured: true,
       },
       {
         title: "数据中心人工智能与数据处理",
@@ -177,7 +170,6 @@ const researchDirections = isEnglish
         description: "研究数据修正、生成、评估、过滤、血缘管理与工作流自动化，探索如何将噪声文本、网页、代码及多模态来源规模化转化为模型可用数据。",
         related: "DataFlow · Data Preparation for LLMs · RayOrch",
         keywords: ["数据准备", "算子", "Pipeline", "数据质量", "数据血缘", "工作流自动化"],
-        featured: false,
       },
       {
         title: "模型训练数据与动态调度",
@@ -185,7 +177,6 @@ const researchDirections = isEnglish
         description: "研究随模型状态和训练进程变化的数据选择、混合、重加权与调度策略，覆盖监督微调和强化学习阶段，让训练数据策略与模型学习过程协同演化。",
         related: "DataFlex · IFT · Data-Centric LLM Training",
         keywords: ["动态选择", "数据混合", "样本重加权", "数据调度", "SFT", "RLVR"],
-        featured: false,
       },
       {
         title: "智能数据管理与结构化数据",
@@ -193,7 +184,6 @@ const researchDirections = isEnglish
         description: "通过 RAG、GraphRAG、NL2SQL、知识图谱、Skills 与 Memory 连接结构化和非结构化知识，构建能够检索、推理并执行的数据智能系统。",
         related: "DataMind · GraspLLM · K12-KGraph",
         keywords: ["结构化数据", "NL2SQL", "知识图谱", "RAG", "Memory", "数据智能体"],
-        featured: false,
       },
     ];
 
@@ -352,8 +342,11 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             {copy.description}
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3">
-            <a href="#publications" class="action-link px-0">
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href={isEnglish ? "/en/researches" : "/researches"}
+              class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500"
+            >
               <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
               {copy.paperCta}
               <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
@@ -555,16 +548,27 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 
     <section id="research-interests" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="research-heading">
       <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
-        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.researchLabel}</p>
-        <h2 id="research-heading" class="section-heading mt-1">{copy.researchHeading}</h2>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.researchLabel}</p>
+            <h2 id="research-heading" class="section-heading mt-1">{copy.researchHeading}</h2>
+          </div>
+          <a
+            href={isEnglish ? "/en/researches" : "/researches"}
+            class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500 sm:self-auto"
+          >
+            <span class="i-mdi:file-document-multiple-outline text-base" aria-hidden="true"></span>
+            {copy.paperListCta}
+            <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+          </a>
+        </div>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.researchDescription}</p>
       </div>
       <div class="grid gap-4 sm:grid-cols-2">
         {researchDirections.map((direction, index) => (
-          <article class:list={["surface-card relative overflow-hidden p-5 sm:p-6", direction.featured && "border-cyan-400 bg-gradient-to-br from-cyan-50/80 via-white to-emerald-50/55 dark:border-cyan-700 dark:from-cyan-950/35 dark:via-ink-900 dark:to-emerald-950/20"]}>
-            {direction.featured && <span class="absolute right-4 top-4 rounded-full border border-cyan-300 bg-white/90 px-2.5 py-1 text-[11px] font-bold text-cyan-800 dark:border-cyan-800 dark:bg-ink-900 dark:text-cyan-200">{copy.currentFocus}</span>}
+          <article class="surface-card relative overflow-hidden p-5 sm:p-6">
             <span class="font-mono text-xs font-semibold text-accent-700 dark:text-accent-300">0{index + 1}</span>
-            <h3 class="entry-title mt-3 pr-20 text-xl">{direction.title}</h3>
+            <h3 class="entry-title mt-3 text-xl">{direction.title}</h3>
             <p class="mt-1 text-xs font-bold text-accent-700 dark:text-accent-300">{direction.subtitle}</p>
             <p class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">{direction.description}</p>
             <p class="mt-4 text-xs leading-5 text-ink-500 dark:text-paper-400"><span class="font-bold text-ink-700 dark:text-paper-200">{copy.relatedWork}：</span>{direction.related}</p>
@@ -580,16 +584,24 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           {researchCloud.map((term) => <span class:list={[term.size, term.tone]}>{term.label}</span>)}
         </div>
       </div>
-      <a href={isEnglish ? "/en/researches" : "/researches"} class="action-link mt-5 px-0">
-        {copy.paperListCta}
-        <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
-      </a>
     </section>
 
     <section id="publications" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="publications-heading">
       <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
-        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.publicationsLabel}</p>
-        <h2 id="publications-heading" class="section-heading mt-1">{copy.publicationsHeading}</h2>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.publicationsLabel}</p>
+            <h2 id="publications-heading" class="section-heading mt-1">{copy.publicationsHeading}</h2>
+          </div>
+          <a
+            href={isEnglish ? "/en/researches" : "/researches"}
+            class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500 sm:self-auto"
+          >
+            <span class="i-mdi:file-document-multiple-outline text-base" aria-hidden="true"></span>
+            {copy.publicationCta}
+            <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+          </a>
+        </div>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.publicationsDescription}</p>
       </div>
       <div class="grid gap-5 sm:grid-cols-2">
@@ -630,9 +642,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           </article>
         ))}
       </div>
-      <a href={isEnglish ? "/en/researches" : "/researches"} class="action-link mt-6 px-0">
-        {copy.publicationCta}<span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
-      </a>
     </section>
 
     <section id="honors" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="honors-heading">

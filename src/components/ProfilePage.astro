@@ -56,6 +56,7 @@ const copy = isEnglish
       paperListCta: "Full publication list",
       projectLabel: "Open Source",
       projectHeading: "Open Source Projects",
+      totalStars: "Total GitHub Stars",
       projectDescription: "I contribute research methods and production engineering to open-source AI data infrastructure.",
       active: "Active",
       completed: "Completed",
@@ -94,6 +95,7 @@ const copy = isEnglish
       paperListCta: "完整论文列表",
       projectLabel: "Open Source",
       projectHeading: "开源项目",
+      totalStars: "GitHub 总 Stars",
       projectDescription: "将研究方法与工程能力沉淀到开源 AI 数据基础设施中。",
       active: "进行中",
       completed: "已完成",
@@ -305,6 +307,9 @@ const socialLinks = siteConfig.socialLinks.map((link) => ({
 }));
 
 const githubStars: Record<string, number> = publicMetrics.github;
+const totalGithubStars = Object.values(githubStars)
+  .filter((stars) => Number.isFinite(stars))
+  .reduce((sum, stars) => sum + stars, 0);
 
 const projects = (await getCollection("projects", ({ data }) => !data.draft))
   .filter((project) => project.id !== "originhub")
@@ -464,7 +469,15 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
     <section id="open-source" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="projects-heading">
       <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
         <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.projectLabel}</p>
-        <h2 id="projects-heading" class="section-heading mt-1">{copy.projectHeading}</h2>
+        <div class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <h2 id="projects-heading" class="section-heading">{copy.projectHeading}</h2>
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-amber-200/90 bg-white/80 px-3 py-1.5 text-xs font-bold text-amber-800 shadow-sm dark:border-amber-900 dark:bg-ink-900/70 dark:text-amber-200" aria-label={`${copy.totalStars}: ${totalGithubStars.toLocaleString("en-US")}`}>
+            <span class="i-mdi:github text-base" aria-hidden="true"></span>
+            <span>{copy.totalStars}</span>
+            <span class="tabular-nums">{totalGithubStars.toLocaleString("en-US")}</span>
+            <span class="i-mdi:star text-sm" aria-hidden="true"></span>
+          </span>
+        </div>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.projectDescription}</p>
       </div>
       <div class="grid gap-5 md:grid-cols-2">

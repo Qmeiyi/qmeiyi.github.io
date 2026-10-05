@@ -1,13 +1,10 @@
 import { existsSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
-import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { chromium } from "@playwright/test";
 
 const metricsPath = new URL("../src/data/public-metrics.json", import.meta.url);
-const feishuImagePath = fileURLToPath(new URL("../src/assets/projects/tutorials/dataflow-feishu-tutorial.png", import.meta.url));
-const bilibiliImagePath = fileURLToPath(new URL("../src/assets/projects/tutorials/dataflow-bilibili-tutorial.png", import.meta.url));
 const metrics = JSON.parse(await readFile(metricsPath, "utf8"));
 const updatedSources = [];
 const execFileAsync = promisify(execFile);
@@ -86,7 +83,7 @@ function chromeExecutable() {
   return [process.env.PLAYWRIGHT_CHROME_PATH, "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable"].filter(Boolean).find((path) => existsSync(path));
 }
 
-async function refreshFeishuAndImages(archives) {
+async function refreshFeishuMetrics() {
   const executablePath = chromeExecutable();
   if (!executablePath) throw new Error("Google Chrome is not available for tutorial snapshots");
   const browser = await chromium.launch({ headless: true, executablePath });
@@ -102,18 +99,7 @@ async function refreshFeishuAndImages(archives) {
       metrics.tutorials.feishuViews = Number(lines[modifiedLine + 2].replaceAll(",", ""));
       updatedSources.push("Feishu");
     }
-    await feishuPage.screenshot({ path: feishuImagePath, fullPage: false });
     await feishuPage.close();
-
-    if (archives?.length) {
-      const items = [archives[0], archives[1] ?? archives[0], [...archives].sort((a, b) => Number(b.stat?.view ?? 0) - Number(a.stat?.view ?? 0))[0]];
-      const bilibiliPage = await browser.newPage({ viewport: { width: 1440, height: 900 }, extraHTTPHeaders: { Referer: "https://www.bilibili.com/" } });
-      const cards = items.map((item) => `<article class="card"><img class="thumb" src="${String(item.pic).replace("http://", "https://")}"><div class="body"><div class="video-title">${item.title}</div><div class="views">▶ ${Number(item.stat?.view ?? 0).toLocaleString("en-US")} 播放</div></div></article>`).join("");
-      await bilibiliPage.setContent(`<!doctype html><html><head><style>*{box-sizing:border-box}body{margin:0;background:#f5f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif;color:#18191c}.panel{width:1440px;height:820px;background:linear-gradient(150deg,#fff 0%,#fff 58%,#fff2f6 100%);padding:56px 64px}.head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:34px}.brand{font-weight:800;font-size:24px;color:#fb7299;letter-spacing:.02em}.title{font-size:38px;font-weight:780;margin:12px 0 10px}.desc{font-size:18px;color:#61666d;max-width:900px}.metrics{display:flex;gap:12px}.metric{border:1px solid #ffd2df;background:#fff7fa;color:#c63d68;border-radius:999px;padding:12px 18px;font-size:18px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.card{overflow:hidden;border-radius:18px;background:#fff;border:1px solid #e5e9ef;box-shadow:0 16px 40px rgba(33,38,45,.08)}.thumb{width:100%;height:265px;object-fit:cover;display:block;background:#e9edf2}.body{padding:20px 22px 22px}.video-title{font-size:20px;font-weight:700;line-height:1.45;min-height:58px}.views{margin-top:14px;color:#9499a0;font-size:16px}.foot{display:flex;align-items:center;justify-content:space-between;margin-top:30px;color:#61666d;font-size:17px}.cta{color:#fb7299;font-weight:700}</style></head><body><section class="panel"><div class="head"><div><div class="brand">哔哩哔哩 · DataFlow 视频教程</div><h1 class="title">大模型数据准备，零基础 DataFlow 代码实战</h1><p class="desc">从功能讲解、环境配置到代码运行，覆盖数据准备、质量评估、动态训练与多模态处理。</p></div><div class="metrics"><span class="metric">${metrics.tutorials.bilibiliVideos} 期</span><span class="metric">${metrics.tutorials.bilibiliViews.toLocaleString("en-US")} 次播放</span></div></div><div class="grid">${cards}</div><div class="foot"><span>OpenDCAI · 系列视频课程</span><span class="cta">前往 B 站观看完整合集 →</span></div></section></body></html>`, { waitUntil: "networkidle" });
-      await bilibiliPage.waitForTimeout(1_500);
-      await bilibiliPage.locator(".panel").screenshot({ path: bilibiliImagePath });
-      await bilibiliPage.close();
-    }
   } finally {
     await browser.close();
   }
@@ -127,8 +113,8 @@ async function attempt(name, task) {
 await attempt("GitHub", refreshGitHub);
 await attempt("Google Scholar", refreshScholar);
 await attempt("Xiaohongshu", refreshXiaohongshu);
-const archives = await attempt("Bilibili", refreshBilibili);
-await attempt("Feishu/tutorial snapshots", () => refreshFeishuAndImages(archives));
+await attempt("Bilibili", refreshBilibili);
+await attempt("Feishu", refreshFeishuMetrics);
 metrics.updatedAt = new Date().toISOString();
 await writeFile(metricsPath, `${JSON.stringify(metrics, null, 2)}\n`);
 console.log(`[metrics] refreshed: ${updatedSources.join(", ") || "fallback values only"}`);

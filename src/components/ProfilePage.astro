@@ -44,7 +44,7 @@ const copy = isEnglish
       wechatLabel: "WeChat",
       emailLabel: "Email",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
-      paperCta: "View complete publication list",
+      paperCta: "Full publication list",
       status: "Research · Open Source · Entrepreneurship",
       newsLabel: "News",
       newsHeading: "Latest Updates",
@@ -53,7 +53,7 @@ const copy = isEnglish
       researchDescription: "Four connected directions spanning training data, data-centric systems, dynamic model training, and intelligent data management.",
       relatedWork: "Related work",
       keywordCloud: "Keyword Cloud",
-      paperListCta: "View complete publication list",
+      paperListCta: "Full publication list",
       projectLabel: "Open Source",
       projectHeading: "Open Source Projects",
       projectDescription: "I contribute research methods and production engineering to open-source AI data infrastructure.",
@@ -62,7 +62,7 @@ const copy = isEnglish
       publicationsLabel: "Publications",
       publicationsHeading: "Research Outputs",
       publicationsDescription: "Selected work spanning data preparation, dynamic training, mathematical data quality, and data-centric AI.",
-      publicationCta: "View complete publication list",
+      publicationCta: "Full publication list",
       paperLinkLabel: "Paper",
       honorsLabel: "Honors",
       honorsHeading: "Honors & Awards",
@@ -82,7 +82,7 @@ const copy = isEnglish
       wechatLabel: "微信",
       emailLabel: "邮箱",
       socialLabels: {} as Record<string, string>,
-      paperCta: "查看完整论文列表",
+      paperCta: "完整论文列表",
       status: siteConfig.hero.statusBadge,
       newsLabel: "News",
       newsHeading: "最新动态",
@@ -91,7 +91,7 @@ const copy = isEnglish
       researchDescription: "围绕训练数据、数据中心系统、动态模型训练与智能数据管理形成四个相互连接的研究方向。",
       relatedWork: "相关研究",
       keywordCloud: "关键词词云",
-      paperListCta: "查看完整论文列表",
+      paperListCta: "完整论文列表",
       projectLabel: "Open Source",
       projectHeading: "开源项目",
       projectDescription: "将研究方法与工程能力沉淀到开源 AI 数据基础设施中。",
@@ -100,7 +100,7 @@ const copy = isEnglish
       publicationsLabel: "Publications",
       publicationsHeading: "研究成果",
       publicationsDescription: "聚焦数据准备、动态训练、数学数据质量与数据中心人工智能的代表性研究。",
-      publicationCta: "查看完整论文列表",
+      publicationCta: "完整论文列表",
       paperLinkLabel: "论文",
       honorsLabel: "Honors",
       honorsHeading: "荣誉奖项",
@@ -345,7 +345,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           <div class="mt-6 flex flex-wrap gap-3">
             <a
               href={isEnglish ? "/en/researches" : "/researches"}
-              class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500"
+              class="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-cyan-300/90 bg-white/80 px-4 py-2 text-sm font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-50/80 hover:text-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-ink-900/70 dark:text-cyan-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/35 dark:hover:text-emerald-200"
             >
               <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
               {copy.paperCta}
@@ -555,7 +555,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           </div>
           <a
             href={isEnglish ? "/en/researches" : "/researches"}
-            class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500 sm:self-auto"
+            class="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 self-start rounded-xl border border-cyan-300/90 bg-white/75 px-3 py-2 text-xs font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-50/80 hover:text-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-ink-900/65 dark:text-cyan-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/35 dark:hover:text-emerald-200 sm:self-auto"
           >
             <span class="i-mdi:file-document-multiple-outline text-base" aria-hidden="true"></span>
             {copy.paperListCta}
@@ -595,7 +595,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           </div>
           <a
             href={isEnglish ? "/en/researches" : "/researches"}
-            class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-cyan-600 bg-gradient-to-r from-cyan-600 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white no-underline shadow-[0_10px_24px_-14px_rgba(8,145,178,0.85)] transition hover:-translate-y-0.5 hover:from-cyan-700 hover:to-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 dark:border-cyan-500 sm:self-auto"
+            class="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 self-start rounded-xl border border-cyan-300/90 bg-white/75 px-3 py-2 text-xs font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-50/80 hover:text-emerald-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-ink-900/65 dark:text-cyan-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/35 dark:hover:text-emerald-200 sm:self-auto"
           >
             <span class="i-mdi:file-document-multiple-outline text-base" aria-hidden="true"></span>
             {copy.publicationCta}

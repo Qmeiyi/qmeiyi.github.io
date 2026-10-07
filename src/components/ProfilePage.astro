@@ -41,7 +41,6 @@ const copy = isEnglish
       connectHeading: "Collaboration & Exchange",
       connectText: "Open to conversations about AI data, open-source systems, research collaboration, and entrepreneurship.",
       wechatLabel: "WeChat",
-      wechatNote: "Please include your name, affiliation or area, and reason for connecting.",
       emailLabel: "Email",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
@@ -79,7 +78,6 @@ const copy = isEnglish
       connectHeading: "合作与交流",
       connectText: "欢迎交流 AI Data、开源技术、科研合作与创业实践。",
       wechatLabel: "微信",
-      wechatNote: "添加微信时，请注明姓名、机构或方向，以及来意。",
       emailLabel: "邮箱",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
@@ -395,7 +393,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                     {index === 0 ? (isEnglish ? "Academic Profile" : "学术与研究") : (isEnglish ? "Industry & Entrepreneurship" : "产业与创业")}
                   </h2>
                 </div>
-                <p class="text-sm leading-7 text-ink-700 dark:text-paper-300">
+                <p class:list={["text-sm leading-7 text-ink-700 dark:text-paper-300", !isEnglish && "paragraph-indent"]}>
                   {splitAcademicEntities(paragraph).map((part) => {
                     const href = academicEntityLinks[part];
                     return href ? (
@@ -407,25 +405,25 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             ))}
           </div>
 
-          <div class="about-highlights-grid mt-5 grid items-stretch gap-4 md:grid-cols-2">
-            <section class="h-full rounded-2xl border border-cyan-200/80 bg-cyan-50/55 p-5 dark:border-cyan-900/70 dark:bg-cyan-950/25" aria-labelledby="impact-heading">
+          <div class="mt-5 space-y-3">
+            <section class="about-wide-card grid gap-4 rounded-2xl border border-cyan-200/80 p-5 dark:border-cyan-900/70 sm:grid-cols-[13rem_1fr] sm:items-center" aria-labelledby="impact-heading">
               <div class="flex items-center gap-2">
-                <span class="i-academicons:google-scholar text-xl text-cyan-700 dark:text-cyan-300" aria-hidden="true"></span>
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700 dark:bg-cyan-950/45 dark:text-cyan-300" aria-hidden="true"><span class="i-academicons:google-scholar text-xl"></span></span>
                 <h2 id="impact-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.impactHeading}</h2>
               </div>
-              <p class="mt-3 text-sm font-bold text-cyan-900 dark:text-cyan-100">
+              <p class="rounded-xl border border-cyan-100/90 bg-white/75 px-4 py-3 text-base font-bold text-cyan-900 shadow-sm dark:border-cyan-900/60 dark:bg-ink-900/55 dark:text-cyan-100 sm:text-right">
                 Google Scholar · {isEnglish ? `${publicMetrics.scholar.citations.toLocaleString("en-US")} citations · h-index ${publicMetrics.scholar.hIndex}` : `${publicMetrics.scholar.citations.toLocaleString("zh-CN")} 次引用 · h 指数 ${publicMetrics.scholar.hIndex}`}
               </p>
             </section>
 
-            <section class="h-full rounded-2xl border border-emerald-200/90 bg-emerald-50/55 p-5 dark:border-emerald-900/70 dark:bg-emerald-950/25" aria-labelledby="competitions-heading">
+            <section class="about-wide-card about-wide-card-emerald grid gap-4 rounded-2xl border border-emerald-200/90 p-5 dark:border-emerald-900/70 sm:grid-cols-[13rem_1fr] sm:items-center" aria-labelledby="competitions-heading">
               <div class="flex items-center gap-2">
-                <span class="i-mdi:trophy-outline text-xl text-emerald-700 dark:text-emerald-300" aria-hidden="true"></span>
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/45 dark:text-emerald-300" aria-hidden="true"><span class="i-mdi:trophy-outline text-xl"></span></span>
                 <h2 id="competitions-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.competitionsHeading}</h2>
               </div>
-              <div class="mt-3 space-y-3">
+              <div class="grid gap-2 sm:grid-cols-2">
                 {aboutContent.competitions.map((competition) => (
-                  <div>
+                  <div class="rounded-xl border border-emerald-100/90 bg-white/75 px-4 py-3 shadow-sm dark:border-emerald-900/60 dark:bg-ink-900/55">
                     <p class="text-sm font-bold leading-6 text-ink-900 dark:text-paper-100">{competition.title}</p>
                     <p class="mt-0.5 text-xs font-semibold leading-5 text-emerald-800 dark:text-emerald-200">{competition.detail}</p>
                   </div>
@@ -434,15 +432,37 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </section>
           </div>
 
-          <section class="mt-4 rounded-2xl border border-teal-200/80 bg-white/85 p-5 shadow-sm dark:border-teal-900/70 dark:bg-ink-900/65" aria-labelledby="pursuit-heading">
-            <div class="flex items-center gap-2">
-              <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
-              <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
-            </div>
-            <div class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">
-              {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
-            </div>
-          </section>
+          <div class="mt-4 grid items-stretch gap-4 lg:grid-cols-2">
+            <section class="about-secondary-card h-full rounded-2xl border border-teal-200/80 p-5 dark:border-teal-900/70" aria-labelledby="pursuit-heading">
+              <div class="flex items-center gap-2">
+                <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
+                <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
+              </div>
+              <div class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">
+                {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
+              </div>
+            </section>
+
+            <section class="contact-card about-secondary-card h-full rounded-2xl border border-teal-200/80 p-5 dark:border-teal-900/70" aria-labelledby="connect-heading">
+              <div class="flex items-center gap-2">
+                <span class="i-mdi:handshake-outline text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
+                <h2 id="connect-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
+              </div>
+              <p class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
+              <div class="mt-3 grid gap-2">
+                <div class="flex items-center gap-2 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 dark:border-ink-700 dark:bg-ink-900/50">
+                  <span class="i-mdi:wechat text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
+                  <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.wechatLabel}</span>
+                  <span class="ml-auto text-sm font-semibold text-ink-900 dark:text-paper-100">18991348420</span>
+                </div>
+                <a href="mailto:qiangmeiyi@gmail.com" class="group flex min-w-0 items-center gap-2 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 transition-colors hover:border-accent-400 hover:bg-white dark:border-ink-700 dark:bg-ink-900/50 dark:hover:border-accent-700 dark:hover:bg-ink-900">
+                  <span class="i-mdi:email-outline text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
+                  <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.emailLabel}</span>
+                  <span class="ml-auto min-w-0 break-all text-right text-sm font-semibold text-ink-900 group-hover:text-accent-800 dark:text-paper-100 dark:group-hover:text-accent-200">qiangmeiyi@gmail.com</span>
+                </a>
+              </div>
+            </section>
+          </div>
 
           <div class="mt-4 grid gap-4 lg:grid-cols-2">
             <section class="rounded-2xl border border-cyan-200/80 bg-white/85 p-5 shadow-sm dark:border-cyan-900/70 dark:bg-ink-900/65" aria-labelledby="people-heading">
@@ -478,31 +498,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </section>
           </div>
 
-          <div class="contact-card mt-6 rounded-3xl border border-teal-300/75 bg-white/95 p-5 shadow-[0_14px_34px_-24px_rgba(13,148,136,0.45)] dark:border-teal-800/70 dark:bg-ink-900/95 sm:p-6">
-            <div class="flex items-start gap-3">
-              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 dark:bg-teal-950/45 dark:text-teal-300" aria-hidden="true"><span class="i-mdi:handshake-outline text-xl"></span></span>
-              <div>
-                <h2 class="font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
-                <p class="mt-1 text-sm leading-6 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
-              </div>
-            </div>
-            <div class="mt-4 grid gap-2 sm:grid-cols-2">
-              <div class="flex items-center gap-2 rounded-xl border border-paper-300/80 bg-white/65 px-3 py-2.5 dark:border-ink-700 dark:bg-ink-900/50">
-                <span class="i-mdi:wechat text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.wechatLabel}</span>
-                <span class="ml-auto text-sm font-semibold text-ink-900 dark:text-paper-100">18991348420</span>
-              </div>
-              <a href="mailto:qiangmeiyi@gmail.com" class="group flex min-w-0 items-center gap-2 rounded-xl border border-paper-300/80 bg-white/65 px-3 py-2.5 transition-colors hover:border-accent-400 hover:bg-white dark:border-ink-700 dark:bg-ink-900/50 dark:hover:border-accent-700 dark:hover:bg-ink-900">
-                <span class="i-mdi:email-outline text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.emailLabel}</span>
-                <span class="ml-auto min-w-0 break-all text-right text-sm font-semibold text-ink-900 group-hover:text-accent-800 dark:text-paper-100 dark:group-hover:text-accent-200">qiangmeiyi@gmail.com</span>
-              </a>
-            </div>
-            <p class="mt-3 flex items-center gap-1.5 text-xs leading-5 text-ink-500 dark:text-paper-400">
-              <span class="i-mdi:information-outline shrink-0 text-sm text-teal-600 dark:text-teal-300" aria-hidden="true"></span>
-              {copy.wechatNote}
-            </p>
-          </div>
         </div>
 
         <aside class="profile-sidebar mt-8" aria-label={isEnglish ? "Profile" : "个人简介"}>
@@ -867,15 +862,63 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   }
 
   .about-story-card {
+    position: relative;
+    overflow: hidden;
     background:
-      radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.08), transparent 8rem),
+      radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.1), transparent 8rem),
       rgb(255 255 255 / 0.94);
+    box-shadow: 0 18px 38px -30px rgb(8 98 110 / 0.46), inset 0 1px 0 rgb(255 255 255 / 0.82);
+  }
+
+  .about-story-card::before {
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    width: 3.5rem;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, rgb(6 182 212 / 0.78), rgb(16 185 129 / 0.7));
+    content: "";
   }
 
   :global(.dark) .about-story-card {
     background:
       radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.08), transparent 8rem),
       rgb(28 34 33 / 0.82);
+    box-shadow: 0 20px 42px -30px rgb(0 0 0 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.04);
+  }
+
+  .paragraph-indent {
+    text-indent: 2em;
+  }
+
+  .about-wide-card {
+    background:
+      radial-gradient(circle at 100% 50%, rgb(34 211 238 / 0.09), transparent 13rem),
+      linear-gradient(110deg, rgb(239 252 255 / 0.84), rgb(255 255 255 / 0.96) 46%);
+    box-shadow: 0 18px 40px -31px rgb(8 110 128 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.9);
+  }
+
+  .about-wide-card-emerald {
+    background:
+      radial-gradient(circle at 100% 50%, rgb(52 211 153 / 0.09), transparent 13rem),
+      linear-gradient(110deg, rgb(241 253 248 / 0.86), rgb(255 255 255 / 0.96) 46%);
+  }
+
+  .about-secondary-card {
+    background:
+      radial-gradient(circle at 100% 0%, rgb(45 212 191 / 0.08), transparent 8rem),
+      rgb(255 255 255 / 0.93);
+    box-shadow: 0 18px 40px -31px rgb(13 116 126 / 0.52), inset 0 1px 0 rgb(255 255 255 / 0.82);
+  }
+
+  :global(.dark) .about-wide-card,
+  :global(.dark) .about-wide-card-emerald,
+  :global(.dark) .about-secondary-card {
+    background:
+      radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.1), transparent 10rem),
+      rgb(28 34 33 / 0.88);
+    box-shadow: 0 20px 42px -30px rgb(0 0 0 / 0.82), inset 0 1px 0 rgb(255 255 255 / 0.04);
   }
 
   .academic-inline-link {

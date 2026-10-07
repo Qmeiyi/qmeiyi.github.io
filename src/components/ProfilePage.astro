@@ -38,10 +38,7 @@ const copy = isEnglish
       profileTags: ["Entrepreneur", "Open Source Contributor", "AI Data Researcher"],
       aboutLabel: "About",
       aboutHeading: "About Me",
-      connectHeading: "Collaboration & Exchange",
-      connectText: "Open to conversations about AI data, open-source systems, research collaboration, and entrepreneurship.",
       wechatLabel: "WeChat",
-      emailLabel: "Email",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
       status: "Research · Open Source · Entrepreneurship",
@@ -75,10 +72,7 @@ const copy = isEnglish
       profileTags: ["创业者", "开源技术贡献者", "AI Data 研究者"],
       aboutLabel: "About",
       aboutHeading: "关于我",
-      connectHeading: "合作与交流",
-      connectText: "欢迎交流 AI Data、开源技术、科研合作与创业实践。",
       wechatLabel: "微信",
-      emailLabel: "邮箱",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
       status: siteConfig.hero.statusBadge,
@@ -107,7 +101,7 @@ const copy = isEnglish
 const aboutContent = isEnglish
   ? {
       paragraphs: [
-        "I am Meiyi Qiang, a master's student at Peking University, a researcher, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including high-quality training data, data processing infrastructure, dynamic data selection, and intelligent data systems for real-world tasks. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
+        "I am Meiyi Qiang, a master's student at Peking University, a researcher, an open-source contributor, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including training data, data infrastructure, and dynamic data selection. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
         "I have worked in foundation-model training and algorithm roles at ByteDance, Ant Group, and Zhipu AI, and have also collaborated with teams at Tencent and Alibaba. I previously served as a co-founder of a data company with annual revenue exceeding RMB 10 million, leading technical solution design and project delivery. The core open-source project DataFlow was showcased at WAIC 2025 and WAIC 2026, and I was invited to share its technology at China Unicom Software Research Institute, the 2026 Apsara Conference, and the 10th AIDD R&D Summit.",
       ],
       impactHeading: "Research Impact",
@@ -119,6 +113,7 @@ const aboutContent = isEnglish
       pursuitHeading: "What I Want to Build",
       pursuit: [
         "I am an ENFJ who enjoys challenges and turning ideas into action. I hope to build useful AI with like-minded partners—technology that solves real problems and frees people from repetitive work.",
+        "I welcome conversations about AI data, open-source systems, research collaboration, and entrepreneurship. I am also happy to mentor committed interns and, when appropriate, recommend opportunities for graduate study and internships.",
       ],
       peopleHeading: "People I Hope to Meet",
       people: [
@@ -136,7 +131,7 @@ const aboutContent = isEnglish
     }
   : {
       paragraphs: [
-        "我是强美伊，北京大学硕士研究生，是一名研究者，也是一名创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注高质量训练数据构建、数据处理基础设施、动态数据选择，以及面向真实任务的数据智能系统。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
+        "我是强美伊，北京大学硕士研究生，是一名研究者、开源技术贡献者和创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注训练数据构建、数据基础设施与动态数据选择。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
         "我曾在字节、蚂蚁、智谱的基础模型训练和算法岗位实习，也与腾讯、阿里有过很好的合作。我也曾在一家年营收超千万元的数据公司担任联合创始人，负责技术方案设计和项目落地。核心开源项目 DataFlow 曾在 WAIC 2025 和 WAIC 2026 展出，并受邀在中国联通软件研究院、云栖大会 2026、第十届 AIDD 研发峰会等进行技术分享。",
       ],
       impactHeading: "研究影响力",
@@ -148,6 +143,7 @@ const aboutContent = isEnglish
       pursuitHeading: "我想做的事",
       pursuit: [
         "我是 ENFJ，喜欢挑战，也乐于把想法变成行动。我希望与志同道合的伙伴一起，做真正解决问题、帮助人们减少重复劳动的 AI 技术。",
+        "欢迎交流 AI Data、开源技术、科研合作与创业实践。我也愿意为认真、有行动力的实习生提供研究指导，并在合适的情况下推荐读研与实习机会。",
       ],
       peopleHeading: "我希望认识",
       people: [
@@ -439,34 +435,14 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </section>
           </div>
 
-          <div class="mt-4 grid items-stretch gap-4 lg:grid-cols-2">
+          <div class="mt-4">
             <section class="about-secondary-card h-full rounded-2xl border border-teal-200/80 p-5 dark:border-teal-900/70" aria-labelledby="pursuit-heading">
               <div class="flex items-center gap-2">
                 <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
                 <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
               </div>
-              <div class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">
+              <div class="mt-3 grid gap-3 text-sm leading-7 text-ink-700 dark:text-paper-300 lg:grid-cols-2 lg:gap-6">
                 {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
-              </div>
-            </section>
-
-            <section class="contact-card about-secondary-card h-full rounded-2xl border border-teal-200/80 p-5 dark:border-teal-900/70" aria-labelledby="connect-heading">
-              <div class="flex items-center gap-2">
-                <span class="i-mdi:handshake-outline text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
-                <h2 id="connect-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
-              </div>
-              <p class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
-              <div class="mt-3 grid gap-2">
-                <div class="flex items-center gap-2 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 dark:border-ink-700 dark:bg-ink-900/50">
-                  <span class="i-mdi:wechat text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                  <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.wechatLabel}</span>
-                  <span class="ml-auto text-sm font-semibold text-ink-900 dark:text-paper-100">18991348420</span>
-                </div>
-                <a href="mailto:qiangmeiyi@gmail.com" class="group flex min-w-0 items-center gap-2 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 transition-colors hover:border-accent-400 hover:bg-white dark:border-ink-700 dark:bg-ink-900/50 dark:hover:border-accent-700 dark:hover:bg-ink-900">
-                  <span class="i-mdi:email-outline text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                  <span class="text-xs font-medium text-ink-500 dark:text-paper-400">{copy.emailLabel}</span>
-                  <span class="ml-auto min-w-0 break-all text-right text-sm font-semibold text-ink-900 group-hover:text-accent-800 dark:text-paper-100 dark:group-hover:text-accent-200">qiangmeiyi@gmail.com</span>
-                </a>
               </div>
             </section>
           </div>
@@ -547,6 +523,15 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 
             <nav class="mt-3 border-t border-paper-300/80 pt-2 dark:border-ink-700/80" aria-label={isEnglish ? "Profile links" : "个人链接"}>
               <ul class="m-0 list-none space-y-0.5 p-0">
+                <li>
+                  <div class="flex min-h-9 items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-semibold text-ink-700 dark:text-paper-200">
+                    <span class="i-mdi:wechat text-base text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
+                    <span class="min-w-0">
+                      <span class="block">{copy.wechatLabel}</span>
+                      <span class="mt-0.5 block text-xs font-medium leading-4 text-ink-500 dark:text-paper-400">18991348420</span>
+                    </span>
+                  </div>
+                </li>
                 {socialLinks.map((link) => (
                   <li>
                     <a

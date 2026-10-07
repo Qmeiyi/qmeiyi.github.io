@@ -170,6 +170,33 @@ const aboutContent = isEnglish
       ],
     };
 
+const academicEntityLinks: Record<string, string> = {
+  "Prof. Wentao Zhang": "https://scholar.google.com/citations?user=JE4VON0AAAAJ&hl=en",
+  "Prof. Weinan E": "https://scholar.google.com/citations?user=i2mOt14AAAAJ&hl=en",
+  "Prof. Bin Cui": "https://scholar.google.com/citations?user=IJAU8KoAAAAJ&hl=en",
+  "张文涛教授": "https://scholar.google.com/citations?user=JE4VON0AAAAJ&hl=zh-CN",
+  "鄂维南教授": "https://scholar.google.com/citations?user=i2mOt14AAAAJ&hl=zh-CN",
+  "崔斌教授": "https://scholar.google.com/citations?user=IJAU8KoAAAAJ&hl=zh-CN",
+  "DCAI Lab": "https://zwt233.github.io/",
+};
+
+const academicEntityPattern = /(Prof\. Wentao Zhang|Prof\. Weinan E|Prof\. Bin Cui|张文涛教授|鄂维南教授|崔斌教授|DCAI Lab)/g;
+const splitAcademicEntities = (text: string) => text.split(academicEntityPattern).filter(Boolean);
+
+const academicLinks = isEnglish
+  ? [
+      { label: "Wentao Zhang", meta: "Advisor · Google Scholar", href: academicEntityLinks["Prof. Wentao Zhang"], icon: "i-academicons:google-scholar" },
+      { label: "Weinan E", meta: "Research collaborator · Google Scholar", href: academicEntityLinks["Prof. Weinan E"], icon: "i-academicons:google-scholar" },
+      { label: "Bin Cui", meta: "Research collaborator · Google Scholar", href: academicEntityLinks["Prof. Bin Cui"], icon: "i-academicons:google-scholar" },
+      { label: "DCAI Lab", meta: "Research group", href: academicEntityLinks["DCAI Lab"], icon: "i-mdi:account-group-outline" },
+    ]
+  : [
+      { label: "张文涛教授", meta: "导师 · Google Scholar", href: academicEntityLinks["张文涛教授"], icon: "i-academicons:google-scholar" },
+      { label: "鄂维南教授", meta: "科研合作 · Google Scholar", href: academicEntityLinks["鄂维南教授"], icon: "i-academicons:google-scholar" },
+      { label: "崔斌教授", meta: "科研合作 · Google Scholar", href: academicEntityLinks["崔斌教授"], icon: "i-academicons:google-scholar" },
+      { label: "DCAI Lab", meta: "所在课题组", href: academicEntityLinks["DCAI Lab"], icon: "i-mdi:account-group-outline" },
+    ];
+
 const news: NewsItem[] = isEnglish
   ? [
       { date: 2026, text: "Advancing AI data infrastructure solutions and commercialization as co-founder of OriginHub.", link: { label: "Visit OriginHub", href: "https://originhub.tech/" } },
@@ -194,102 +221,66 @@ const researchDirections = isEnglish
       {
         title: "Agent Training Data & Environment Design",
         subtitle: "Executable and verifiable data systems for vertical agent tasks",
-        description: "Building high-quality training data for real tools and professional workflows, with task paradigms represented by ALE and Terminal-Bench: environment construction, trajectory collection, hard-case mining, synthesis, and verification, extending my work on mathematical-data quality and training-data preparation.",
+        description: "Building executable environments and verifiable trajectories for real tools and vertical agent tasks represented by ALE and Terminal-Bench.",
         related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
-        keywords: ["ALE", "Terminal-Bench", "Agent Trajectories", "Verifiable Tasks", "Long-Horizon", "Vertical Data"],
+        keywords: ["ALE", "Terminal-Bench", "Agent Trajectories", "Verifiable Tasks"],
       },
       {
         title: "Data-Centric AI & Data Processing",
         subtitle: "DataFlow and programmable preparation workflows",
-        description: "Studying how refinement, generation, evaluation, filtering, lineage, and workflow automation turn noisy multimodal sources into model-ready data at scale.",
+        description: "Turning noisy text, web, code, and multimodal sources into model-ready data through programmable preparation workflows.",
         related: "DataFlow · Data Preparation for LLMs · RayOrch",
-        keywords: ["Data Preparation", "Operators", "Pipelines", "Data Quality", "Lineage", "Workflow Automation"],
+        keywords: ["Data Preparation", "Operators", "Pipelines", "Data Quality"],
       },
       {
         title: "Dynamic Training Data",
         subtitle: "Selection and scheduling with DataFlex",
-        description: "Designing data selection, mixture, reweighting, and scheduling methods that adapt training data policies to model state and learning progress across SFT and reinforcement learning.",
+        description: "Adapting data selection, mixture, reweighting, and scheduling to model state across supervised and reinforcement learning.",
         related: "DataFlex · IFT · Data-Centric LLM Training",
-        keywords: ["Dynamic Selection", "Data Mixture", "Reweighting", "Scheduling", "SFT", "RLVR"],
+        keywords: ["Dynamic Selection", "Data Mixture", "SFT", "RLVR"],
       },
       {
         title: "Intelligent Data Management",
         subtitle: "Structured data and DataMind",
-        description: "Connecting structured and unstructured knowledge through RAG, GraphRAG, NL2SQL, knowledge graphs, skills, and memory to build intelligent data systems that can retrieve, reason, and act.",
+        description: "Connecting structured and unstructured knowledge to build data systems that retrieve, reason, and act on real tasks.",
         related: "DataMind · GraspLLM · K12-KGraph",
-        keywords: ["Structured Data", "NL2SQL", "Knowledge Graph", "RAG", "Memory", "Data Agents"],
+        keywords: ["Structured Data", "NL2SQL", "Knowledge Graph", "Data Agents"],
       },
     ]
   : [
       {
         title: "智能体训练数据与环境构建",
         subtitle: "面向垂类任务的可执行、可验证数据体系",
-        description: "面向真实工具与专业工作流构建高质量训练数据，围绕 ALE、Terminal-Bench 所代表的任务范式，研究环境构建、轨迹采集、难例挖掘、数据合成与结果验证，并延续数学数据质量和训练数据准备方面的研究积累。",
+        description: "围绕 ALE、Terminal-Bench 等真实任务，研究可执行环境、智能体轨迹、难例挖掘与结果验证。",
         related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
-        keywords: ["ALE", "Terminal-Bench", "智能体轨迹", "可验证任务", "长程任务", "垂类数据"],
+        keywords: ["ALE", "Terminal-Bench", "智能体轨迹", "可验证任务"],
       },
       {
         title: "数据中心人工智能与数据处理",
         subtitle: "以 DataFlow 为核心的可编程数据准备",
-        description: "研究数据修正、生成、评估、过滤、血缘管理与工作流自动化，探索如何将噪声文本、网页、代码及多模态来源规模化转化为模型可用数据。",
+        description: "以可编程数据工作流完成修正、生成、评估与过滤，将多源噪声数据转化为模型可用数据。",
         related: "DataFlow · Data Preparation for LLMs · RayOrch",
-        keywords: ["数据准备", "算子", "Pipeline", "数据质量", "数据血缘", "工作流自动化"],
+        keywords: ["数据准备", "算子", "Pipeline", "数据质量"],
       },
       {
         title: "模型训练数据与动态调度",
         subtitle: "以 DataFlex 为核心的数据选择与训练协同",
-        description: "研究随模型状态和训练进程变化的数据选择、混合、重加权与调度策略，覆盖监督微调和强化学习阶段，让训练数据策略与模型学习过程协同演化。",
+        description: "研究随模型状态变化的数据选择、混合、重加权与调度，让数据策略与训练过程协同演化。",
         related: "DataFlex · IFT · Data-Centric LLM Training",
-        keywords: ["动态选择", "数据混合", "样本重加权", "数据调度", "SFT", "RLVR"],
+        keywords: ["动态选择", "数据混合", "SFT", "RLVR"],
       },
       {
         title: "智能数据管理与结构化数据",
         subtitle: "以 DataMind 为核心的数据理解与管理",
-        description: "通过 RAG、GraphRAG、NL2SQL、知识图谱、Skills 与 Memory 连接结构化和非结构化知识，构建能够检索、推理并执行的数据智能系统。",
+        description: "连接结构化与非结构化知识，构建能够理解数据，并在真实任务中检索、推理与执行的系统。",
         related: "DataMind · GraspLLM · K12-KGraph",
-        keywords: ["结构化数据", "NL2SQL", "知识图谱", "RAG", "Memory", "数据智能体"],
+        keywords: ["结构化数据", "NL2SQL", "知识图谱", "数据智能体"],
       },
     ];
 
 const researchCloud = isEnglish
-  ? [
-      { label: "Training Data", size: "text-2xl sm:text-3xl", tone: "text-cyan-800 dark:text-cyan-200" },
-      { label: "Data-Centric AI", size: "text-xl sm:text-2xl", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "ALE", size: "text-lg sm:text-xl", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "Terminal-Bench", size: "text-xl sm:text-2xl", tone: "text-teal-700 dark:text-teal-300" },
-      { label: "DataFlow", size: "text-2xl", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "Dynamic Selection", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "DataFlex", size: "text-xl", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "Agent Trajectories", size: "text-base", tone: "text-teal-700 dark:text-teal-300" },
-      { label: "DataMind", size: "text-xl", tone: "text-cyan-800 dark:text-cyan-200" },
-      { label: "Structured Data", size: "text-lg", tone: "text-emerald-800 dark:text-emerald-200" },
-      { label: "RLVR", size: "text-base", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "Data Quality", size: "text-lg", tone: "text-teal-800 dark:text-teal-200" },
-      { label: "Mathematical Data", size: "text-base", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "Benchmarking", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "Multimodal Data", size: "text-base", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "NL2SQL", size: "text-base", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "Verifiable Tasks", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-    ]
-  : [
-      { label: "Training Data", size: "text-2xl sm:text-3xl", tone: "text-cyan-800 dark:text-cyan-200" },
-      { label: "数据中心人工智能", size: "text-xl sm:text-2xl", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "ALE", size: "text-lg sm:text-xl", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "Terminal-Bench", size: "text-xl sm:text-2xl", tone: "text-teal-700 dark:text-teal-300" },
-      { label: "DataFlow", size: "text-2xl", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "动态选择", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "DataFlex", size: "text-xl", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "智能体轨迹", size: "text-base", tone: "text-teal-700 dark:text-teal-300" },
-      { label: "DataMind", size: "text-xl", tone: "text-cyan-800 dark:text-cyan-200" },
-      { label: "结构化数据", size: "text-lg", tone: "text-emerald-800 dark:text-emerald-200" },
-      { label: "RLVR", size: "text-base", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "数据质量", size: "text-lg", tone: "text-teal-800 dark:text-teal-200" },
-      { label: "数学数据", size: "text-base", tone: "text-blue-700 dark:text-blue-300" },
-      { label: "基准评测", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-      { label: "多模态数据", size: "text-base", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "NL2SQL", size: "text-base", tone: "text-cyan-700 dark:text-cyan-300" },
-      { label: "可验证任务", size: "text-lg", tone: "text-emerald-700 dark:text-emerald-300" },
-    ];
+  ? ["Training Data", "ALE", "Terminal-Bench", "DataFlow", "Data Quality", "DataFlex", "Dynamic Selection", "RLVR", "DataMind", "Structured Data", "NL2SQL", "Data Agents"]
+  : ["训练数据", "ALE", "Terminal-Bench", "DataFlow", "数据质量", "DataFlex", "动态选择", "RLVR", "DataMind", "结构化数据", "NL2SQL", "数据智能体"];
 
 const featuredPaperIds = [
   "liang2027dataflow",
@@ -402,23 +393,54 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
     <section id="about" class="home-section-card profile-hero-card scroll-mt-24 p-6 sm:p-8">
       <div>
         <div class="min-w-0">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
-          <h1 class="section-heading mt-2 text-3xl sm:text-4xl">{copy.aboutHeading}</h1>
-
-          <div class="mt-6 space-y-4 text-[1.02rem] leading-8 text-ink-700 dark:text-paper-300">
-            {aboutContent.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-
-          <div class="mt-6 flex flex-wrap gap-3">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
+              <h1 class="section-heading mt-2 text-3xl sm:text-4xl">{copy.aboutHeading}</h1>
+            </div>
             <a
               href={isEnglish ? "/en/researches" : "/researches"}
-              class="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-emerald-300/90 bg-emerald-50/75 px-4 py-2 text-sm font-semibold text-emerald-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-100/80 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 dark:border-emerald-800 dark:bg-emerald-950/35 dark:text-emerald-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/55"
+              class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-emerald-300/90 bg-emerald-50/75 px-4 py-2 text-sm font-semibold text-emerald-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-100/80 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 dark:border-emerald-800 dark:bg-emerald-950/35 dark:text-emerald-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/55 sm:self-auto"
             >
               <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
               {copy.paperCta}
               <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
             </a>
           </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-2">
+            {aboutContent.paragraphs.map((paragraph, index) => (
+              <section class:list={["about-story-card rounded-2xl border bg-white/90 p-5 shadow-sm dark:bg-ink-900/70", index === 0 ? "border-cyan-200/90 dark:border-cyan-900/70" : "border-emerald-200/90 dark:border-emerald-900/70"]}>
+                <div class="mb-3 flex items-center gap-2">
+                  <span class:list={[index === 0 ? "i-mdi:school-outline text-cyan-700 dark:text-cyan-300" : "i-mdi:rocket-launch-outline text-emerald-700 dark:text-emerald-300", "text-xl"]} aria-hidden="true"></span>
+                  <h2 class="font-heading text-base font-semibold text-ink-950 dark:text-paper-50">
+                    {index === 0 ? (isEnglish ? "Academic Profile" : "学术与研究") : (isEnglish ? "Industry & Entrepreneurship" : "产业与创业")}
+                  </h2>
+                </div>
+                <p class="text-sm leading-7 text-ink-700 dark:text-paper-300">
+                  {splitAcademicEntities(paragraph).map((part) => {
+                    const href = academicEntityLinks[part];
+                    return href ? (
+                      <a href={href} target="_blank" rel="noopener noreferrer" class="academic-inline-link">{part}<span class="i-mdi:open-in-new text-[0.7rem]" aria-hidden="true"></span></a>
+                    ) : part;
+                  })}
+                </p>
+              </section>
+            ))}
+          </div>
+
+          <nav class="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-4" aria-label={isEnglish ? "Academic collaborators and group" : "导师、合作教授与课题组"}>
+            {academicLinks.map((link) => (
+              <a href={link.href} target="_blank" rel="noopener noreferrer" class="academic-link-card group flex min-w-0 items-center gap-2.5 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 no-underline transition hover:border-cyan-400 hover:bg-cyan-50/55 dark:border-ink-700 dark:bg-ink-900/55 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/25">
+                <span class={`${link.icon} shrink-0 text-lg text-cyan-700 dark:text-cyan-300`} aria-hidden="true"></span>
+                <span class="min-w-0">
+                  <span class="block truncate text-xs font-bold text-ink-900 dark:text-paper-100">{link.label}</span>
+                  <span class="mt-0.5 block truncate text-[10px] text-ink-500 dark:text-paper-400">{link.meta}</span>
+                </span>
+                <span class="i-mdi:open-in-new ml-auto shrink-0 text-xs text-ink-400 transition group-hover:text-cyan-700 dark:text-paper-500 dark:group-hover:text-cyan-300" aria-hidden="true"></span>
+              </a>
+            ))}
+          </nav>
 
           <div class="mt-8 grid gap-4 sm:grid-cols-2">
             <section class="rounded-2xl border border-cyan-200/80 bg-cyan-50/55 p-5 dark:border-cyan-900/70 dark:bg-cyan-950/25" aria-labelledby="impact-heading">
@@ -479,7 +501,12 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 {aboutContent.offers.map((offer) => (
                   <li class="flex gap-2.5 text-sm leading-6 text-ink-700 dark:text-paper-300">
                     <span class="i-mdi:check-circle mt-1 shrink-0 text-base text-emerald-600 dark:text-emerald-300" aria-hidden="true"></span>
-                    <span>{offer}</span>
+                    <span>
+                      {splitAcademicEntities(offer).map((part) => {
+                        const href = academicEntityLinks[part];
+                        return href ? <a href={href} target="_blank" rel="noopener noreferrer" class="academic-inline-link">{part}<span class="i-mdi:open-in-new text-[0.7rem]" aria-hidden="true"></span></a> : part;
+                      })}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -707,22 +734,33 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
       <div class="grid gap-4 sm:grid-cols-2">
         {researchDirections.map((direction, index) => (
-          <article class="surface-card relative overflow-hidden p-5 sm:p-6">
-            <span class="font-mono text-xs font-semibold text-accent-700 dark:text-accent-300">0{index + 1}</span>
-            <h3 class="entry-title mt-3 text-xl">{direction.title}</h3>
-            <p class="mt-1 text-xs font-bold text-accent-700 dark:text-accent-300">{direction.subtitle}</p>
-            <p class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">{direction.description}</p>
-            <p class="mt-4 text-xs leading-5 text-ink-500 dark:text-paper-400"><span class="font-bold text-ink-700 dark:text-paper-200">{copy.relatedWork}：</span>{direction.related}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {direction.keywords.map((keyword) => <span class="rounded-full border border-cyan-200 bg-cyan-50/80 px-2.5 py-1 text-[11px] font-semibold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/45 dark:text-cyan-200">{keyword}</span>)}
+          <article class="research-direction-card surface-card relative flex min-h-[18rem] flex-col overflow-hidden p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-3">
+              <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-200 bg-cyan-50 font-mono text-xs font-bold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/55 dark:text-cyan-200">0{index + 1}</span>
+              <span class="h-px flex-1 bg-gradient-to-r from-cyan-200 to-transparent dark:from-cyan-900" aria-hidden="true"></span>
+            </div>
+            <h3 class="entry-title mt-4 text-xl">{direction.title}</h3>
+            <p class="mt-1 min-h-5 text-xs font-bold text-accent-700 dark:text-accent-300">{direction.subtitle}</p>
+            <p class="research-summary mt-3 text-sm leading-6 text-ink-700 dark:text-paper-300">{direction.description}</p>
+            <p class="mt-4 truncate text-xs leading-5 text-ink-500 dark:text-paper-400" title={`${copy.relatedWork}: ${direction.related}`}><span class="font-bold text-ink-700 dark:text-paper-200">{copy.relatedWork}：</span>{direction.related}</p>
+            <div class="research-keywords mt-auto flex flex-nowrap gap-1.5 overflow-x-auto pt-4">
+              {direction.keywords.map((keyword) => <span class="shrink-0 whitespace-nowrap rounded-full border border-cyan-200 bg-cyan-50/80 px-2 py-1 text-[10px] font-semibold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/45 dark:text-cyan-200">{keyword}</span>)}
             </div>
           </article>
         ))}
       </div>
       <div class="mt-5 rounded-3xl border border-emerald-200/90 bg-white px-5 py-5 shadow-sm dark:border-emerald-900/70 dark:bg-ink-900/95 sm:px-6">
-        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">{copy.keywordCloud}</p>
-        <div class="mt-4 flex flex-wrap items-baseline justify-center gap-x-5 gap-y-3 text-center font-bold leading-none">
-          {researchCloud.map((term) => <span class:list={[term.size, term.tone]}>{term.label}</span>)}
+        <div class="research-cloud-layout grid gap-4 lg:grid-cols-[13rem_1fr] lg:items-stretch">
+          <div class="flex flex-col justify-center rounded-2xl border border-emerald-200/80 bg-emerald-50/60 px-5 py-4 dark:border-emerald-900/70 dark:bg-emerald-950/25">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">{copy.keywordCloud}</p>
+            <p class="mt-2 font-heading text-2xl font-semibold leading-tight text-ink-950 dark:text-paper-50">Data-Centric AI</p>
+            <p class="mt-1 text-xs leading-5 text-ink-500 dark:text-paper-400">{isEnglish ? "Data for capable, reliable AI" : "让数据驱动更可靠、更有用的 AI"}</p>
+          </div>
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4">
+            {researchCloud.map((term, index) => (
+              <span class:list={["flex min-h-10 items-center justify-center whitespace-nowrap rounded-xl border px-2.5 text-center text-xs font-bold", index % 3 === 0 ? "border-cyan-200 bg-cyan-50/65 text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/30 dark:text-cyan-200" : index % 3 === 1 ? "border-emerald-200 bg-emerald-50/65 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200" : "border-teal-200 bg-teal-50/65 text-teal-800 dark:border-teal-900 dark:bg-teal-950/30 dark:text-teal-200"]}>{term}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -867,6 +905,60 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 
   :global(.dark) .section-title-box {
     background: linear-gradient(90deg, rgb(17 64 72 / 0.58), rgb(17 67 54 / 0.48));
+  }
+
+  .about-story-card {
+    background:
+      radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.08), transparent 8rem),
+      rgb(255 255 255 / 0.94);
+  }
+
+  :global(.dark) .about-story-card {
+    background:
+      radial-gradient(circle at 100% 0%, rgb(45 181 178 / 0.08), transparent 8rem),
+      rgb(28 34 33 / 0.82);
+  }
+
+  .academic-inline-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15rem;
+    border-bottom: 1px solid rgb(8 145 178 / 0.34);
+    color: rgb(14 116 144);
+    font-weight: 650;
+    text-decoration: none;
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+
+  .academic-inline-link:hover {
+    border-color: rgb(5 150 105 / 0.72);
+    color: rgb(4 120 87);
+  }
+
+  :global(.dark) .academic-inline-link {
+    border-color: rgb(103 232 249 / 0.28);
+    color: rgb(103 232 249);
+  }
+
+  :global(.dark) .academic-inline-link:hover {
+    border-color: rgb(110 231 183 / 0.7);
+    color: rgb(110 231 183);
+  }
+
+  .research-summary {
+    display: -webkit-box;
+    min-height: 3rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .research-keywords {
+    scrollbar-width: none;
+  }
+
+  .research-keywords::-webkit-scrollbar {
+    display: none;
   }
 
   @media (min-width: 1024px) {

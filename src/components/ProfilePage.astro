@@ -37,7 +37,7 @@ const copy = isEnglish
       profileEnglishName: "强美伊",
       profileTags: ["Entrepreneur", "Open Source Contributor", "AI Data Researcher"],
       aboutLabel: "About",
-      aboutHeading: "About",
+      aboutHeading: "About Me",
       connectLabel: "Connect",
       connectHeading: "Open to Industry Collaboration",
       connectText: "I would be glad to connect with researchers, founders, and industry practitioners working on AI data, open-source systems, and real-world applications.",
@@ -76,7 +76,7 @@ const copy = isEnglish
       profileEnglishName: "Meiyi Qiang",
       profileTags: ["创业者", "开源技术贡献者", "AI Data 研究者"],
       aboutLabel: "About",
-      aboutHeading: "关于",
+      aboutHeading: "关于我",
       connectLabel: "Connect",
       connectHeading: "期待与行业朋友交流合作",
       connectText: "欢迎从事 AI 数据、开源技术与产业应用的朋友联系我，一起交流研究、产品与创业实践。",
@@ -106,6 +106,68 @@ const copy = isEnglish
       paperLinkLabel: "论文",
       honorsLabel: "Honors",
       honorsHeading: "荣誉奖项",
+    };
+
+const aboutContent = isEnglish
+  ? {
+      paragraphs: [
+        "I am Meiyi Qiang, a master's student at Peking University, a researcher, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including high-quality training data, data processing infrastructure, dynamic data selection, and intelligent data systems for real-world tasks. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
+        "I have worked in foundation-model training and algorithm roles at ByteDance, Ant Group, and Zhipu AI, and have also collaborated with teams at Tencent and Alibaba. I previously served as a co-founder of a data company with annual revenue exceeding RMB 10 million, leading technical solution design and project delivery. The core open-source project DataFlow was showcased at WAIC 2025 and WAIC 2026, and I was invited to share its technology at China Unicom Software Research Institute, the 2026 Apsara Conference, and the 10th AIDD R&D Summit.",
+      ],
+      impactHeading: "Research Impact",
+      competitionsHeading: "Competition Highlights",
+      competitions: [
+        { title: "GOAI 2026 Global Open-Source AI Challenge", detail: "Agent Infra Track Champion (1 / 7,802) · Overall Runner-up" },
+        { title: "Cesim Elite 2023 Global Business Simulation Competition", detail: "China Champion (1 / 1,700) · Global Runner-up" },
+      ],
+      pursuitHeading: "What I Want to Build",
+      pursuit: [
+        "My MBTI type is ENFJ. I enjoy challenges and turning ambitious ideas into action. To me, entrepreneurship is more than a career choice; it is how I understand the world and solve problems.",
+        "I hope to work with like-minded partners on useful AI that solves real problems, frees people from repetitive work, and leaves more time for creativity, thought, and life.",
+      ],
+      peopleHeading: "People I Hope to Meet",
+      people: [
+        { title: "Foundation-model teams and vertical-industry companies", detail: "Organizations with training-data needs, private data or domain assets, and plans for data governance, model training, or AI transformation." },
+        { title: "Researchers, engineers, and interns interested in AI Data", detail: "People exploring training data, data processing, data management, and Data-Centric AI." },
+        { title: "AI founders and long-term collaborators", detail: "Builders identifying real needs, delivering technology, and exploring commercialization." },
+      ],
+      offerHeading: "What We Can Discuss",
+      offers: [
+        "Data flywheels, training-data construction, data governance, and quality evaluation",
+        "Technical and project collaboration around DataFlow, DataFlex, and DataMind",
+        "Research exchange, open-source collaboration, and DCAI Lab internship opportunities",
+        "AI entrepreneurship, productization, industry delivery, and other forms of collaboration",
+      ],
+    }
+  : {
+      paragraphs: [
+        "我是强美伊，北京大学硕士研究生，是一名研究者，也是一名创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注高质量训练数据构建、数据处理基础设施、动态数据选择，以及面向真实任务的数据智能系统。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
+        "我曾在字节、蚂蚁、智谱的基础模型训练和算法岗位实习，也与腾讯、阿里有过很好的合作。我也曾在一家年营收超千万元的数据公司担任联合创始人，负责技术方案设计和项目落地。核心开源项目 DataFlow 曾在 WAIC 2025 和 WAIC 2026 展出，并受邀在中国联通软件研究院、云栖大会 2026、第十届 AIDD 研发峰会等进行技术分享。",
+      ],
+      impactHeading: "研究影响力",
+      competitionsHeading: "赛事亮点",
+      competitions: [
+        { title: "GOAI 2026 世界人工智能开源大赛", detail: "Agent Infra 赛道冠军（1 / 7,802）· 全场亚军" },
+        { title: "Cesim Elite 2023 全球商业模拟大赛", detail: "全国总冠军（1 / 1,700）· 全球亚军" },
+      ],
+      pursuitHeading: "我想做的事",
+      pursuit: [
+        "我的 MBTI 是 ENFJ，喜欢挑战，也喜欢折腾。对我而言，创业不只是一种职业选择，更是我认识世界和解决问题的方式。",
+        "我希望与一群志同道合的伙伴一起，做真正有用、能够解决真实问题的 AI 技术，帮助人们摆脱繁琐、重复的劳动，把更多时间留给创造、思考和生活。",
+      ],
+      peopleHeading: "我希望认识",
+      people: [
+        { title: "有训练数据需求的基础模型公司和垂直行业企业", detail: "包括拥有私有数据或行业资产，希望进行数据治理、模型训练和 AI 转型的企业。" },
+        { title: "对 AI Data 感兴趣的研究人员、工程师和实习生", detail: "欢迎交流训练数据、数据处理、数据管理、Data-Centric AI 等研究方向。" },
+        { title: "AI 领域的创业者和长期合作伙伴", detail: "希望认识正在寻找真实需求、推动技术落地和探索商业化的同行。" },
+      ],
+      offerHeading: "我可以提供和交流",
+      offers: [
+        "数据飞轮、训练数据构建、数据治理与质量评估",
+        "DataFlow、DataFlex、DataMind 相关技术和项目合作",
+        "研究交流、开源协作及 DCAI Lab 实习机会",
+        "AI 创业、技术产品化、产业落地及其他形式的合作",
+      ],
     };
 
 const news: NewsItem[] = isEnglish
@@ -343,9 +405,9 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
           <h1 class="section-heading mt-2 text-3xl sm:text-4xl">{copy.aboutHeading}</h1>
 
-          <p class="mt-6 max-w-[62ch] text-[1.08rem] leading-8 text-ink-700 dark:text-paper-300">
-            {copy.description}
-          </p>
+          <div class="mt-6 space-y-4 text-[1.02rem] leading-8 text-ink-700 dark:text-paper-300">
+            {aboutContent.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
 
           <div class="mt-6 flex flex-wrap gap-3">
             <a
@@ -356,6 +418,72 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               {copy.paperCta}
               <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
             </a>
+          </div>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <section class="rounded-2xl border border-cyan-200/80 bg-cyan-50/55 p-5 dark:border-cyan-900/70 dark:bg-cyan-950/25" aria-labelledby="impact-heading">
+              <div class="flex items-center gap-2">
+                <span class="i-academicons:google-scholar text-xl text-cyan-700 dark:text-cyan-300" aria-hidden="true"></span>
+                <h2 id="impact-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.impactHeading}</h2>
+              </div>
+              <p class="mt-3 text-sm font-bold text-cyan-900 dark:text-cyan-100">
+                Google Scholar · {isEnglish ? `${publicMetrics.scholar.citations.toLocaleString("en-US")} citations · h-index ${publicMetrics.scholar.hIndex}` : `${publicMetrics.scholar.citations.toLocaleString("zh-CN")} 次引用 · h 指数 ${publicMetrics.scholar.hIndex}`}
+              </p>
+            </section>
+
+            <section class="rounded-2xl border border-emerald-200/90 bg-emerald-50/55 p-5 dark:border-emerald-900/70 dark:bg-emerald-950/25" aria-labelledby="competitions-heading">
+              <div class="flex items-center gap-2">
+                <span class="i-mdi:trophy-outline text-xl text-emerald-700 dark:text-emerald-300" aria-hidden="true"></span>
+                <h2 id="competitions-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.competitionsHeading}</h2>
+              </div>
+              <div class="mt-3 space-y-3">
+                {aboutContent.competitions.map((competition) => (
+                  <div>
+                    <p class="text-sm font-bold leading-6 text-ink-900 dark:text-paper-100">{competition.title}</p>
+                    <p class="mt-0.5 text-xs font-semibold leading-5 text-emerald-800 dark:text-emerald-200">{competition.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          <section class="mt-4 rounded-2xl border border-teal-200/80 bg-white/85 p-5 shadow-sm dark:border-teal-900/70 dark:bg-ink-900/65" aria-labelledby="pursuit-heading">
+            <div class="flex items-center gap-2">
+              <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
+              <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
+            </div>
+            <div class="mt-3 space-y-2 text-sm leading-7 text-ink-700 dark:text-paper-300">
+              {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
+
+          <div class="mt-4 grid gap-4 lg:grid-cols-2">
+            <section class="rounded-2xl border border-cyan-200/80 bg-white/85 p-5 shadow-sm dark:border-cyan-900/70 dark:bg-ink-900/65" aria-labelledby="people-heading">
+              <h2 id="people-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.peopleHeading}</h2>
+              <ol class="mt-3 space-y-3">
+                {aboutContent.people.map((item, index) => (
+                  <li class="flex gap-3">
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-100 font-mono text-[11px] font-bold text-cyan-800 dark:bg-cyan-950/70 dark:text-cyan-200">{index + 1}</span>
+                    <div>
+                      <p class="text-sm font-bold leading-6 text-ink-900 dark:text-paper-100">{item.title}</p>
+                      <p class="mt-0.5 text-xs leading-5 text-ink-600 dark:text-paper-300">{item.detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section class="rounded-2xl border border-emerald-200/80 bg-white/85 p-5 shadow-sm dark:border-emerald-900/70 dark:bg-ink-900/65" aria-labelledby="offer-heading">
+              <h2 id="offer-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.offerHeading}</h2>
+              <ul class="mt-3 space-y-3">
+                {aboutContent.offers.map((offer) => (
+                  <li class="flex gap-2.5 text-sm leading-6 text-ink-700 dark:text-paper-300">
+                    <span class="i-mdi:check-circle mt-1 shrink-0 text-base text-emerald-600 dark:text-emerald-300" aria-hidden="true"></span>
+                    <span>{offer}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
 
           <div class="contact-card mt-8 rounded-3xl border border-teal-300/75 bg-white/95 p-5 shadow-[0_14px_34px_-24px_rgba(13,148,136,0.45)] dark:border-teal-800/70 dark:bg-ink-900/95 sm:p-6">

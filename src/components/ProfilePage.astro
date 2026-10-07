@@ -112,8 +112,7 @@ const aboutContent = isEnglish
       ],
       pursuitHeading: "What I Want to Build",
       pursuit: [
-        "I am an ENFJ who enjoys challenges and turning ideas into action. I hope to build useful AI with like-minded partners—technology that solves real problems and frees people from repetitive work.",
-        "I welcome conversations about AI data, open-source systems, research collaboration, and entrepreneurship. I am also happy to mentor committed interns and, when appropriate, recommend opportunities for graduate study and internships.",
+        "I am an ENFJ who enjoys challenges and turning ideas into action. I hope to meet like-minded people who believe technology should solve real problems, and to build useful AI together that frees people from tedious, repetitive work. I welcome conversations about AI data, open-source systems, research collaboration, and entrepreneurship. I am also happy to mentor committed interns and, when appropriate, recommend opportunities for graduate study and internships.",
       ],
       peopleHeading: "People I Hope to Meet",
       people: [
@@ -125,7 +124,7 @@ const aboutContent = isEnglish
       offers: [
         "Data flywheels, training-data construction, data governance, and quality evaluation",
         "Technical and project collaboration around DataFlow, DataFlex, and DataMind",
-        "Research exchange, open-source collaboration, and DCAI Lab internship opportunities",
+        "Research exchange, open-source collaboration, and Peking University DCAI Lab internship opportunities",
         "AI entrepreneurship, productization, industry delivery, and other forms of collaboration",
       ],
     }
@@ -142,8 +141,7 @@ const aboutContent = isEnglish
       ],
       pursuitHeading: "我想做的事",
       pursuit: [
-        "我是 ENFJ，喜欢挑战，也乐于把想法变成行动。我希望与志同道合的伙伴一起，做真正解决问题、帮助人们减少重复劳动的 AI 技术。",
-        "欢迎交流 AI Data、开源技术、科研合作与创业实践。我也愿意为认真、有行动力的实习生提供研究指导，并在合适的情况下推荐读研与实习机会。",
+        "我是 ENFJ，喜欢挑战，也乐于把想法变成行动。我希望结识一群志同道合、相信技术能够解决真实问题的伙伴，一起探索真正有用的 AI，让人们从繁琐、重复的劳动中解放出来。欢迎与我交流 AI Data、开源技术、科研合作与创业实践；我也愿意为认真、有行动力的实习生提供研究指导，并在合适的情况下推荐读研和实习机会。",
       ],
       peopleHeading: "我希望认识",
       people: [
@@ -155,7 +153,7 @@ const aboutContent = isEnglish
       offers: [
         "数据飞轮、训练数据构建、数据治理与质量评估",
         "DataFlow、DataFlex、DataMind 相关技术和项目合作",
-        "研究交流、开源协作及 DCAI Lab 实习机会",
+        "研究交流、开源协作及北大 DCAI Lab 实习机会",
         "AI 创业、技术产品化、产业落地及其他形式的合作",
       ],
     };
@@ -167,10 +165,12 @@ const academicEntityLinks: Record<string, string> = {
   "张文涛教授": "https://scholar.google.com/citations?user=JE4VON0AAAAJ&hl=zh-CN",
   "鄂维南教授": "https://scholar.google.com/citations?user=i2mOt14AAAAJ&hl=zh-CN",
   "崔斌教授": "https://scholar.google.com/citations?user=IJAU8KoAAAAJ&hl=zh-CN",
+  "北大 DCAI Lab": "https://zwt233.github.io/",
+  "Peking University DCAI Lab": "https://zwt233.github.io/",
   "DCAI Lab": "https://zwt233.github.io/",
 };
 
-const academicEntityPattern = /(Prof\. Wentao Zhang|Prof\. Weinan E|Prof\. Bin Cui|张文涛教授|鄂维南教授|崔斌教授|DCAI Lab)/g;
+const academicEntityPattern = /(Peking University DCAI Lab|北大 DCAI Lab|Prof\. Wentao Zhang|Prof\. Weinan E|Prof\. Bin Cui|张文涛教授|鄂维南教授|崔斌教授|DCAI Lab)/g;
 const splitAcademicEntities = (text: string) => text.split(academicEntityPattern).filter(Boolean);
 
 const news: NewsItem[] = isEnglish
@@ -441,7 +441,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
                 <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
               </div>
-              <div class="mt-3 grid gap-3 text-sm leading-7 text-ink-700 dark:text-paper-300 lg:grid-cols-2 lg:gap-6">
+              <div class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">
                 {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
               </div>
             </section>

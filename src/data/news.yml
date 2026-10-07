@@ -1,163 +1,226 @@
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: ranking
   text: OmniEdu 登上 Hugging Face Daily Papers 榜单第 1 名。
   textEn: OmniEdu ranked #1 on the Hugging Face Daily Papers leaderboard.
+  strong: [OmniEdu, Hugging Face Daily Papers]
+  strongEn: [OmniEdu, Hugging Face Daily Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2609.23088
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: ranking
   text: DataFlex-RL 登上 Hugging Face Daily Papers 榜单第 2 名。
   textEn: DataFlex-RL ranked #2 on the Hugging Face Daily Papers leaderboard.
+  strong: [DataFlex-RL, Hugging Face Daily Papers]
+  strongEn: [DataFlex-RL, Hugging Face Daily Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2609.06107
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: paper
   text: DataFlow 被 ACM SIGMOD 2027 接收，入选 Oral；担任核心贡献者。
   textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper; core contributor.
+  strong: [DataFlow, ACM SIGMOD 2027]
+  strongEn: [DataFlow, ACM SIGMOD 2027]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2512.16676
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: paper
   text: DataFlex 被 NeurIPS 2026 接收；担任核心贡献者。
   textEn: DataFlex was accepted by NeurIPS 2026; core contributor.
+  strong: [DataFlex, NeurIPS 2026]
+  strongEn: [DataFlex, NeurIPS 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2603.26164
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: paper
   text: FLARE 被 NeurIPS 2026 接收。
   textEn: FLARE was accepted by NeurIPS 2026.
+  strong: [FLARE, NeurIPS 2026]
+  strongEn: [FLARE, NeurIPS 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2605.10228
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: paper
   text: K12-KGraph 被 NeurIPS 2026 接收。
   textEn: K12-KGraph was accepted by NeurIPS 2026.
+  strong: [K12-KGraph, NeurIPS 2026]
+  strongEn: [K12-KGraph, NeurIPS 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2605.09635
 - date: "2026.08"
   dateEn: Aug. 2026
+  category: paper
   text: MathDebugger 被 EMNLP 2026 接收，入选 Oral；共同一作。
   textEn: MathDebugger was accepted by EMNLP 2026 as an Oral paper; co-first author.
+  strong: [MathDebugger, EMNLP 2026]
+  strongEn: [MathDebugger, EMNLP 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2502.19058
 - date: "2026.07"
   dateEn: Jul. 2026
+  category: ranking
   text: K12-KGraph 登上 Hugging Face Daily Papers 榜单第 2 名。
   textEn: K12-KGraph ranked #2 on the Hugging Face Daily Papers leaderboard.
+  strong: [K12-KGraph, Hugging Face Daily Papers]
+  strongEn: [K12-KGraph, Hugging Face Daily Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2605.09635
 - date: "2026.05"
   dateEn: May 2026
+  category: ranking
   text: DataPrep-Bench 登上 Hugging Face Daily Papers 榜单第 1 名。
   textEn: DataPrep-Bench ranked #1 on the Hugging Face Daily Papers leaderboard.
+  strong: [DataPrep-Bench, Hugging Face Daily Papers]
+  strongEn: [DataPrep-Bench, Hugging Face Daily Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2607.20465
 - date: "2026.05"
   dateEn: May 2026
+  category: paper
   text: Generative Giants, Retrieval Weaklings 被 ACL 2026 接收。
   textEn: Generative Giants, Retrieval Weaklings was accepted by ACL 2026.
+  strong: ["Generative Giants, Retrieval Weaklings", ACL 2026]
+  strongEn: ["Generative Giants, Retrieval Weaklings", ACL 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2512.19115
 - date: "2026.05"
   dateEn: May 2026
+  category: paper
   text: Let's Verify Math Questions Step by Step 被 KDD 2026 接收。
   textEn: Let's Verify Math Questions Step by Step was accepted by KDD 2026.
+  strong: [Let's Verify Math Questions Step by Step, KDD 2026]
+  strongEn: [Let's Verify Math Questions Step by Step, KDD 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2505.13903
 - date: "2026.04"
   dateEn: Apr. 2026
+  category: ranking
   text: DataFlex 登上 Hugging Face Daily Papers 榜单第 1 名。
   textEn: DataFlex ranked #1 on the Hugging Face Daily Papers leaderboard.
+  strong: [DataFlex, Hugging Face Daily Papers]
+  strongEn: [DataFlex, Hugging Face Daily Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2603.26164
 - date: "2026.03"
   dateEn: Mar. 2026
+  category: entrepreneurship
   text: 担任元枢智汇联合创始人，负责技术方案设计和项目落地。
   textEn: Became co-founder of OriginHub, leading technical solution design and project delivery.
+  strong: [元枢智汇联合创始人]
+  strongEn: [co-founder of OriginHub]
   link:
     label: 了解元枢智汇
     labelEn: Visit OriginHub
     href: https://originhub.tech/
 - date: "2026.01"
   dateEn: Jan. 2026
+  category: publication
   text: 综述 Data Preparation for Large Language Models 发表于 JCST。
   textEn: The survey Data Preparation for Large Language Models was published in JCST.
+  strong: [Data Preparation for Large Language Models, JCST]
+  strongEn: [Data Preparation for Large Language Models, JCST]
   link:
     label: 论文
     labelEn: Paper
     href: https://doi.org/10.1007/s11390-026-5948-8
 - date: "2026.01"
   dateEn: Jan. 2026
+  category: paper
   text: ReLIFT 被 ICLR 2026 接收。
   textEn: ReLIFT was accepted by ICLR 2026.
+  strong: [ReLIFT, ICLR 2026]
+  strongEn: [ReLIFT, ICLR 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2506.07527
 - date: "2026.01"
   dateEn: Jan. 2026
+  category: paper
   text: LoVR 被 The Web Conference 2026 接收，入选 Oral。
   textEn: LoVR was accepted by The Web Conference 2026 as an Oral paper.
+  strong: [LoVR, The Web Conference 2026]
+  strongEn: [LoVR, The Web Conference 2026]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2505.13928
 - date: "2025.12"
   dateEn: Dec. 2025
+  category: ranking
   text: DataFlow 同时登上 Hugging Face Daily Papers 与 Weekly Papers 榜单第 1 名。
   textEn: DataFlow ranked #1 on both the Hugging Face Daily and Weekly Papers leaderboards.
+  strong: [DataFlow, Hugging Face Daily Papers, Weekly Papers]
+  strongEn: [DataFlow, Hugging Face Daily, Weekly Papers]
   link:
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2512.16676
 - date: "2025.09"
   dateEn: Sep. 2025
+  category: education
   text: 推免至北京大学 DCAI Lab，攻读硕士研究生。
   textEn: Admitted to Peking University DCAI Lab for master's study through the graduate recommendation program.
+  strong: [北京大学 DCAI Lab]
+  strongEn: [Peking University DCAI Lab]
   link:
     label: DCAI Lab
     labelEn: DCAI Lab
     href: https://zwt233.github.io/
 - date: "2025.09"
   dateEn: Sep. 2025
+  category: paper
   text: BRACE 被 NeurIPS 2025 接收。
   textEn: BRACE was accepted by NeurIPS 2025.
+  strong: [BRACE, NeurIPS 2025]
+  strongEn: [BRACE, NeurIPS 2025]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2512.10403
 - date: "2025.08"
   dateEn: Aug. 2025
+  category: award
   text: 获评北京市优秀毕业生，并获得国家奖学金。
   textEn: Named a Beijing Outstanding Graduate and received the National Scholarship.
+  strong: [北京市优秀毕业生, 国家奖学金]
+  strongEn: [Beijing Outstanding Graduate, National Scholarship]
 - date: "2025.07"
   dateEn: Jul. 2025
+  category: paper
   text: MathScape 被 ACM Multimedia 2025 接收，入选 Oral。
   textEn: MathScape was accepted by ACM Multimedia 2025 as an Oral paper.
+  strong: [MathScape, ACM Multimedia 2025]
+  strongEn: [MathScape, ACM Multimedia 2025]
   link:
     label: 论文
     labelEn: Paper

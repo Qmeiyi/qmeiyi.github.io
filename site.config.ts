@@ -30,6 +30,7 @@ export const siteConfig = defineSiteConfig({
   ],
   navLinks: [
     { href: "/", label: "首页" },
+    { href: "/experience", label: "个人经历" },
     { href: "/researches", label: "研究成果" },
   ],
   footer: { showProfileLinks: true, showAuthor: true, copyright: "保留所有权利。" },

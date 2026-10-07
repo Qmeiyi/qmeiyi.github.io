@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import NewsTimeline from "./NewsTimeline.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import { parse } from "yaml";
 import siteConfig from "../side.config";
-import newsRaw from "../data/news.yml?raw";
 import { getAllPapers } from "../lib/papers";
+import { getNews } from "../lib/news";
 import publicMetrics from "../data/public-metrics.json";
 import dataflowFeishuTutorial from "../assets/projects/tutorials/dataflow-feishu-tutorial.png";
 import dataflowBilibiliTutorial from "../assets/projects/tutorials/dataflow-bilibili-tutorial.png";
@@ -16,16 +16,6 @@ interface Props {
 
 const { locale = "zh" } = Astro.props;
 const isEnglish = locale === "en";
-
-type NewsItem = {
-  date: string | number;
-  dateEn?: string;
-  text: string;
-  textEn?: string;
-  link?: { label: string; labelEn?: string; href: string };
-};
-
-const chineseNews = (parse(newsRaw) ?? []) as NewsItem[];
 
 const copy = isEnglish
   ? {
@@ -43,6 +33,7 @@ const copy = isEnglish
       wechatLabel: "WeChat",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
+      experienceCta: "Full experience",
       status: "Research · Open Source · Entrepreneurship",
       newsLabel: "News",
       newsHeading: "Latest Updates",
@@ -76,6 +67,7 @@ const copy = isEnglish
       wechatLabel: "微信",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
+      experienceCta: "完整个人经历",
       status: siteConfig.hero.statusBadge,
       newsLabel: "News",
       newsHeading: "最新动态",
@@ -173,16 +165,7 @@ const academicEntityLinks: Record<string, string> = {
 const academicEntityPattern = /(Peking University DCAI Lab|北大 DCAI Lab|Prof\. Wentao Zhang|Prof\. Weinan E|Prof\. Bin Cui|张文涛教授|鄂维南教授|崔斌教授|DCAI Lab)/g;
 const splitAcademicEntities = (text: string) => text.split(academicEntityPattern).filter(Boolean);
 
-const news: NewsItem[] = chineseNews.map((item) =>
-  isEnglish
-    ? {
-        ...item,
-        date: item.dateEn ?? item.date,
-        text: item.textEn ?? item.text,
-        link: item.link ? { ...item.link, label: item.link.labelEn ?? item.link.label } : undefined,
-      }
-    : item,
-);
+const news = getNews(locale);
 
 const sidebarEducation = isEnglish
   ? [
@@ -368,14 +351,24 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent-700 dark:text-accent-300">{copy.aboutLabel}</p>
               <h1 class="section-heading mt-2 text-3xl sm:text-4xl">{copy.aboutHeading}</h1>
             </div>
-            <a
-              href={isEnglish ? "/en/researches" : "/researches"}
-              class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 self-start rounded-xl border border-emerald-300/90 bg-emerald-50/75 px-4 py-2 text-sm font-semibold text-emerald-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-100/80 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 dark:border-emerald-800 dark:bg-emerald-950/35 dark:text-emerald-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/55 sm:self-auto"
-            >
-              <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
-              {copy.paperCta}
-              <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
-            </a>
+            <div class="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+              <a
+                href={isEnglish ? "/en/experience" : "/experience"}
+                class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-cyan-300/90 bg-cyan-50/75 px-4 py-2 text-sm font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-cyan-400 hover:bg-cyan-100/80 hover:text-cyan-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-cyan-950/35 dark:text-cyan-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/55"
+              >
+                <span class="i-mdi:timeline-clock-outline text-base" aria-hidden="true"></span>
+                {copy.experienceCta}
+                <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+              </a>
+              <a
+                href={isEnglish ? "/en/researches" : "/researches"}
+                class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-emerald-300/90 bg-emerald-50/75 px-4 py-2 text-sm font-semibold text-emerald-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-100/80 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 dark:border-emerald-800 dark:bg-emerald-950/35 dark:text-emerald-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/55"
+              >
+                <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
+                {copy.paperCta}
+                <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+              </a>
+            </div>
           </div>
 
           <div class="mt-6 grid gap-4 lg:grid-cols-2">
@@ -566,23 +559,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
         </span>
       </div>
       <div class="news-scroll-shell relative overflow-hidden rounded-2xl border border-accent-200/90 bg-white/90 shadow-[0_18px_42px_-34px_rgba(8,145,178,0.55)] dark:border-accent-900/70 dark:bg-ink-900/88">
-        <ol class="news-scroll m-0 max-h-[29rem] list-none overflow-y-auto p-0" tabindex="0" aria-label={copy.newsHeading}>
-          {news.map((item) => (
-            <li class="news-row grid min-w-0 grid-cols-[5.6rem_0.9rem_minmax(0,1fr)] items-start gap-2 border-b border-paper-300/75 px-3 py-2.5 last:border-b-0 hover:bg-cyan-50/55 dark:border-ink-700/75 dark:hover:bg-accent-950/25 sm:grid-cols-[6.25rem_1rem_minmax(0,1fr)] sm:items-center sm:gap-3 sm:px-4 sm:py-2.5">
-              <time class="font-mono text-xs font-bold tabular-nums tracking-wide text-accent-800 dark:text-accent-200">{item.date}</time>
-              <span class="news-rail relative flex h-full min-h-6 justify-center" aria-hidden="true"><span class="news-dot mt-[0.42rem] h-2 w-2 shrink-0 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 shadow-[0_0_0_3px_rgba(45,180,176,0.13)] sm:mt-0"></span></span>
-              <p class="min-w-0 text-sm font-medium leading-6 text-ink-700 dark:text-paper-300 sm:truncate">
-                {item.text}
-                {item.link && (
-                  <a href={item.link.href} target="_blank" rel="noopener noreferrer" class="ml-1 whitespace-nowrap font-bold text-accent-700 underline decoration-accent-300 underline-offset-4 transition-colors hover:text-emerald-700 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-emerald-300">
-                    {item.link.label}
-                    <span class="i-mdi:arrow-top-right ml-0.5 inline-block align-[-0.08em] text-xs" aria-hidden="true"></span>
-                  </a>
-                )}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <NewsTimeline items={news} locale={locale} mode="scroll" ariaLabel={copy.newsHeading} />
       </div>
     </section>
 
@@ -835,43 +812,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
   .news-scroll-shell::after {
     bottom: 0;
     background: linear-gradient(0deg, rgb(255 255 255 / 0.92), transparent);
-  }
-
-  .news-scroll {
-    scrollbar-color: rgb(45 159 151 / 0.72) transparent;
-    scrollbar-width: thin;
-    overscroll-behavior: contain;
-  }
-
-  .news-scroll::-webkit-scrollbar {
-    width: 7px;
-  }
-
-  .news-scroll::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .news-scroll::-webkit-scrollbar-thumb {
-    border: 2px solid transparent;
-    border-radius: 999px;
-    background: linear-gradient(180deg, rgb(6 182 212 / 0.72), rgb(16 185 129 / 0.72));
-    background-clip: padding-box;
-  }
-
-  .news-rail::before {
-    position: absolute;
-    top: -0.65rem;
-    bottom: -0.65rem;
-    left: 50%;
-    width: 1px;
-    background: linear-gradient(180deg, rgb(6 182 212 / 0.38), rgb(16 185 129 / 0.32));
-    content: "";
-    transform: translateX(-50%);
-  }
-
-  .news-dot {
-    position: relative;
-    z-index: 1;
   }
 
   :global(.dark) .contact-card {

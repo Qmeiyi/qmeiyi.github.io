@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NewsTimeline from "./NewsTimeline.astro";
+import { getNews, newsYear } from "../lib/news";
+
+interface Props {
+  locale?: "zh" | "en";
+}
+
+const { locale = "zh" } = Astro.props;
+const isEnglish = locale === "en";
+const news = getNews(locale);
+const years = [...new Set(news.map(newsYear))];
+
+const pageTitle = isEnglish ? "Experience" : "个人经历";
+const pageDescription = isEnglish
+  ? "A complete timeline of research publications, open-source impact, education, awards, entrepreneurship, and industry activities."
+  : "记录论文录用、开源影响力、升学、获奖、创业与产业活动的完整时间线。";
+
+const legend = isEnglish
+  ? [
+      ["📝", "Paper accepted"], ["🤗", "Ranking"], ["🎓", "Education"],
+      ["🚀", "Entrepreneurship"], ["🏆", "Award"], ["🤝", "Business"], ["📚", "Publication"],
+    ]
+  : [
+      ["📝", "论文录用"], ["🤗", "榜单"], ["🎓", "升学"],
+      ["🚀", "创业"], ["🏆", "获奖"], ["🤝", "商业活动"], ["📚", "发表"],
+    ];
+---
+
+<Layout title={pageTitle} description={pageDescription} schemaType="CollectionPage" language={locale}>
+  <div class="page-stack">
+    <header class="page-header">
+      <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">Timeline</p>
+      <h1 class="page-title mt-1">{pageTitle}</h1>
+      <p class="page-description">{pageDescription}</p>
+      <div class="mt-4 flex flex-wrap gap-2" aria-label={isEnglish ? "Experience categories" : "经历分类"}>
+        {legend.map(([emoji, label]) => (
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-paper-300/85 bg-white/75 px-2.5 py-1 text-xs font-semibold text-ink-700 shadow-sm dark:border-ink-700 dark:bg-ink-900/70 dark:text-paper-200">
+            <span aria-hidden="true">{emoji}</span><span>{label}</span>
+          </span>
+        ))}
+      </div>
+    </header>
+
+    <div class="space-y-7 sm:space-y-9">
+      {years.map((year) => {
+        const yearNews = news.filter((item) => newsYear(item) === year);
+        return (
+          <section class="content-section experience-section scroll-mt-20" aria-labelledby={`experience-${year}`}>
+            <header class="year-title-box flex items-end justify-between gap-4 rounded-t-2xl border border-b-0 border-cyan-200/80 px-4 py-3 dark:border-cyan-900/70">
+              <h2 id={`experience-${year}`} class="section-heading">{year}</h2>
+              <p class="shrink-0 font-mono text-xs font-semibold tabular-nums text-ink-500 dark:text-paper-400">
+                {isEnglish ? `${yearNews.length} updates` : `${yearNews.length} 条动态`}
+              </p>
+            </header>
+            <div class="overflow-hidden rounded-b-2xl border border-accent-200/90 bg-white/92 shadow-[0_18px_42px_-34px_rgba(8,145,178,0.55)] dark:border-accent-900/70 dark:bg-ink-900/88">
+              <NewsTimeline items={yearNews} locale={locale} mode="full" ariaLabel={`${year} ${pageTitle}`} />
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .year-title-box {
+    background: linear-gradient(90deg, rgb(230 248 250 / 0.86), rgb(235 251 245 / 0.82));
+  }
+
+  :global(.dark) .year-title-box {
+    background: linear-gradient(90deg, rgb(17 64 72 / 0.58), rgb(17 67 54 / 0.48));
+  }
+</style>

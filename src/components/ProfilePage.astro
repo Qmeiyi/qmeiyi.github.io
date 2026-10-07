@@ -60,8 +60,6 @@ const copy = isEnglish
       publicationsDescription: "Selected work spanning data preparation, dynamic training, mathematical data quality, and data-centric AI.",
       publicationCta: "Full publication list",
       paperLinkLabel: "Paper",
-      honorsLabel: "Honors",
-      honorsHeading: "Honors & Awards",
     }
   : {
       pageTitle: "首页",
@@ -94,18 +92,16 @@ const copy = isEnglish
       publicationsDescription: "聚焦数据准备、动态训练、数学数据质量与数据中心人工智能的代表性研究。",
       publicationCta: "完整论文列表",
       paperLinkLabel: "论文",
-      honorsLabel: "Honors",
-      honorsHeading: "荣誉奖项",
     };
 
 const aboutContent = isEnglish
   ? {
       paragraphs: [
-        "I am Meiyi Qiang, a master's student at Peking University, a researcher, an open-source contributor, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including training data, data infrastructure, and dynamic data selection. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
+        "I am Meiyi Qiang, a master's student at Peking University, a researcher, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including training data, data infrastructure, and dynamic data selection. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
         "I have worked in foundation-model training and algorithm roles at ByteDance, Ant Group, and Zhipu AI, and have also collaborated with teams at Tencent and Alibaba. I previously served as a co-founder of a data company with annual revenue exceeding RMB 10 million, leading technical solution design and project delivery. The core open-source project DataFlow was showcased at WAIC 2025 and WAIC 2026, and I was invited to share its technology at China Unicom Software Research Institute, the 2026 Apsara Conference, and the 10th AIDD R&D Summit.",
       ],
       impactHeading: "Research Impact",
-      competitionsHeading: "Competition Highlights",
+      competitionsHeading: "Competition Experience",
       competitions: [
         { title: "GOAI 2026 Global Open-Source AI Challenge", detail: "Agent Infra Track Champion (1 / 7,802) · Overall Runner-up" },
         { title: "Cesim Elite 2023 Global Business Simulation Competition", detail: "China Champion (1 / 1,700) · Global Runner-up" },
@@ -130,11 +126,11 @@ const aboutContent = isEnglish
     }
   : {
       paragraphs: [
-        "我是强美伊，北京大学硕士研究生，是一名研究者、开源技术贡献者和创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注训练数据构建、数据基础设施与动态数据选择。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
+        "我是强美伊，北京大学硕士研究生，是一名研究者和创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注训练数据构建、数据基础设施与动态数据选择。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
         "我曾在字节、蚂蚁、智谱的基础模型训练和算法岗位实习，也与腾讯、阿里有过很好的合作。我也曾在一家年营收超千万元的数据公司担任联合创始人，负责技术方案设计和项目落地。核心开源项目 DataFlow 曾在 WAIC 2025 和 WAIC 2026 展出，并受邀在中国联通软件研究院、云栖大会 2026、第十届 AIDD 研发峰会等进行技术分享。",
       ],
       impactHeading: "研究影响力",
-      competitionsHeading: "赛事亮点",
+      competitionsHeading: "比赛经历",
       competitions: [
         { title: "GOAI 2026 世界人工智能开源大赛", detail: "Agent Infra 赛道冠军（1 / 7,802）· 全场亚军" },
         { title: "Cesim Elite 2023 全球商业模拟大赛", detail: "全国总冠军（1 / 1,700）· 全球亚军" },
@@ -264,10 +260,6 @@ const paperById = new Map(getAllPapers().map((paper) => [paper.id, paper]));
 const featuredPapers = featuredPaperIds
   .map((id) => paperById.get(id))
   .filter((paper) => paper !== undefined);
-
-const honors = isEnglish
-  ? ["National Scholarship", "Beijing Outstanding Graduate", "First-Class University Scholarship"]
-  : ["国家奖学金", "北京市优秀毕业生", "校级优秀学生一等奖学金"];
 
 function displayFeaturedAuthors(authors: string[]): string[] {
   if (authors.length <= 5) return authors;
@@ -523,15 +515,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
 
             <nav class="mt-3 border-t border-paper-300/80 pt-2 dark:border-ink-700/80" aria-label={isEnglish ? "Profile links" : "个人链接"}>
               <ul class="m-0 list-none space-y-0.5 p-0">
-                <li>
-                  <div class="flex min-h-9 items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-semibold text-ink-700 dark:text-paper-200">
-                    <span class="i-mdi:wechat text-base text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                    <span class="min-w-0">
-                      <span class="block">{copy.wechatLabel}</span>
-                      <span class="mt-0.5 block text-xs font-medium leading-4 text-ink-500 dark:text-paper-400">18991348420</span>
-                    </span>
-                  </div>
-                </li>
                 {socialLinks.map((link) => (
                   <li>
                     <a
@@ -549,6 +532,15 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                     </a>
                   </li>
                 ))}
+                <li>
+                  <div class="flex min-h-9 items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-semibold text-ink-700 dark:text-paper-200">
+                    <span class="i-mdi:wechat text-base text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
+                    <span class="min-w-0">
+                      <span class="block">{copy.wechatLabel}</span>
+                      <span class="mt-0.5 block text-xs font-medium leading-4 text-ink-500 dark:text-paper-400">18991348420</span>
+                    </span>
+                  </div>
+                </li>
               </ul>
             </nav>
           </div>
@@ -769,25 +761,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
     </section>
 
-    <section id="honors" class="content-section home-section-card scroll-mt-24 p-6 sm:p-8" aria-labelledby="honors-heading">
-      <div class="section-title-box mb-6 rounded-2xl border border-cyan-200/80 px-4 py-3.5 dark:border-cyan-900/70">
-        <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.honorsLabel}</p>
-        <h2 id="honors-heading" class="section-heading mt-1">{copy.honorsHeading}</h2>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-3">
-        {honors.map((honor, index) => (
-          <article class="surface-card flex items-center gap-4 p-5">
-            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-amber-300/70 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/45 dark:text-amber-300">
-              <span class="i-mdi:trophy-award text-xl" aria-hidden="true"></span>
-            </span>
-            <div>
-              <p class="font-mono text-xs font-semibold text-ink-400 dark:text-paper-500">0{index + 1}</p>
-              <h3 class="mt-1 font-heading text-lg font-semibold leading-6 text-ink-900 dark:text-paper-100">{honor}</h3>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
   </div>
 </Layout>
 

@@ -411,9 +411,16 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700 dark:bg-cyan-950/45 dark:text-cyan-300" aria-hidden="true"><span class="i-academicons:google-scholar text-xl"></span></span>
                 <h2 id="impact-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.impactHeading}</h2>
               </div>
-              <p class="rounded-xl border border-cyan-100/90 bg-white/75 px-4 py-3 text-base font-bold text-cyan-900 shadow-sm dark:border-cyan-900/60 dark:bg-ink-900/55 dark:text-cyan-100 sm:text-right">
-                Google Scholar · {isEnglish ? `${publicMetrics.scholar.citations.toLocaleString("en-US")} citations · h-index ${publicMetrics.scholar.hIndex}` : `${publicMetrics.scholar.citations.toLocaleString("zh-CN")} 次引用 · h 指数 ${publicMetrics.scholar.hIndex}`}
-              </p>
+              <div class="grid gap-2 sm:grid-cols-2">
+                <a href="https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=zh-CN" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-cyan-100/90 bg-white/75 px-4 py-3 text-cyan-900 no-underline shadow-sm transition-colors hover:border-cyan-300 hover:bg-cyan-50/70 dark:border-cyan-900/60 dark:bg-ink-900/55 dark:text-cyan-100 dark:hover:border-cyan-700">
+                  <span class="block text-xs font-semibold">Google Scholar</span>
+                  <span class="mt-1 block text-sm font-bold tabular-nums">{isEnglish ? `${publicMetrics.scholar.citations.toLocaleString("en-US")} citations · h-index ${publicMetrics.scholar.hIndex}` : `${publicMetrics.scholar.citations.toLocaleString("zh-CN")} 次引用 · h 指数 ${publicMetrics.scholar.hIndex}`}</span>
+                </a>
+                <a href="#open-source" class="rounded-xl border border-emerald-100/90 bg-white/75 px-4 py-3 text-emerald-900 no-underline shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-50/70 dark:border-emerald-900/60 dark:bg-ink-900/55 dark:text-emerald-100 dark:hover:border-emerald-700">
+                  <span class="block text-xs font-semibold">{isEnglish ? "Open-source projects" : "开源项目"}</span>
+                  <span class="mt-1 block text-sm font-bold tabular-nums">{isEnglish ? `${totalGithubStars.toLocaleString("en-US")} GitHub Stars in total` : `GitHub 累计 ${totalGithubStars.toLocaleString("zh-CN")} Stars`}</span>
+                </a>
+              </div>
             </section>
 
             <section class="about-wide-card about-wide-card-emerald grid gap-4 rounded-2xl border border-emerald-200/90 p-5 dark:border-emerald-900/70 sm:grid-cols-[13rem_1fr] sm:items-center" aria-labelledby="competitions-heading">
@@ -470,7 +477,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               <ol class="mt-3 space-y-3">
                 {aboutContent.people.map((item, index) => (
                   <li class="flex gap-3">
-                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-100 font-mono text-[11px] font-bold text-cyan-800 dark:bg-cyan-950/70 dark:text-cyan-200">{index + 1}</span>
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-100 font-mono text-xs font-bold text-cyan-800 dark:bg-cyan-950/70 dark:text-cyan-200">{index + 1}</span>
                     <div>
                       <p class="text-sm font-bold leading-6 text-ink-900 dark:text-paper-100">{item.title}</p>
                       <p class="mt-0.5 text-xs leading-5 text-ink-600 dark:text-paper-300">{item.detail}</p>
@@ -526,7 +533,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 {sidebarEducation.map((item) => (
                   <div>
                     <p class="text-sm font-semibold text-ink-900 dark:text-paper-100">{item.institution}</p>
-                    <p class="mt-0.5 text-[11px] leading-4 text-ink-600 dark:text-paper-300">{item.degree}</p>
+                    <p class="mt-0.5 text-xs leading-4 text-ink-600 dark:text-paper-300">{item.degree}</p>
                   </div>
                 ))}
               </div>
@@ -551,7 +558,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                       <span class={`${link.icon} text-base text-accent-700 dark:text-accent-300`} aria-hidden="true"></span>
                       <span class="min-w-0">
                         <span class="block">{link.label}</span>
-                        {link.meta && <span class="mt-0.5 block text-[10px] font-medium leading-4 text-ink-500 dark:text-paper-400">{link.meta}</span>}
+                        {link.meta && <span class="mt-0.5 block text-xs font-medium leading-4 text-ink-500 dark:text-paper-400">{link.meta}</span>}
                       </span>
                       {/^https?:/i.test(link.href) && <span class="i-mdi:open-in-new ml-auto text-xs opacity-45 transition-opacity group-hover:opacity-80" aria-hidden="true"></span>}
                     </a>
@@ -712,7 +719,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             <p class="research-summary mt-3 text-sm leading-6 text-ink-700 dark:text-paper-300">{direction.description}</p>
             <p class="mt-4 truncate text-xs leading-5 text-ink-500 dark:text-paper-400" title={`${copy.relatedWork}: ${direction.related}`}><span class="font-bold text-ink-700 dark:text-paper-200">{copy.relatedWork}：</span>{direction.related}</p>
             <div class="research-keywords mt-auto flex flex-nowrap gap-1.5 overflow-x-auto pt-4">
-              {direction.keywords.map((keyword) => <span class="shrink-0 whitespace-nowrap rounded-full border border-cyan-200 bg-cyan-50/80 px-2 py-1 text-[10px] font-semibold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/45 dark:text-cyan-200">{keyword}</span>)}
+              {direction.keywords.map((keyword) => <span class="shrink-0 whitespace-nowrap rounded-full border border-cyan-200 bg-cyan-50/80 px-2 py-1 text-xs font-semibold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/45 dark:text-cyan-200">{keyword}</span>)}
             </div>
           </article>
         ))}
@@ -753,8 +760,8 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </a>
             <div class="flex flex-1 flex-col p-5">
               <div class="flex flex-wrap items-center gap-2">
-                {paper.venue && <span class="rounded-full border border-cyan-300/70 bg-cyan-50 px-2.5 py-1 text-[11px] font-bold text-cyan-800 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-200">{paper.venue}</span>}
-                {paper.highlights.slice(0, 1).map((highlight) => <span class="rounded-full border border-emerald-300/70 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200">{displayHighlight(highlight)}</span>)}
+                {paper.venue && <span class="rounded-full border border-cyan-300/70 bg-cyan-50 px-2.5 py-1 text-xs font-bold text-cyan-800 dark:border-cyan-800 dark:bg-cyan-950/50 dark:text-cyan-200">{paper.venue}</span>}
+                {paper.highlights.slice(0, 1).map((highlight) => <span class="rounded-full border border-emerald-300/70 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-200">{displayHighlight(highlight)}</span>)}
               </div>
               <h3 class="entry-title mt-3 text-lg">{paper.title}</h3>
               <p class="mt-2 text-sm leading-6 text-ink-600 dark:text-paper-300">
@@ -789,7 +796,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               <span class="i-mdi:trophy-award text-xl" aria-hidden="true"></span>
             </span>
             <div>
-              <p class="font-mono text-[10px] font-semibold text-ink-400 dark:text-paper-500">0{index + 1}</p>
+              <p class="font-mono text-xs font-semibold text-ink-400 dark:text-paper-500">0{index + 1}</p>
               <h3 class="mt-1 font-heading text-lg font-semibold leading-6 text-ink-900 dark:text-paper-100">{honor}</h3>
             </div>
           </article>

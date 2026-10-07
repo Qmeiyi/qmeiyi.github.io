@@ -84,10 +84,10 @@ export default defineConfig({
 			cssExtend: {
 				':where(p, li, blockquote)': {
 					'font-family':
-						"'Atkinson Hyperlegible', 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif",
+						"'Source Sans 3', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif",
 				},
 				':where(h1, h2, h3, h4)': {
-					'font-family': "'Crimson Pro', Georgia, 'Times New Roman', serif",
+					'font-family': "'Source Serif 4', 'Noto Serif SC', 'Songti SC', Georgia, 'Times New Roman', serif",
 					'letter-spacing': '-0.015em',
 				},
 			},
@@ -146,7 +146,7 @@ export default defineConfig({
 		'meta-chip':
 			'inline-flex min-h-7 items-center gap-1.5 rounded-md border border-paper-300 bg-paper-100/90 px-2.5 py-1 font-sans text-xs font-semibold leading-none text-ink-700 dark:border-ink-700 dark:bg-ink-800 dark:text-paper-300',
 		'scholarly-pill':
-			'inline-flex min-h-6 items-center gap-1 rounded border border-paper-300/80 bg-paper-100/60 px-2 py-0.5 font-mono text-[11px] font-medium text-ink-600 dark:border-ink-700/80 dark:bg-ink-800/50 dark:text-paper-300',
+			'inline-flex min-h-6 items-center gap-1 rounded border border-paper-300/80 bg-paper-100/60 px-2 py-0.5 font-mono text-xs font-medium text-ink-600 dark:border-ink-700/80 dark:bg-ink-800/50 dark:text-paper-300',
 		'chip-status-active':
 			'inline-flex min-h-7 items-center gap-1.5 rounded-md border border-emerald-300/50 bg-emerald-50/85 px-2.5 py-1 text-xs font-semibold text-emerald-800 dark:border-emerald-800/50 dark:bg-emerald-950/40 dark:text-emerald-300',
 		'chip-status-past':
@@ -258,15 +258,15 @@ export default defineConfig({
 		},
 		fontFamily: {
 			sans:
-				"'Atkinson Hyperlegible', 'Noto Sans SC', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-			heading: "'Crimson Pro', Georgia, 'Times New Roman', 'Noto Serif SC', serif",
+				"'Source Sans 3', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+			heading: "'Source Serif 4', 'Noto Serif SC', 'Songti SC', Georgia, 'Times New Roman', serif",
 			mono:
 				"'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace",
 		},
 		fontSize: {
-			xs: ['0.8125rem', { 'line-height': '1.125rem' }],
-			sm: ['0.875rem', { 'line-height': '1.375rem' }],
-			base: ['1rem', { 'line-height': '1.625rem' }],
+			xs: ['0.875rem', { 'line-height': '1.25rem' }],
+			sm: ['1rem', { 'line-height': '1.625rem' }],
+			base: ['1.0625rem', { 'line-height': '1.75rem' }],
 		},
 		boxShadow: {
 			sm: '0 1px 2px rgb(34 35 33 / 0.06)',

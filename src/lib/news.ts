@@ -19,6 +19,7 @@ type RawNewsItem = {
   strong?: string[];
   strongEn?: string[];
   link?: { label: string; labelEn?: string; href: string };
+  links?: Array<{ label: string; labelEn?: string; href: string }>;
 };
 
 export type NewsItem = {
@@ -26,7 +27,7 @@ export type NewsItem = {
   category: NewsCategory;
   text: string;
   strong: string[];
-  link?: { label: string; href: string };
+  links: Array<{ label: string; href: string }>;
 };
 
 const rawNews = (parse(newsRaw) ?? []) as RawNewsItem[];
@@ -39,12 +40,10 @@ export function getNews(locale: "zh" | "en" = "zh"): NewsItem[] {
     category: item.category,
     text: isEnglish ? item.textEn ?? item.text : item.text,
     strong: isEnglish ? item.strongEn ?? item.strong ?? [] : item.strong ?? [],
-    link: item.link
-      ? {
-          label: isEnglish ? item.link.labelEn ?? item.link.label : item.link.label,
-          href: item.link.href,
-        }
-      : undefined,
+    links: (item.links ?? (item.link ? [item.link] : [])).map((link) => ({
+      label: isEnglish ? link.labelEn ?? link.label : link.label,
+      href: isEnglish && link.href.startsWith("/") ? `/en${link.href}` : link.href,
+    })),
   }));
 }
 

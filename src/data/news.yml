@@ -1,69 +1,28 @@
 - date: "2026.09"
   dateEn: Sep. 2026
   category: ranking
-  text: OmniEdu 登上 Hugging Face Daily Papers 榜单第 1 名。
-  textEn: OmniEdu ranked #1 on the Hugging Face Daily Papers leaderboard.
-  strong: [OmniEdu, Hugging Face Daily Papers]
-  strongEn: [OmniEdu, Hugging Face Daily Papers]
-  link:
-    label: 查看榜单
-    labelEn: View ranking
-    href: https://huggingface.co/papers/2609.23088
-- date: "2026.09"
-  dateEn: Sep. 2026
-  category: ranking
-  text: DataFlex-RL 登上 Hugging Face Daily Papers 榜单第 2 名。
-  textEn: DataFlex-RL ranked #2 on the Hugging Face Daily Papers leaderboard.
-  strong: [DataFlex-RL, Hugging Face Daily Papers]
-  strongEn: [DataFlex-RL, Hugging Face Daily Papers]
-  link:
-    label: 查看榜单
-    labelEn: View ranking
-    href: https://huggingface.co/papers/2609.06107
+  text: OmniEdu 与 DataFlex-RL 分别登上 Hugging Face Daily Papers 榜单第 1 名和第 2 名。
+  textEn: OmniEdu and DataFlex-RL ranked #1 and #2 on the Hugging Face Daily Papers leaderboard, respectively.
+  strong: [OmniEdu, DataFlex-RL, Hugging Face Daily Papers]
+  strongEn: [OmniEdu, DataFlex-RL, Hugging Face Daily Papers]
+  links:
+    - label: OmniEdu
+      href: https://huggingface.co/papers/2609.23088
+    - label: DataFlex-RL
+      href: https://huggingface.co/papers/2609.06107
+
 - date: "2026.09"
   dateEn: Sep. 2026
   category: paper
-  text: DataFlow 被 ACM SIGMOD 2027 接收，入选 Oral；担任核心贡献者。
-  textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper; core contributor.
-  strong: [DataFlow, ACM SIGMOD 2027]
-  strongEn: [DataFlow, ACM SIGMOD 2027]
+  text: DataFlow 被 ACM SIGMOD 2027 接收并入选 Oral；DataFlex、FLARE 与 K12-KGraph 被 NeurIPS 2026 接收。
+  textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper; DataFlex, FLARE, and K12-KGraph were accepted by NeurIPS 2026.
+  strong: [DataFlow, ACM SIGMOD 2027, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
+  strongEn: [DataFlow, ACM SIGMOD 2027, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
   link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2512.16676
-- date: "2026.09"
-  dateEn: Sep. 2026
-  category: paper
-  text: DataFlex 被 NeurIPS 2026 接收；担任核心贡献者。
-  textEn: DataFlex was accepted by NeurIPS 2026; core contributor.
-  strong: [DataFlex, NeurIPS 2026]
-  strongEn: [DataFlex, NeurIPS 2026]
-  link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2603.26164
-- date: "2026.09"
-  dateEn: Sep. 2026
-  category: paper
-  text: FLARE 被 NeurIPS 2026 接收。
-  textEn: FLARE was accepted by NeurIPS 2026.
-  strong: [FLARE, NeurIPS 2026]
-  strongEn: [FLARE, NeurIPS 2026]
-  link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2605.10228
-- date: "2026.09"
-  dateEn: Sep. 2026
-  category: paper
-  text: K12-KGraph 被 NeurIPS 2026 接收。
-  textEn: K12-KGraph was accepted by NeurIPS 2026.
-  strong: [K12-KGraph, NeurIPS 2026]
-  strongEn: [K12-KGraph, NeurIPS 2026]
-  link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2605.09635
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
 - date: "2026.08"
   dateEn: Aug. 2026
   category: paper
@@ -75,6 +34,7 @@
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2502.19058
+
 - date: "2026.07"
   dateEn: Jul. 2026
   category: ranking
@@ -86,6 +46,7 @@
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2605.09635
+
 - date: "2026.05"
   dateEn: May 2026
   category: ranking
@@ -97,28 +58,19 @@
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2607.20465
+
 - date: "2026.05"
   dateEn: May 2026
   category: paper
-  text: Generative Giants, Retrieval Weaklings 被 ACL 2026 接收。
-  textEn: Generative Giants, Retrieval Weaklings was accepted by ACL 2026.
-  strong: ["Generative Giants, Retrieval Weaklings", ACL 2026]
-  strongEn: ["Generative Giants, Retrieval Weaklings", ACL 2026]
+  text: Generative Giants, Retrieval Weaklings 被 ACL 2026 接收；Let's Verify Math Questions Step by Step 被 KDD 2026 接收。
+  textEn: Generative Giants, Retrieval Weaklings was accepted by ACL 2026; Let's Verify Math Questions Step by Step was accepted by KDD 2026.
+  strong: ["Generative Giants, Retrieval Weaklings", ACL 2026, Let's Verify Math Questions Step by Step, KDD 2026]
+  strongEn: ["Generative Giants, Retrieval Weaklings", ACL 2026, Let's Verify Math Questions Step by Step, KDD 2026]
   link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2512.19115
-- date: "2026.05"
-  dateEn: May 2026
-  category: paper
-  text: Let's Verify Math Questions Step by Step 被 KDD 2026 接收。
-  textEn: Let's Verify Math Questions Step by Step was accepted by KDD 2026.
-  strong: [Let's Verify Math Questions Step by Step, KDD 2026]
-  strongEn: [Let's Verify Math Questions Step by Step, KDD 2026]
-  link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2505.13903
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
 - date: "2026.04"
   dateEn: Apr. 2026
   category: ranking
@@ -130,6 +82,7 @@
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2603.26164
+
 - date: "2026.03"
   dateEn: Mar. 2026
   category: entrepreneurship
@@ -141,6 +94,7 @@
     label: 了解元枢智汇
     labelEn: Visit OriginHub
     href: https://originhub.tech/
+
 - date: "2026.01"
   dateEn: Jan. 2026
   category: publication
@@ -152,28 +106,19 @@
     label: 论文
     labelEn: Paper
     href: https://doi.org/10.1007/s11390-026-5948-8
+
 - date: "2026.01"
   dateEn: Jan. 2026
   category: paper
-  text: ReLIFT 被 ICLR 2026 接收。
-  textEn: ReLIFT was accepted by ICLR 2026.
-  strong: [ReLIFT, ICLR 2026]
-  strongEn: [ReLIFT, ICLR 2026]
+  text: ReLIFT 被 ICLR 2026 接收；LoVR 被 The Web Conference 2026 接收并入选 Oral。
+  textEn: ReLIFT was accepted by ICLR 2026; LoVR was accepted by The Web Conference 2026 as an Oral paper.
+  strong: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026]
+  strongEn: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026]
   link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2506.07527
-- date: "2026.01"
-  dateEn: Jan. 2026
-  category: paper
-  text: LoVR 被 The Web Conference 2026 接收，入选 Oral。
-  textEn: LoVR was accepted by The Web Conference 2026 as an Oral paper.
-  strong: [LoVR, The Web Conference 2026]
-  strongEn: [LoVR, The Web Conference 2026]
-  link:
-    label: 论文
-    labelEn: Paper
-    href: https://arxiv.org/abs/2505.13928
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
 - date: "2025.12"
   dateEn: Dec. 2025
   category: ranking
@@ -185,6 +130,7 @@
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2512.16676
+
 - date: "2025.09"
   dateEn: Sep. 2025
   category: education
@@ -196,6 +142,7 @@
     label: DCAI Lab
     labelEn: DCAI Lab
     href: https://zwt233.github.io/
+
 - date: "2025.09"
   dateEn: Sep. 2025
   category: paper
@@ -207,13 +154,15 @@
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2512.10403
+
 - date: "2025.08"
   dateEn: Aug. 2025
   category: award
-  text: 获评北京市优秀毕业生，并获得国家奖学金。
-  textEn: Named a Beijing Outstanding Graduate and received the National Scholarship.
-  strong: [北京市优秀毕业生, 国家奖学金]
-  strongEn: [Beijing Outstanding Graduate, National Scholarship]
+  text: 获评北京市优秀毕业生。
+  textEn: Named a Beijing Outstanding Graduate.
+  strong: [北京市优秀毕业生]
+  strongEn: [Beijing Outstanding Graduate]
+
 - date: "2025.07"
   dateEn: Jul. 2025
   category: paper
@@ -225,3 +174,19 @@
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2408.07543
+
+- date: "2023.10"
+  dateEn: Oct. 2023
+  category: award
+  text: 获得国家奖学金。
+  textEn: Received the National Scholarship.
+  strong: [国家奖学金]
+  strongEn: [National Scholarship]
+
+- date: "2023.06"
+  dateEn: Jun. 2023
+  category: award
+  text: 获尖烽时刻商业模拟大赛全国总冠军（1 / 1,700），暨 Cesim Elite 全球商业模拟赛全球亚军，突破该国际赛事本科生最佳记录。
+  textEn: Won the Peak Time Business Simulation Competition China Championship (1 / 1,700) and placed second globally at Cesim Elite, setting the event's best undergraduate record.
+  strong: [尖烽时刻商业模拟大赛, 全国总冠军, Cesim Elite 全球商业模拟赛, 全球亚军]
+  strongEn: [Peak Time Business Simulation Competition, China Championship, Cesim Elite, second globally]

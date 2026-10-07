@@ -47,11 +47,14 @@ const emphasize = (text: string, terms: string[]) => {
           {emphasize(item.text, item.strong).map((part) => part.strong
             ? <strong class="font-extrabold text-ink-950 dark:text-paper-50">{part.text}</strong>
             : part.text)}
-          {item.link && (
-            <a href={item.link.href} target="_blank" rel="noopener noreferrer" class="ml-1 whitespace-nowrap font-bold text-accent-700 underline decoration-accent-300 underline-offset-4 transition-colors hover:text-emerald-700 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-emerald-300">
-              {item.link.label}<span class="i-mdi:arrow-top-right ml-0.5 inline-block align-[-0.08em] text-xs" aria-hidden="true"></span>
-            </a>
-          )}
+          {item.links.map((link) => {
+            const isExternal = /^https?:/i.test(link.href);
+            return (
+              <a href={link.href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined} class="ml-1 whitespace-nowrap font-bold text-accent-700 underline decoration-accent-300 underline-offset-4 transition-colors hover:text-emerald-700 dark:text-accent-300 dark:decoration-accent-700 dark:hover:text-emerald-300">
+                {link.label}<span class:list={["ml-0.5 inline-block align-[-0.08em] text-xs", isExternal ? "i-mdi:arrow-top-right" : "i-ph:arrow-right"]} aria-hidden="true"></span>
+              </a>
+            );
+          })}
         </p>
         {mode === "full" && (
           <span class:list={["hidden justify-self-end rounded-full border px-2.5 py-1 text-[0.7rem] font-bold sm:inline-flex", `category-chip--${meta.tone}`]}>{isEnglish ? meta.en : meta.zh}</span>

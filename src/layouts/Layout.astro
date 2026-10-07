@@ -158,6 +158,11 @@ const extendedMeta = [
     ? [{ name: "keywords", content: siteConfig.keywords.join(", ") }]
     : []),
 ];
+const faviconType = siteConfig.favicon.endsWith(".png")
+  ? "image/png"
+  : siteConfig.favicon.endsWith(".ico")
+    ? "image/x-icon"
+    : "image/svg+xml";
 
 function isActiveNav(href: string): boolean {
   if (href.startsWith("#")) return false;
@@ -230,7 +235,10 @@ function isActiveNav(href: string): boolean {
         imageAlt: resolvedImageAlt,
       }}
       extend={{
-        link: [{ rel: "icon", type: "image/svg+xml", href: siteConfig.favicon }],
+        link: [
+          { rel: "icon", type: faviconType, href: siteConfig.favicon },
+          { rel: "apple-touch-icon", href: siteConfig.favicon },
+        ],
         meta: extendedMeta,
       }}
     />

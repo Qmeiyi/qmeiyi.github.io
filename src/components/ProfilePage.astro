@@ -38,7 +38,6 @@ const copy = isEnglish
       profileTags: ["Entrepreneur", "Open Source Contributor", "AI Data Researcher"],
       aboutLabel: "About",
       aboutHeading: "About Me",
-      wechatLabel: "WeChat",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
       status: "Research · Open Source · Entrepreneurship",
@@ -70,7 +69,6 @@ const copy = isEnglish
       profileTags: ["创业者", "开源技术贡献者", "AI Data 研究者"],
       aboutLabel: "About",
       aboutHeading: "关于我",
-      wechatLabel: "微信",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
       status: siteConfig.hero.statusBadge,
@@ -532,15 +530,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                     </a>
                   </li>
                 ))}
-                <li>
-                  <div class="flex min-h-9 items-center gap-2 rounded-lg px-2 py-1.5 text-xs font-semibold text-ink-700 dark:text-paper-200">
-                    <span class="i-mdi:wechat text-base text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
-                    <span class="min-w-0">
-                      <span class="block">{copy.wechatLabel}</span>
-                      <span class="mt-0.5 block text-xs font-medium leading-4 text-ink-500 dark:text-paper-400">18991348420</span>
-                    </span>
-                  </div>
-                </li>
               </ul>
             </nav>
           </div>

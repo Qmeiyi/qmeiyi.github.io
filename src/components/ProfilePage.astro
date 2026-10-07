@@ -38,10 +38,10 @@ const copy = isEnglish
       profileTags: ["Entrepreneur", "Open Source Contributor", "AI Data Researcher"],
       aboutLabel: "About",
       aboutHeading: "About Me",
-      connectLabel: "Connect",
-      connectHeading: "Open to Industry Collaboration",
-      connectText: "I would be glad to connect with researchers, founders, and industry practitioners working on AI data, open-source systems, and real-world applications.",
+      connectHeading: "Collaboration & Exchange",
+      connectText: "Open to conversations about AI data, open-source systems, research collaboration, and entrepreneurship.",
       wechatLabel: "WeChat",
+      wechatNote: "Please include your name, affiliation or area, and reason for connecting.",
       emailLabel: "Email",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
@@ -51,8 +51,7 @@ const copy = isEnglish
       researchLabel: "Research Interests",
       researchHeading: "Research Interests",
       researchDescription: "Four connected directions spanning training data, data-centric systems, dynamic model training, and intelligent data management.",
-      relatedWork: "Related work",
-      keywordCloud: "Keyword Cloud",
+      relatedWork: "Representative work",
       paperListCta: "Full publication list",
       projectLabel: "Open Source",
       projectHeading: "Open Source Projects",
@@ -77,10 +76,10 @@ const copy = isEnglish
       profileTags: ["创业者", "开源技术贡献者", "AI Data 研究者"],
       aboutLabel: "About",
       aboutHeading: "关于我",
-      connectLabel: "Connect",
-      connectHeading: "期待与行业朋友交流合作",
-      connectText: "欢迎从事 AI 数据、开源技术与产业应用的朋友联系我，一起交流研究、产品与创业实践。",
+      connectHeading: "合作与交流",
+      connectText: "欢迎交流 AI Data、开源技术、科研合作与创业实践。",
       wechatLabel: "微信",
+      wechatNote: "添加微信时，请注明姓名、机构或方向，以及来意。",
       emailLabel: "邮箱",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
@@ -90,8 +89,7 @@ const copy = isEnglish
       researchLabel: "Research Interests",
       researchHeading: "研究方向",
       researchDescription: "围绕训练数据、数据中心系统、动态模型训练与智能数据管理形成四个相互连接的研究方向。",
-      relatedWork: "相关研究",
-      keywordCloud: "关键词词云",
+      relatedWork: "代表工作",
       paperListCta: "完整论文列表",
       projectLabel: "Open Source",
       projectHeading: "开源项目",
@@ -122,8 +120,7 @@ const aboutContent = isEnglish
       ],
       pursuitHeading: "What I Want to Build",
       pursuit: [
-        "My MBTI type is ENFJ. I enjoy challenges and turning ambitious ideas into action. To me, entrepreneurship is more than a career choice; it is how I understand the world and solve problems.",
-        "I hope to work with like-minded partners on useful AI that solves real problems, frees people from repetitive work, and leaves more time for creativity, thought, and life.",
+        "I am an ENFJ who enjoys challenges and turning ideas into action. I hope to build useful AI with like-minded partners—technology that solves real problems and frees people from repetitive work.",
       ],
       peopleHeading: "People I Hope to Meet",
       people: [
@@ -152,8 +149,7 @@ const aboutContent = isEnglish
       ],
       pursuitHeading: "我想做的事",
       pursuit: [
-        "我的 MBTI 是 ENFJ，喜欢挑战，也喜欢折腾。对我而言，创业不只是一种职业选择，更是我认识世界和解决问题的方式。",
-        "我希望与一群志同道合的伙伴一起，做真正有用、能够解决真实问题的 AI 技术，帮助人们摆脱繁琐、重复的劳动，把更多时间留给创造、思考和生活。",
+        "我是 ENFJ，喜欢挑战，也乐于把想法变成行动。我希望与志同道合的伙伴一起，做真正解决问题、帮助人们减少重复劳动的 AI 技术。",
       ],
       peopleHeading: "我希望认识",
       people: [
@@ -183,20 +179,6 @@ const academicEntityLinks: Record<string, string> = {
 const academicEntityPattern = /(Prof\. Wentao Zhang|Prof\. Weinan E|Prof\. Bin Cui|张文涛教授|鄂维南教授|崔斌教授|DCAI Lab)/g;
 const splitAcademicEntities = (text: string) => text.split(academicEntityPattern).filter(Boolean);
 
-const academicLinks = isEnglish
-  ? [
-      { label: "Wentao Zhang", meta: "Advisor · Google Scholar", href: academicEntityLinks["Prof. Wentao Zhang"], icon: "i-academicons:google-scholar" },
-      { label: "Weinan E", meta: "Research collaborator · Google Scholar", href: academicEntityLinks["Prof. Weinan E"], icon: "i-academicons:google-scholar" },
-      { label: "Bin Cui", meta: "Research collaborator · Google Scholar", href: academicEntityLinks["Prof. Bin Cui"], icon: "i-academicons:google-scholar" },
-      { label: "DCAI Lab", meta: "Research group", href: academicEntityLinks["DCAI Lab"], icon: "i-mdi:account-group-outline" },
-    ]
-  : [
-      { label: "张文涛教授", meta: "导师 · Google Scholar", href: academicEntityLinks["张文涛教授"], icon: "i-academicons:google-scholar" },
-      { label: "鄂维南教授", meta: "科研合作 · Google Scholar", href: academicEntityLinks["鄂维南教授"], icon: "i-academicons:google-scholar" },
-      { label: "崔斌教授", meta: "科研合作 · Google Scholar", href: academicEntityLinks["崔斌教授"], icon: "i-academicons:google-scholar" },
-      { label: "DCAI Lab", meta: "所在课题组", href: academicEntityLinks["DCAI Lab"], icon: "i-mdi:account-group-outline" },
-    ];
-
 const news: NewsItem[] = isEnglish
   ? [
       { date: 2026, text: "Advancing AI data infrastructure solutions and commercialization as co-founder of OriginHub.", link: { label: "Visit OriginHub", href: "https://originhub.tech/" } },
@@ -220,67 +202,63 @@ const researchDirections = isEnglish
   ? [
       {
         title: "Agent Training Data & Environment Design",
-        subtitle: "Executable and verifiable data systems for vertical agent tasks",
-        description: "Building executable environments and verifiable trajectories for real tools and vertical agent tasks represented by ALE and Terminal-Bench.",
-        related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
-        keywords: ["ALE", "Terminal-Bench", "Agent Trajectories", "Verifiable Tasks"],
+        subtitle: "Vertical agent tasks represented by Terminal-Bench and ALE",
+        description: "Building executable, verifiable environments for trajectory collection, task synthesis, hard-case mining, and feedback design.",
+        related: "WorkSurface-Bench · OmniaBench · DataFlex-RL",
+        keywords: ["Environment Design", "Trajectory Data", "Verifiable Tasks", "Long-Horizon"],
       },
       {
-        title: "Data-Centric AI & Data Processing",
-        subtitle: "DataFlow and programmable preparation workflows",
-        description: "Turning noisy text, web, code, and multimodal sources into model-ready data through programmable preparation workflows.",
-        related: "DataFlow · Data Preparation for LLMs · RayOrch",
-        keywords: ["Data Preparation", "Operators", "Pipelines", "Data Quality"],
+        title: "Data-Centric AI & Data Infrastructure",
+        subtitle: "Data preparation and governance centered on DataFlow",
+        description: "Turning heterogeneous raw data into training-ready assets through data operators, programmable workflows, quality evaluation, and lineage.",
+        related: "DataFlow · RayOrch · DataPrep-Bench",
+        keywords: ["Data Preparation", "Data Operators", "Quality Evaluation", "Data Lineage"],
       },
       {
-        title: "Dynamic Training Data",
-        subtitle: "Selection and scheduling with DataFlex",
-        description: "Adapting data selection, mixture, reweighting, and scheduling to model state across supervised and reinforcement learning.",
-        related: "DataFlex · IFT · Data-Centric LLM Training",
-        keywords: ["Dynamic Selection", "Data Mixture", "SFT", "RLVR"],
+        title: "Dynamic Training Data & Model Co-evolution",
+        subtitle: "Data selection and scheduling centered on DataFlex",
+        description: "Adapting data selection, mixture, reweighting, and scheduling to model capability and learning progress across SFT and RLVR.",
+        related: "DataFlex · DataFlex-RL · ReLIFT",
+        keywords: ["Dynamic Selection", "Data Mixture", "Reweighting", "SFT / RLVR"],
       },
       {
-        title: "Intelligent Data Management",
-        subtitle: "Structured data and DataMind",
-        description: "Connecting structured and unstructured knowledge to build data systems that retrieve, reason, and act on real tasks.",
+        title: "Intelligent Data Management & Structured Knowledge",
+        subtitle: "Data understanding and management centered on DataMind",
+        description: "Connecting structured and unstructured knowledge through NL2SQL, knowledge graphs, and data agents for retrieval, reasoning, and action.",
         related: "DataMind · GraspLLM · K12-KGraph",
-        keywords: ["Structured Data", "NL2SQL", "Knowledge Graph", "Data Agents"],
+        keywords: ["Structured Data", "NL2SQL", "Knowledge Graph", "Data Agent"],
       },
     ]
   : [
       {
-        title: "智能体训练数据与环境构建",
-        subtitle: "面向垂类任务的可执行、可验证数据体系",
-        description: "围绕 ALE、Terminal-Bench 等真实任务，研究可执行环境、智能体轨迹、难例挖掘与结果验证。",
-        related: "MathDebugger · DataPrep-Bench · DataFlex-RL",
-        keywords: ["ALE", "Terminal-Bench", "智能体轨迹", "可验证任务"],
+        title: "智能体训练数据与交互环境",
+        subtitle: "面向 Terminal-Bench、ALE 等垂类智能体任务",
+        description: "构建可执行、可验证的交互环境，研究轨迹采集、任务合成、难例挖掘与反馈信号设计。",
+        related: "WorkSurface-Bench · OmniaBench · DataFlex-RL",
+        keywords: ["环境构建", "轨迹数据", "可验证任务", "长程交互"],
       },
       {
-        title: "数据中心人工智能与数据处理",
-        subtitle: "以 DataFlow 为核心的可编程数据准备",
-        description: "以可编程数据工作流完成修正、生成、评估与过滤，将多源噪声数据转化为模型可用数据。",
-        related: "DataFlow · Data Preparation for LLMs · RayOrch",
-        keywords: ["数据准备", "算子", "Pipeline", "数据质量"],
+        title: "数据中心人工智能与数据基础设施",
+        subtitle: "以 DataFlow 为核心的数据准备与治理",
+        description: "研究数据算子、可编程工作流、质量评估与血缘管理，将异构原始数据转化为训练就绪数据。",
+        related: "DataFlow · RayOrch · DataPrep-Bench",
+        keywords: ["数据准备", "数据算子", "质量评估", "数据血缘"],
       },
       {
-        title: "模型训练数据与动态调度",
-        subtitle: "以 DataFlex 为核心的数据选择与训练协同",
-        description: "研究随模型状态变化的数据选择、混合、重加权与调度，让数据策略与训练过程协同演化。",
-        related: "DataFlex · IFT · Data-Centric LLM Training",
-        keywords: ["动态选择", "数据混合", "SFT", "RLVR"],
+        title: "动态训练数据与模型协同",
+        subtitle: "以 DataFlex 为核心的数据选择与调度",
+        description: "根据模型能力与学习进程，动态调整数据选择、配比、重加权与调度策略，覆盖 SFT 与 RLVR。",
+        related: "DataFlex · DataFlex-RL · ReLIFT",
+        keywords: ["动态选择", "数据配比", "样本重加权", "SFT / RLVR"],
       },
       {
-        title: "智能数据管理与结构化数据",
+        title: "智能数据管理与结构化知识",
         subtitle: "以 DataMind 为核心的数据理解与管理",
-        description: "连接结构化与非结构化知识，构建能够理解数据，并在真实任务中检索、推理与执行的系统。",
+        description: "通过 NL2SQL、知识图谱与数据智能体连接结构化和非结构化知识，支持检索、推理与执行。",
         related: "DataMind · GraspLLM · K12-KGraph",
-        keywords: ["结构化数据", "NL2SQL", "知识图谱", "数据智能体"],
+        keywords: ["结构化数据", "NL2SQL", "知识图谱", "Data Agent"],
       },
     ];
-
-const researchCloud = isEnglish
-  ? ["Training Data", "ALE", "Terminal-Bench", "DataFlow", "Data Quality", "DataFlex", "Dynamic Selection", "RLVR", "DataMind", "Structured Data", "NL2SQL", "Data Agents"]
-  : ["训练数据", "ALE", "Terminal-Bench", "DataFlow", "数据质量", "DataFlex", "动态选择", "RLVR", "DataMind", "结构化数据", "NL2SQL", "数据智能体"];
 
 const featuredPaperIds = [
   "liang2027dataflow",
@@ -429,21 +407,8 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             ))}
           </div>
 
-          <nav class="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-4" aria-label={isEnglish ? "Academic collaborators and group" : "导师、合作教授与课题组"}>
-            {academicLinks.map((link) => (
-              <a href={link.href} target="_blank" rel="noopener noreferrer" class="academic-link-card group flex min-w-0 items-center gap-2.5 rounded-xl border border-paper-300/80 bg-white/75 px-3 py-2.5 no-underline transition hover:border-cyan-400 hover:bg-cyan-50/55 dark:border-ink-700 dark:bg-ink-900/55 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/25">
-                <span class={`${link.icon} shrink-0 text-lg text-cyan-700 dark:text-cyan-300`} aria-hidden="true"></span>
-                <span class="min-w-0">
-                  <span class="block truncate text-xs font-bold text-ink-900 dark:text-paper-100">{link.label}</span>
-                  <span class="mt-0.5 block truncate text-[10px] text-ink-500 dark:text-paper-400">{link.meta}</span>
-                </span>
-                <span class="i-mdi:open-in-new ml-auto shrink-0 text-xs text-ink-400 transition group-hover:text-cyan-700 dark:text-paper-500 dark:group-hover:text-cyan-300" aria-hidden="true"></span>
-              </a>
-            ))}
-          </nav>
-
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <section class="rounded-2xl border border-cyan-200/80 bg-cyan-50/55 p-5 dark:border-cyan-900/70 dark:bg-cyan-950/25" aria-labelledby="impact-heading">
+          <div class="about-highlights-grid mt-5 grid items-stretch gap-4 md:grid-cols-2">
+            <section class="h-full rounded-2xl border border-cyan-200/80 bg-cyan-50/55 p-5 dark:border-cyan-900/70 dark:bg-cyan-950/25" aria-labelledby="impact-heading">
               <div class="flex items-center gap-2">
                 <span class="i-academicons:google-scholar text-xl text-cyan-700 dark:text-cyan-300" aria-hidden="true"></span>
                 <h2 id="impact-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.impactHeading}</h2>
@@ -453,7 +418,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               </p>
             </section>
 
-            <section class="rounded-2xl border border-emerald-200/90 bg-emerald-50/55 p-5 dark:border-emerald-900/70 dark:bg-emerald-950/25" aria-labelledby="competitions-heading">
+            <section class="h-full rounded-2xl border border-emerald-200/90 bg-emerald-50/55 p-5 dark:border-emerald-900/70 dark:bg-emerald-950/25" aria-labelledby="competitions-heading">
               <div class="flex items-center gap-2">
                 <span class="i-mdi:trophy-outline text-xl text-emerald-700 dark:text-emerald-300" aria-hidden="true"></span>
                 <h2 id="competitions-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.competitionsHeading}</h2>
@@ -474,7 +439,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               <span class="i-ph:rocket-launch text-xl text-teal-700 dark:text-teal-300" aria-hidden="true"></span>
               <h2 id="pursuit-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.pursuitHeading}</h2>
             </div>
-            <div class="mt-3 space-y-2 text-sm leading-7 text-ink-700 dark:text-paper-300">
+            <div class="mt-3 text-sm leading-7 text-ink-700 dark:text-paper-300">
               {aboutContent.pursuit.map((paragraph) => <p>{paragraph}</p>)}
             </div>
           </section>
@@ -513,10 +478,14 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </section>
           </div>
 
-          <div class="contact-card mt-8 rounded-3xl border border-teal-300/75 bg-white/95 p-5 shadow-[0_14px_34px_-24px_rgba(13,148,136,0.45)] dark:border-teal-800/70 dark:bg-ink-900/95 sm:p-6">
-            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.connectLabel}</p>
-            <h2 class="mt-2 font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
-            <p class="mt-2 max-w-[58ch] text-sm leading-7 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
+          <div class="contact-card mt-6 rounded-3xl border border-teal-300/75 bg-white/95 p-5 shadow-[0_14px_34px_-24px_rgba(13,148,136,0.45)] dark:border-teal-800/70 dark:bg-ink-900/95 sm:p-6">
+            <div class="flex items-start gap-3">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 dark:bg-teal-950/45 dark:text-teal-300" aria-hidden="true"><span class="i-mdi:handshake-outline text-xl"></span></span>
+              <div>
+                <h2 class="font-heading text-xl font-semibold text-ink-950 dark:text-paper-50">{copy.connectHeading}</h2>
+                <p class="mt-1 text-sm leading-6 text-ink-700 dark:text-paper-300">{copy.connectText}</p>
+              </div>
+            </div>
             <div class="mt-4 grid gap-2 sm:grid-cols-2">
               <div class="flex items-center gap-2 rounded-xl border border-paper-300/80 bg-white/65 px-3 py-2.5 dark:border-ink-700 dark:bg-ink-900/50">
                 <span class="i-mdi:wechat text-lg text-accent-700 dark:text-accent-300" aria-hidden="true"></span>
@@ -529,6 +498,10 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 <span class="ml-auto min-w-0 break-all text-right text-sm font-semibold text-ink-900 group-hover:text-accent-800 dark:text-paper-100 dark:group-hover:text-accent-200">qiangmeiyi@gmail.com</span>
               </a>
             </div>
+            <p class="mt-3 flex items-center gap-1.5 text-xs leading-5 text-ink-500 dark:text-paper-400">
+              <span class="i-mdi:information-outline shrink-0 text-sm text-teal-600 dark:text-teal-300" aria-hidden="true"></span>
+              {copy.wechatNote}
+            </p>
           </div>
         </div>
 
@@ -734,7 +707,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
       </div>
       <div class="grid gap-4 sm:grid-cols-2">
         {researchDirections.map((direction, index) => (
-          <article class="research-direction-card surface-card relative flex min-h-[18rem] flex-col overflow-hidden p-5 sm:p-6">
+          <article class="research-direction-card surface-card relative flex min-h-[17rem] flex-col overflow-hidden p-5 sm:p-6">
             <div class="flex items-center justify-between gap-3">
               <span class="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-200 bg-cyan-50 font-mono text-xs font-bold text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/55 dark:text-cyan-200">0{index + 1}</span>
               <span class="h-px flex-1 bg-gradient-to-r from-cyan-200 to-transparent dark:from-cyan-900" aria-hidden="true"></span>
@@ -748,20 +721,6 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </div>
           </article>
         ))}
-      </div>
-      <div class="mt-5 rounded-3xl border border-emerald-200/90 bg-white px-5 py-5 shadow-sm dark:border-emerald-900/70 dark:bg-ink-900/95 sm:px-6">
-        <div class="research-cloud-layout grid gap-4 lg:grid-cols-[13rem_1fr] lg:items-stretch">
-          <div class="flex flex-col justify-center rounded-2xl border border-emerald-200/80 bg-emerald-50/60 px-5 py-4 dark:border-emerald-900/70 dark:bg-emerald-950/25">
-            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-300">{copy.keywordCloud}</p>
-            <p class="mt-2 font-heading text-2xl font-semibold leading-tight text-ink-950 dark:text-paper-50">Data-Centric AI</p>
-            <p class="mt-1 text-xs leading-5 text-ink-500 dark:text-paper-400">{isEnglish ? "Data for capable, reliable AI" : "让数据驱动更可靠、更有用的 AI"}</p>
-          </div>
-          <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-4">
-            {researchCloud.map((term, index) => (
-              <span class:list={["flex min-h-10 items-center justify-center whitespace-nowrap rounded-xl border px-2.5 text-center text-xs font-bold", index % 3 === 0 ? "border-cyan-200 bg-cyan-50/65 text-cyan-800 dark:border-cyan-900 dark:bg-cyan-950/30 dark:text-cyan-200" : index % 3 === 1 ? "border-emerald-200 bg-emerald-50/65 text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200" : "border-teal-200 bg-teal-50/65 text-teal-800 dark:border-teal-900 dark:bg-teal-950/30 dark:text-teal-200"]}>{term}</span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
 

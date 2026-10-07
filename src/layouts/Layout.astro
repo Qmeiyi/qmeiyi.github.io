@@ -237,7 +237,8 @@ function isActiveNav(href: string): boolean {
       extend={{
         link: [
           { rel: "icon", type: faviconType, href: siteConfig.favicon },
-          { rel: "apple-touch-icon", href: siteConfig.favicon },
+          { rel: "shortcut icon", type: faviconType, href: siteConfig.favicon },
+          { rel: "apple-touch-icon", href: "/google-scholar-touch.png" },
         ],
         meta: extendedMeta,
       }}

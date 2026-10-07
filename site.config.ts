@@ -6,7 +6,7 @@ export const siteConfig = defineSiteConfig({
   siteUrl: "https://qmeiyi.github.io",
   language: "zh-CN",
   locale: "zh_CN",
-  favicon: "/favicon.png",
+  favicon: "/google-scholar.ico",
   description: "强美伊的学术与项目主页：数据中心人工智能、大模型训练数据、开源项目和产业实践。",
   keywords: ["强美伊", "Meiyi Qiang", "数据中心人工智能", "大语言模型", "DataFlow", "DataFlex"],
   hero: {

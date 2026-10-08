@@ -22,10 +22,22 @@
 - date: "2026.09"
   dateEn: Sep. 2026
   category: paper
-  text: DataFlow 被 ACM SIGMOD 2027 接收并入选 Oral；DataFlex、FLARE 与 K12-KGraph 被 NeurIPS 2026 接收。
-  textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper; DataFlex, FLARE, and K12-KGraph were accepted by NeurIPS 2026.
-  strong: [DataFlow, ACM SIGMOD 2027, Oral, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
-  strongEn: [DataFlow, ACM SIGMOD 2027, Oral, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
+  text: DataFlow 被 ACM SIGMOD 2027 接收并入选 Oral。
+  textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper.
+  strong: [DataFlow, ACM SIGMOD 2027, Oral]
+  strongEn: [DataFlow, ACM SIGMOD 2027, Oral]
+  link:
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
+- date: "2026.09"
+  dateEn: Sep. 2026
+  category: paper
+  text: DataFlex、FLARE 与 K12-KGraph 共 3 篇论文被 NeurIPS 2026 接收。
+  textEn: Three papers—DataFlex, FLARE, and K12-KGraph—were accepted by NeurIPS 2026.
+  strong: [DataFlex, FLARE, K12-KGraph, 3 篇论文, NeurIPS 2026]
+  strongEn: [Three papers, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
   link:
     label: 论文列表
     labelEn: Publications
@@ -54,10 +66,18 @@
 - date: "2026.08"
   dateEn: Aug. 2026
   category: business
-  text: DataFlow、DataFlex 项目受邀参加 WAIC 2026；受邀参加第十届 AIDD+研发数字峰会，进行技术分享。
-  textEn: DataFlow and DataFlex were invited to WAIC 2026; invited to give a technical talk at the 10th AIDD+ R&D Digital Summit.
-  strong: [DataFlow, DataFlex, WAIC 2026, 第十届 AIDD+研发数字峰会]
-  strongEn: [DataFlow, DataFlex, WAIC 2026, 10th AIDD+ R&D Digital Summit]
+  text: DataFlow、DataFlex 项目受邀参加 WAIC 2026。
+  textEn: DataFlow and DataFlex were invited to WAIC 2026.
+  strong: [DataFlow, DataFlex, WAIC 2026]
+  strongEn: [DataFlow, DataFlex, WAIC 2026]
+
+- date: "2026.08"
+  dateEn: Aug. 2026
+  category: business
+  text: 受邀参加第十届 AIDD+研发数字峰会，进行技术分享。
+  textEn: Invited to give a technical talk at the 10th AIDD+ R&D Digital Summit.
+  strong: [第十届 AIDD+研发数字峰会]
+  strongEn: [10th AIDD+ R&D Digital Summit]
 
 - date: "2026.07"
   dateEn: Jul. 2026
@@ -94,10 +114,22 @@
 - date: "2026.05"
   dateEn: May 2026
   category: paper
-  text: Generative Giants, Retrieval Weaklings 被 ACL 2026 接收；Let's Verify Math Questions Step by Step 被 KDD 2026 接收。
-  textEn: Generative Giants, Retrieval Weaklings was accepted by ACL 2026; Let's Verify Math Questions Step by Step was accepted by KDD 2026.
-  strong: ["Generative Giants, Retrieval Weaklings", ACL 2026, Let's Verify Math Questions Step by Step, KDD 2026]
-  strongEn: ["Generative Giants, Retrieval Weaklings", ACL 2026, Let's Verify Math Questions Step by Step, KDD 2026]
+  text: Generative Giants, Retrieval Weaklings 被 ACL 2026 接收。
+  textEn: Generative Giants, Retrieval Weaklings was accepted by ACL 2026.
+  strong: ["Generative Giants, Retrieval Weaklings", ACL 2026]
+  strongEn: ["Generative Giants, Retrieval Weaklings", ACL 2026]
+  link:
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
+- date: "2026.05"
+  dateEn: May 2026
+  category: paper
+  text: Let's Verify Math Questions Step by Step 被 KDD 2026 接收。
+  textEn: Let's Verify Math Questions Step by Step was accepted by KDD 2026.
+  strong: [Let's Verify Math Questions Step by Step, KDD 2026]
+  strongEn: [Let's Verify Math Questions Step by Step, KDD 2026]
   link:
     label: 论文列表
     labelEn: Publications
@@ -150,10 +182,22 @@
 - date: "2026.01"
   dateEn: Jan. 2026
   category: paper
-  text: ReLIFT 被 ICLR 2026 接收；LoVR 被 The Web Conference 2026 接收并入选 Oral。
-  textEn: ReLIFT was accepted by ICLR 2026; LoVR was accepted by The Web Conference 2026 as an Oral paper.
-  strong: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026, Oral]
-  strongEn: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026, Oral]
+  text: ReLIFT 被 ICLR 2026 接收。
+  textEn: ReLIFT was accepted by ICLR 2026.
+  strong: [ReLIFT, ICLR 2026]
+  strongEn: [ReLIFT, ICLR 2026]
+  link:
+    label: 论文列表
+    labelEn: Publications
+    href: /researches
+
+- date: "2026.01"
+  dateEn: Jan. 2026
+  category: paper
+  text: LoVR 被 WWW 2026 接收并入选 Oral。
+  textEn: LoVR was accepted by WWW 2026 as an Oral paper.
+  strong: [LoVR, WWW 2026, Oral]
+  strongEn: [LoVR, WWW 2026, Oral]
   link:
     label: 论文列表
     labelEn: Publications
@@ -195,14 +239,6 @@
     labelEn: Paper
     href: https://arxiv.org/abs/2512.10403
 
-- date: "2025.08"
-  dateEn: Aug. 2025
-  category: award
-  text: 获评北京市优秀毕业生。
-  textEn: Named a Beijing Outstanding Graduate.
-  strong: [北京市优秀毕业生]
-  strongEn: [Beijing Outstanding Graduate]
-
 - date: "2025.07"
   dateEn: Jul. 2025
   category: business
@@ -222,6 +258,14 @@
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2408.07543
+
+- date: "2025.05"
+  dateEn: May 2025
+  category: award
+  text: 获评北京市优秀毕业生。
+  textEn: Named a Beijing Outstanding Graduate.
+  strong: [北京市优秀毕业生]
+  strongEn: [Beijing Outstanding Graduate]
 
 - date: "2024.03"
   dateEn: Mar. 2024

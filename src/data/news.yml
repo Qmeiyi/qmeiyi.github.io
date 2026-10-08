@@ -137,7 +137,7 @@
 
 - date: "2026.04"
   dateEn: Apr. 2026
-  category: publication
+  category: paper
   text: 参与编写的《大模型数据·原理、技术与实践》正式出版，负责实践部分章节撰写及全书修订。
   textEn: "Co-authored Data for Large Models: Principles, Technologies, and Practice, writing the practice chapters and contributing to revisions across the book."
   strong: [《大模型数据·原理、技术与实践》, 实践部分章节]
@@ -169,7 +169,7 @@
 
 - date: "2026.01"
   dateEn: Jan. 2026
-  category: publication
+  category: paper
   text: 综述 Data Preparation for Large Language Models 发表于 JCST。
   textEn: The survey Data Preparation for Large Language Models was published in JCST.
   strong: [Data Preparation for Large Language Models, JCST]
@@ -250,10 +250,10 @@
 - date: "2025.07"
   dateEn: Jul. 2025
   category: paper
-  text: MathScape 被 ACM Multimedia 2025 接收，入选 Oral。
-  textEn: MathScape was accepted by ACM Multimedia 2025 as an Oral paper.
-  strong: [MathScape, ACM Multimedia 2025, Oral]
-  strongEn: [MathScape, ACM Multimedia 2025, Oral]
+  text: MathScape 被 ACM MM 2025 接收，入选 Oral。
+  textEn: MathScape was accepted by ACM MM 2025 as an Oral paper.
+  strong: [MathScape, ACM MM 2025, Oral]
+  strongEn: [MathScape, ACM MM 2025, Oral]
   link:
     label: 论文
     labelEn: Paper

@@ -1,5 +1,13 @@
 - date: "2026.09"
   dateEn: Sep. 2026
+  category: award
+  text: 获得 2026 世界人工智能大赛（GOAI）Agent Infra 赛道冠军（1 / 7,802），暨全场亚军。
+  textEn: Won the Agent Infra Track Championship (1 / 7,802) and Overall Runner-up at the 2026 Global Open-source AI Competition (GOAI).
+  strong: [2026 世界人工智能大赛（GOAI）, Agent Infra 赛道冠军, 全场亚军]
+  strongEn: [2026 Global Open-source AI Competition (GOAI), Agent Infra Track Championship, Overall Runner-up]
+
+- date: "2026.09"
+  dateEn: Sep. 2026
   category: ranking
   text: OmniEdu 与 DataFlex-RL 分别登上 Hugging Face Daily Papers 榜单第 1 名和第 2 名。
   textEn: OmniEdu and DataFlex-RL ranked #1 and #2 on the Hugging Face Daily Papers leaderboard, respectively.
@@ -16,24 +24,40 @@
   category: paper
   text: DataFlow 被 ACM SIGMOD 2027 接收并入选 Oral；DataFlex、FLARE 与 K12-KGraph 被 NeurIPS 2026 接收。
   textEn: DataFlow was accepted by ACM SIGMOD 2027 as an Oral paper; DataFlex, FLARE, and K12-KGraph were accepted by NeurIPS 2026.
-  strong: [DataFlow, ACM SIGMOD 2027, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
-  strongEn: [DataFlow, ACM SIGMOD 2027, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
+  strong: [DataFlow, ACM SIGMOD 2027, Oral, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
+  strongEn: [DataFlow, ACM SIGMOD 2027, Oral, DataFlex, FLARE, K12-KGraph, NeurIPS 2026]
   link:
     label: 论文列表
     labelEn: Publications
     href: /researches
+
+- date: "2026.09"
+  dateEn: Sep. 2026
+  category: business
+  text: 受邀参加云栖大会 2026 直播间，进行技术分享。
+  textEn: Invited to the Apsara Conference 2026 livestream for a technical talk.
+  strong: [云栖大会 2026]
+  strongEn: [Apsara Conference 2026]
 
 - date: "2026.08"
   dateEn: Aug. 2026
   category: paper
   text: MathDebugger 被 EMNLP 2026 接收，入选 Oral；共同一作。
   textEn: MathDebugger was accepted by EMNLP 2026 as an Oral paper; co-first author.
-  strong: [MathDebugger, EMNLP 2026]
-  strongEn: [MathDebugger, EMNLP 2026]
+  strong: [MathDebugger, EMNLP 2026, Oral]
+  strongEn: [MathDebugger, EMNLP 2026, Oral]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2502.19058
+
+- date: "2026.08"
+  dateEn: Aug. 2026
+  category: business
+  text: DataFlow、DataFlex 项目受邀参加 WAIC 2026；受邀参加第十届 AIDD+研发数字峰会，进行技术分享。
+  textEn: DataFlow and DataFlex were invited to WAIC 2026; invited to give a technical talk at the 10th AIDD+ R&D Digital Summit.
+  strong: [DataFlow, DataFlex, WAIC 2026, 第十届 AIDD+研发数字峰会]
+  strongEn: [DataFlow, DataFlex, WAIC 2026, 10th AIDD+ R&D Digital Summit]
 
 - date: "2026.07"
   dateEn: Jul. 2026
@@ -46,6 +70,14 @@
     label: 查看榜单
     labelEn: View ranking
     href: https://huggingface.co/papers/2605.09635
+
+- date: "2026.07"
+  dateEn: Jul. 2026
+  category: business
+  text: 受邀在中国联通软件研究院进行技术分享。
+  textEn: Invited to give a technical talk at China Unicom Software Research Institute.
+  strong: [中国联通软件研究院]
+  strongEn: [China Unicom Software Research Institute]
 
 - date: "2026.05"
   dateEn: May 2026
@@ -70,6 +102,14 @@
     label: 论文列表
     labelEn: Publications
     href: /researches
+
+- date: "2026.04"
+  dateEn: Apr. 2026
+  category: publication
+  text: 参与编写的《大模型数据·原理、技术与实践》正式出版，负责第七章（实践部分）撰写及全书修订。
+  textEn: "Co-authored Data for Large Models: Principles, Technologies, and Practice, writing Chapter 7 on practice and contributing to revisions across the book."
+  strong: [《大模型数据·原理、技术与实践》, 第七章（实践部分）]
+  strongEn: ["Data for Large Models: Principles, Technologies, and Practice", Chapter 7]
 
 - date: "2026.04"
   dateEn: Apr. 2026
@@ -112,8 +152,8 @@
   category: paper
   text: ReLIFT 被 ICLR 2026 接收；LoVR 被 The Web Conference 2026 接收并入选 Oral。
   textEn: ReLIFT was accepted by ICLR 2026; LoVR was accepted by The Web Conference 2026 as an Oral paper.
-  strong: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026]
-  strongEn: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026]
+  strong: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026, Oral]
+  strongEn: [ReLIFT, ICLR 2026, LoVR, The Web Conference 2026, Oral]
   link:
     label: 论文列表
     labelEn: Publications
@@ -165,15 +205,35 @@
 
 - date: "2025.07"
   dateEn: Jul. 2025
+  category: business
+  text: DataFlow 项目首次亮相 WAIC 2025。
+  textEn: DataFlow made its first appearance at WAIC 2025.
+  strong: [DataFlow, WAIC 2025]
+  strongEn: [DataFlow, WAIC 2025]
+
+- date: "2025.07"
+  dateEn: Jul. 2025
   category: paper
   text: MathScape 被 ACM Multimedia 2025 接收，入选 Oral。
   textEn: MathScape was accepted by ACM Multimedia 2025 as an Oral paper.
-  strong: [MathScape, ACM Multimedia 2025]
-  strongEn: [MathScape, ACM Multimedia 2025]
+  strong: [MathScape, ACM Multimedia 2025, Oral]
+  strongEn: [MathScape, ACM Multimedia 2025, Oral]
   link:
     label: 论文
     labelEn: Paper
     href: https://arxiv.org/abs/2408.07543
+
+- date: "2024.03"
+  dateEn: Mar. 2024
+  category: research
+  text: 加入北京大学 DCAI Lab，进行 AI Data 领域的科研实习。
+  textEn: Joined Peking University DCAI Lab as a research intern in AI Data.
+  strong: [北京大学 DCAI Lab, AI Data]
+  strongEn: [Peking University DCAI Lab, AI Data]
+  link:
+    label: DCAI Lab
+    labelEn: DCAI Lab
+    href: https://zwt233.github.io/
 
 - date: "2023.10"
   dateEn: Oct. 2023

@@ -33,7 +33,7 @@ const copy = isEnglish
       wechatLabel: "WeChat",
       socialLabels: { "小红书": "RedNote", "邮件联系": "Email" } as Record<string, string>,
       paperCta: "Full publication list",
-      experienceCta: "Full experience",
+      experienceCta: "Experience",
       status: "Research · Open Source · Entrepreneurship",
       newsLabel: "News",
       newsHeading: "Latest Updates",
@@ -67,7 +67,7 @@ const copy = isEnglish
       wechatLabel: "微信",
       socialLabels: {} as Record<string, string>,
       paperCta: "完整论文列表",
-      experienceCta: "完整个人经历",
+      experienceCta: "个人经历",
       status: siteConfig.hero.statusBadge,
       newsLabel: "News",
       newsHeading: "最新动态",
@@ -94,7 +94,7 @@ const aboutContent = isEnglish
   ? {
       paragraphs: [
         "I am Meiyi Qiang, a master's student at Peking University, a researcher, and an entrepreneur. I am honored to be advised by Prof. Wentao Zhang and to work closely with Prof. Weinan E and Prof. Bin Cui. My research focuses on Data-Centric AI, including training data, data infrastructure, and dynamic data selection. Before joining Peking University, I earned my B.Sc. in Information and Computing Science from Beijing Institute of Technology, where I received the National Scholarship and the Beijing Outstanding Graduate honor.",
-        "I have worked in foundation-model training and algorithm roles at ByteDance, Ant Group, and Zhipu AI, and have also collaborated with teams at Tencent and Alibaba. I previously served as a co-founder of a data company with annual revenue exceeding RMB 10 million, leading technical solution design and project delivery. The core open-source project DataFlow was showcased at WAIC 2025 and WAIC 2026, and I was invited to share its technology at China Unicom Software Research Institute, the 2026 Apsara Conference, and the 10th AIDD R&D Summit.",
+        "I have worked in foundation-model training and algorithm roles at ByteDance, Ant Group, and Zhipu AI, and have also collaborated with teams at Tencent and Alibaba. I also contributed to the book Data for Large Models: Principles, Technologies, and Practice. I previously served as a co-founder of a data company with annual revenue exceeding RMB 10 million, leading technical solution design and project delivery. The core open-source project DataFlow was showcased at WAIC 2025 and WAIC 2026. I have also been invited to give technical talks at China Unicom Software Research Institute, the 2026 Apsara Conference, and the 10th AIDD R&D Summit.",
       ],
       impactHeading: "Research Impact",
       competitionsHeading: "Competition Experience",
@@ -123,7 +123,7 @@ const aboutContent = isEnglish
   : {
       paragraphs: [
         "我是强美伊，北京大学硕士研究生，是一名研究者和创业者。我很荣幸能师从张文涛教授，并与鄂维南教授和崔斌教授保持密切科研合作。我的研究聚焦 Data-Centric AI，关注训练数据构建、数据基础设施与动态数据选择。在此之前，我毕业于北京理工大学，获得信息与计算科学学士学位，并荣获国家奖学金和北京市优秀毕业生。",
-        "我曾在字节、蚂蚁、智谱的基础模型训练和算法岗位实习，也与腾讯、阿里有过很好的合作。我也曾在一家年营收超千万元的数据公司担任联合创始人，负责技术方案设计和项目落地。核心开源项目 DataFlow 曾在 WAIC 2025 和 WAIC 2026 展出，并受邀在中国联通软件研究院、云栖大会 2026、第十届 AIDD 研发峰会等进行技术分享。",
+        "我曾在字节、蚂蚁、智谱的基础模型训练和算法岗位实习，也与腾讯、阿里有过很好的合作。我还参与编写《大模型数据·原理、技术与实践》一书。我也曾在一家年营收超千万元的数据公司担任联合创始人，负责技术方案设计和项目落地。核心开源项目 DataFlow 曾在 WAIC 2025 和 WAIC 2026 展出。我也曾受邀在中国联通软件研究院、云栖大会 2026、第十届 AIDD 研发峰会等进行技术分享。",
       ],
       impactHeading: "研究影响力",
       competitionsHeading: "比赛经历",
@@ -353,19 +353,19 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
             </div>
             <div class="flex flex-wrap items-center gap-2 self-start sm:self-auto">
               <a
-                href={isEnglish ? "/en/experience" : "/experience"}
-                class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-cyan-300/90 bg-cyan-50/75 px-4 py-2 text-sm font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-cyan-400 hover:bg-cyan-100/80 hover:text-cyan-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-cyan-950/35 dark:text-cyan-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/55"
-              >
-                <span class="i-mdi:timeline-clock-outline text-base" aria-hidden="true"></span>
-                {copy.experienceCta}
-                <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
-              </a>
-              <a
                 href={isEnglish ? "/en/researches" : "/researches"}
                 class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-emerald-300/90 bg-emerald-50/75 px-4 py-2 text-sm font-semibold text-emerald-800 no-underline shadow-sm transition hover:border-emerald-400 hover:bg-emerald-100/80 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 dark:border-emerald-800 dark:bg-emerald-950/35 dark:text-emerald-200 dark:hover:border-emerald-700 dark:hover:bg-emerald-950/55"
               >
                 <span class="i-mdi:file-document-outline text-base" aria-hidden="true"></span>
                 {copy.paperCta}
+                <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
+              </a>
+              <a
+                href={isEnglish ? "/en/experience" : "/experience"}
+                class="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-xl border border-cyan-300/90 bg-cyan-50/75 px-4 py-2 text-sm font-semibold text-cyan-800 no-underline shadow-sm transition hover:border-cyan-400 hover:bg-cyan-100/80 hover:text-cyan-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-cyan-950/35 dark:text-cyan-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/55"
+              >
+                <span class="i-mdi:timeline-clock-outline text-base" aria-hidden="true"></span>
+                {copy.experienceCta}
                 <span class="i-ph-arrow-right text-base" aria-hidden="true"></span>
               </a>
             </div>
@@ -553,10 +553,20 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">{copy.newsLabel}</p>
           <h2 id="news-heading" class="section-heading mt-1">{copy.newsHeading}</h2>
         </div>
-        <span class="hidden items-center gap-1.5 pb-0.5 text-xs font-semibold text-ink-500 dark:text-paper-400 sm:inline-flex">
-          <span class="i-mdi:mouse-scroll-wheel text-base text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
-          {copy.newsScrollHint}
-        </span>
+        <div class="flex items-center gap-2">
+          <span class="hidden items-center gap-1.5 pb-0.5 text-xs font-semibold text-ink-500 dark:text-paper-400 lg:inline-flex">
+            <span class="i-mdi:mouse-scroll-wheel text-base text-accent-600 dark:text-accent-300" aria-hidden="true"></span>
+            {copy.newsScrollHint}
+          </span>
+          <a
+            href={isEnglish ? "/en/experience" : "/experience"}
+            class="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-xl border border-cyan-300/90 bg-white/80 px-3 py-1.5 text-xs font-bold text-cyan-800 no-underline shadow-sm transition hover:border-cyan-400 hover:bg-cyan-50 hover:text-cyan-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 dark:border-cyan-800 dark:bg-ink-900/70 dark:text-cyan-200 dark:hover:border-cyan-700 dark:hover:bg-cyan-950/45"
+          >
+            <span class="i-mdi:timeline-clock-outline text-base" aria-hidden="true"></span>
+            {copy.experienceCta}
+            <span class="i-ph-arrow-right text-sm" aria-hidden="true"></span>
+          </a>
+        </div>
       </div>
       <div class="news-scroll-shell relative overflow-hidden rounded-2xl border border-accent-200/90 bg-white/90 shadow-[0_18px_42px_-34px_rgba(8,145,178,0.55)] dark:border-accent-900/70 dark:bg-ink-900/88">
         <NewsTimeline items={news} locale={locale} mode="scroll" ariaLabel={copy.newsHeading} />

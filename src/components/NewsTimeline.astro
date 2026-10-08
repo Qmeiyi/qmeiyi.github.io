@@ -12,13 +12,14 @@ const { items, locale = "zh", mode = "scroll", ariaLabel = locale === "en" ? "Ne
 const isEnglish = locale === "en";
 
 const categoryMeta: Record<NewsCategory, { emoji: string; zh: string; en: string; tone: string }> = {
-  paper: { emoji: "📝", zh: "论文录用", en: "Paper accepted", tone: "cyan" },
+  paper: { emoji: "🎉", zh: "论文录用", en: "Paper accepted", tone: "cyan" },
   ranking: { emoji: "🤗", zh: "榜单", en: "Ranking", tone: "amber" },
   education: { emoji: "🎓", zh: "升学", en: "Education", tone: "indigo" },
   entrepreneurship: { emoji: "🚀", zh: "创业", en: "Entrepreneurship", tone: "emerald" },
   award: { emoji: "🏆", zh: "获奖", en: "Award", tone: "amber" },
   business: { emoji: "🤝", zh: "商业活动", en: "Business", tone: "teal" },
   publication: { emoji: "📚", zh: "发表", en: "Publication", tone: "violet" },
+  research: { emoji: "🔬", zh: "科研", en: "Research", tone: "cyan" },
 };
 
 const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -43,7 +44,7 @@ const emphasize = (text: string, terms: string[]) => {
       <li class:list={["news-row grid min-w-0 items-start border-b border-paper-300/75 last:border-b-0 hover:bg-cyan-50/55 dark:border-ink-700/75 dark:hover:bg-accent-950/25", mode === "scroll" ? "news-row--scroll grid-cols-[5.6rem_2rem_minmax(0,1fr)] gap-2 px-3 py-2.5 sm:grid-cols-[6.25rem_2.1rem_minmax(0,1fr)] sm:items-center sm:gap-3 sm:px-4" : "news-row--full grid-cols-[5.8rem_2.25rem_minmax(0,1fr)] gap-2.5 px-3 py-3 sm:grid-cols-[7rem_2.4rem_minmax(0,1fr)_7rem] sm:items-center sm:gap-3 sm:px-5"]}>
         <time class="font-mono text-xs font-bold tabular-nums tracking-wide text-accent-800 dark:text-accent-200">{item.date}</time>
         <span class:list={["news-emoji relative z-[1] flex shrink-0 items-center justify-center rounded-lg border bg-white shadow-sm dark:bg-ink-900", `news-emoji--${meta.tone}`, mode === "scroll" ? "h-7 w-7 text-sm" : "h-8 w-8 text-base"]} role="img" aria-label={isEnglish ? meta.en : meta.zh}>{meta.emoji}</span>
-        <p class:list={["min-w-0 font-medium text-ink-700 dark:text-paper-300", mode === "scroll" ? "text-sm leading-6 sm:truncate" : "text-sm leading-6 sm:text-[0.95rem]"]}>
+        <p class:list={["min-w-0 font-medium text-ink-700 dark:text-paper-300", mode === "scroll" ? "text-sm leading-6" : "text-sm leading-6 sm:text-[0.95rem]"]}>
           {emphasize(item.text, item.strong).map((part) => part.strong
             ? <strong class="font-extrabold text-ink-950 dark:text-paper-50">{part.text}</strong>
             : part.text)}

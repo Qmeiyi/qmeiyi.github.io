@@ -106,10 +106,10 @@
 - date: "2026.04"
   dateEn: Apr. 2026
   category: publication
-  text: 参与编写的《大模型数据·原理、技术与实践》正式出版，负责第七章（实践部分）撰写及全书修订。
-  textEn: "Co-authored Data for Large Models: Principles, Technologies, and Practice, writing Chapter 7 on practice and contributing to revisions across the book."
-  strong: [《大模型数据·原理、技术与实践》, 第七章（实践部分）]
-  strongEn: ["Data for Large Models: Principles, Technologies, and Practice", Chapter 7]
+  text: 参与编写的《大模型数据·原理、技术与实践》正式出版，负责实践部分章节撰写及全书修订。
+  textEn: "Co-authored Data for Large Models: Principles, Technologies, and Practice, writing the practice chapters and contributing to revisions across the book."
+  strong: [《大模型数据·原理、技术与实践》, 实践部分章节]
+  strongEn: ["Data for Large Models: Principles, Technologies, and Practice", practice chapters]
 
 - date: "2026.04"
   dateEn: Apr. 2026
@@ -174,8 +174,8 @@
 - date: "2025.09"
   dateEn: Sep. 2025
   category: education
-  text: 推免至北京大学 DCAI Lab，攻读硕士研究生。
-  textEn: Admitted to Peking University DCAI Lab for master's study through the graduate recommendation program.
+  text: 保研至北京大学 DCAI Lab，攻读硕士研究生。
+  textEn: Recommended for admission to Peking University DCAI Lab to pursue a master's degree.
   strong: [北京大学 DCAI Lab]
   strongEn: [Peking University DCAI Lab]
   link:
@@ -225,7 +225,7 @@
 
 - date: "2024.03"
   dateEn: Mar. 2024
-  category: research
+  category: education
   text: 加入北京大学 DCAI Lab，进行 AI Data 领域的科研实习。
   textEn: Joined Peking University DCAI Lab as a research intern in AI Data.
   strong: [北京大学 DCAI Lab, AI Data]

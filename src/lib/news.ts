@@ -8,8 +8,7 @@ export type NewsCategory =
   | "entrepreneurship"
   | "award"
   | "business"
-  | "publication"
-  | "research";
+  | "publication";
 
 type RawNewsItem = {
   date: string | number;

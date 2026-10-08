@@ -101,7 +101,7 @@ const footerLinks = siteConfig.footer.showProfileLinks
   ? siteConfig.socialLinks.map((link) => ({
       ...link,
       label: isEnglish
-        ? ({ "小红书": "RedNote", "邮件联系": "Email" }[link.label] ?? link.label)
+        ? ({ "小红书": "Xiaohongshu", "邮件联系": "Email" }[link.label] ?? link.label)
         : link.label,
     }))
   : [];

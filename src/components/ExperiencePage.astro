@@ -20,7 +20,7 @@ const pageDescription = isEnglish
 const legend = isEnglish
   ? [
       ["📚", "Publication"], ["🤗", "Ranking"], ["🎓", "Education"],
-      ["🚀", "Entrepreneurship"], ["🏆", "Award"], ["📍", "Business"],
+      ["🚀", "Entrepreneurship"], ["🏆", "Award"], ["📍", "Industry"],
     ]
   : [
       ["📚", "发表"], ["🤗", "榜单"], ["🎓", "升学"],
@@ -50,7 +50,7 @@ const legend = isEnglish
             <header class="year-title-box flex items-end justify-between gap-4 rounded-t-2xl border border-b-0 border-cyan-200/80 px-4 py-3 dark:border-cyan-900/70">
               <h2 id={`experience-${year}`} class="section-heading">{year}</h2>
               <p class="shrink-0 font-mono text-xs font-semibold tabular-nums text-ink-500 dark:text-paper-400">
-                {isEnglish ? `${yearNews.length} updates` : `${yearNews.length} 条动态`}
+                {isEnglish ? `${yearNews.length} ${yearNews.length === 1 ? "update" : "updates"}` : `${yearNews.length} 条动态`}
               </p>
             </header>
             <div class="overflow-hidden rounded-b-2xl border border-accent-200/90 bg-white/92 shadow-[0_18px_42px_-34px_rgba(8,145,178,0.55)] dark:border-accent-900/70 dark:bg-ink-900/88">

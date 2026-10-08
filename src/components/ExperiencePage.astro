@@ -14,8 +14,8 @@ const years = [...new Set(news.map(newsYear))];
 
 const pageTitle = isEnglish ? "Experience" : "个人经历";
 const pageDescription = isEnglish
-  ? "The road ahead may be long, but each step brings us closer. I will keep turning conviction into steady action, earn the trust of investors and partners, and build a future worth believing in."
-  : "道阻且长，行则将至。愿以长期而坚定的行动，把有价值的事情做成，赢得投资人与合作伙伴的信任，共赴值得期待的未来。";
+  ? "Meiyi Qiang's experience timeline."
+  : "强美伊的个人经历时间线。";
 
 const legend = isEnglish
   ? [
@@ -33,7 +33,6 @@ const legend = isEnglish
     <header class="page-header">
       <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-accent-700 dark:text-accent-300">Timeline</p>
       <h1 class="page-title mt-1">{pageTitle}</h1>
-      <p class="page-description">{pageDescription}</p>
       <div class="mt-4 flex flex-wrap gap-2" aria-label={isEnglish ? "Experience categories" : "经历分类"}>
         {legend.map(([emoji, label]) => (
           <span class="inline-flex items-center gap-1.5 rounded-full border border-paper-300/85 bg-white/75 px-2.5 py-1 text-xs font-semibold text-ink-700 shadow-sm dark:border-ink-700 dark:bg-ink-900/70 dark:text-paper-200">

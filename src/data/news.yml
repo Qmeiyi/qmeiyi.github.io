@@ -1,3 +1,11 @@
+- date: "2026.10"
+  dateEn: Oct. 2026
+  category: business
+  text: 受邀参加 GOSIM 2026 论坛，进行技术分享。
+  textEn: Invited to deliver a technical talk at the GOSIM 2026 Forum.
+  strong: [GOSIM 2026 论坛]
+  strongEn: [GOSIM 2026 Forum]
+
 - date: "2026.09"
   dateEn: Sep. 2026
   category: award

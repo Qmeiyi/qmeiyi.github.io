@@ -49,19 +49,54 @@ async function refreshGitHub() {
 
 async function refreshScholar() {
   const headers = { "User-Agent": desktopUA, "Accept-Language": "en-US,en;q=0.9" };
-  const html = await curlText("https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=en", headers);
-  const values = [...html.matchAll(/class="gsc_rsb_std">([\d,]+)/g)].map((match) => Number(match[1].replaceAll(",", "")));
-  if (values.length < 3) throw new Error("Google Scholar metrics were not found");
-  metrics.scholar = { citations: values[0], hIndex: values[2] };
-  updatedSources.push("Google Scholar");
+  try {
+    const html = await curlText("https://scholar.google.com/citations?user=8g78CmwAAAAJ&hl=en", headers);
+    const values = [...html.matchAll(/class="gsc_rsb_std">([\d,]+)/g)].map((match) => Number(match[1].replaceAll(",", "")));
+    if (values.length < 3) throw new Error("Google Scholar metrics were not found");
+    metrics.scholar = { citations: values[0], hIndex: values[2] };
+    updatedSources.push("Google Scholar");
+    return;
+  } catch (error) {
+    console.warn(`[metrics] direct Google Scholar refresh failed; trying the verified alphaXiv mirror: ${error.message}`);
+  }
+
+  const mirrorHtml = await curlText("https://www.alphaxiv.org/zh/@meiyi-qiang", headers);
+  if (!mirrorHtml.includes("scholar.google.com/citations?user=8g78CmwAAAAJ")) {
+    throw new Error("alphaXiv profile is not linked to the expected Google Scholar ID");
+  }
+  const mirrorMatch = mirrorHtml.match(/citations:(\d+),hIndex:(\d+)/);
+  if (!mirrorMatch) throw new Error("Google Scholar metrics were not found in the alphaXiv mirror");
+  metrics.scholar = { citations: Number(mirrorMatch[1]), hIndex: Number(mirrorMatch[2]) };
+  updatedSources.push("Google Scholar (alphaXiv mirror)");
+}
+
+function parseXiaohongshuFollowers(html) {
+  const patterns = [
+    /"fans":"([\d,]+)"/,
+    /有([\d,]+)位粉丝/,
+    /<span[^>]*class="stat-num"[^>]*>([\d,]+)<\/span><span[^>]*class="stat-label"[^>]*>粉丝<\/span>/,
+  ];
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) return Number(match[1].replaceAll(",", ""));
+  }
+  return undefined;
 }
 
 async function refreshXiaohongshu() {
-  const response = await fetchWithRetry("https://xhslink.cn/o/84v0uHax500", { redirect: "follow", headers: { "User-Agent": mobileUA, "Accept-Language": "zh-CN,zh;q=0.9" } });
-  const html = await response.text();
-  const match = html.match(/"fans":"([\d,]+)"/);
-  if (!match) throw new Error("Xiaohongshu follower count was not found");
-  metrics.xiaohongshu.followers = Number(match[1].replaceAll(",", ""));
+  const headers = { "User-Agent": mobileUA, "Accept-Language": "zh-CN,zh;q=0.9" };
+  let followers;
+  try {
+    const response = await fetchWithRetry("https://xhslink.cn/o/84v0uHax500", { redirect: "follow", headers });
+    followers = parseXiaohongshuFollowers(await response.text());
+  } catch (error) {
+    console.warn(`[metrics] Xiaohongshu fetch failed; trying curl fallback: ${error.message}`);
+  }
+  if (!Number.isFinite(followers)) {
+    followers = parseXiaohongshuFollowers(await curlText("https://xhslink.cn/o/84v0uHax500", headers));
+  }
+  if (!Number.isFinite(followers)) throw new Error("Xiaohongshu follower count was not found");
+  metrics.xiaohongshu.followers = followers;
   updatedSources.push("Xiaohongshu");
 }
 

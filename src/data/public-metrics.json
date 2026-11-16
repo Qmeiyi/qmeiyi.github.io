@@ -1,22 +1,22 @@
 {
   "github": {
-    "dataflow": 8193,
-    "dataflex": 2930,
-    "omniedu": 1197,
-    "datamind": 360
+    "dataflow": 8602,
+    "dataflex": 3614,
+    "omniedu": 1198,
+    "datamind": 456
   },
   "tutorials": {
     "feishuVisitors": 4828,
     "feishuViews": 7626,
     "bilibiliVideos": 21,
-    "bilibiliViews": 57306
+    "bilibiliViews": 58346
   },
   "scholar": {
-    "citations": 355,
+    "citations": 390,
     "hIndex": 8
   },
   "xiaohongshu": {
-    "followers": 1469
+    "followers": 1961
   },
-  "updatedAt": "2026-10-05T06:03:04.041Z"
+  "updatedAt": "2026-11-16T06:32:29.057Z"
 }

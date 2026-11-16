@@ -16,7 +16,8 @@ tech:
   - LLM
 highlights:
   - 作为核心贡献者，持续推进高质量数据生成、质量评估相关算子与 Pipeline 的工程化。
-  - 已在库帕斯、苏州实验室等机构场景中落地。
+  - 已在腾讯混元、库帕斯、苏州实验室、中国电信、深势科技、PyroMind 等机构场景中落地。
+  - 已加入 CAMEL 官方数据处理模块。
 metadata:
   - label: 角色
     value: 核心贡献者
@@ -25,6 +26,8 @@ links:
     href: https://github.com/OpenDCAI/DataFlow
   - label: 项目文档
     href: https://opendcai.github.io/DataFlow-Doc/
+  - label: CAMEL
+    href: https://github.com/camel-ai/camel
   - label: 图文教程
     href: https://wcny4qa9krto.feishu.cn/wiki/I9tbw2qnBi0lEakmmAGclTysnFd?from=from_copylink
   - label: 视频教程

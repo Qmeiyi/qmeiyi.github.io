@@ -97,6 +97,7 @@ const aboutContent = isEnglish
       impactHeading: "Research Impact",
       competitionsHeading: "Competition Experience",
       competitions: [
+        { title: "2026 Shanghai Open Source Software Application Innovation Competition", detail: "November 2026 · Champion" },
         { title: "GOAI 2026 Global Open-source AI Competition", detail: "Agent Infra Track Champion (1st of 7,802 teams) · Overall Runner-up" },
         { title: "Cesim Elite 2023 Global Business Simulation Competition", detail: "National Champion (1st of 1,700 teams) · Global Runner-up" },
       ],
@@ -126,6 +127,7 @@ const aboutContent = isEnglish
       impactHeading: "研究影响力",
       competitionsHeading: "比赛经历",
       competitions: [
+        { title: "2026 上海开源软件应用创新大赛", detail: "2026 年 11 月 · 冠军" },
         { title: "GOAI 2026 世界人工智能开源大赛", detail: "Agent Infra 赛道冠军（1 / 7,802）· 全场亚军" },
         { title: "Cesim Elite 2023 全球商业模拟大赛", detail: "全国总冠军（1 / 1,700）· 全球亚军" },
       ],
@@ -286,6 +288,13 @@ const projectCopy: Record<string, { title: string; subtitle: string; summary: st
     highlights: ["Lead development of the Selection module, including dynamic sample selection algorithms, training interfaces, and production integration.", "Integrated into LLaMA-Factory as an official data processing module and deployed at China Unicom."],
     linkLabels: ["GitHub repository", "Documentation", "LLaMA-Factory"],
   },
+  omniedu: {
+    title: "Omni-Edu",
+    subtitle: "Open foundation models for K–12 learning and teaching",
+    summary: "An open family of multimodal foundation models for the full K–12 learning–teaching loop, spanning curriculum grounding, subject problem solving, learner diagnosis, and instructional support across 4B, 9B, and 27B scales in BF16 and FP8.",
+    highlights: ["As a primary author, I contributed to training data development, model evaluation, and the open-source release.", "OmniEdu-27B leads key metrics on K12-Bench, MathFish, and LongTutor."],
+    linkLabels: ["GitHub repository", "Project page", "Paper", "Models", "Dataset", "Toolkit"],
+  },
   datamind: {
     title: "DataMind",
     subtitle: "All-in-one intelligent data assistant",
@@ -414,9 +423,9 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/45 dark:text-emerald-300" aria-hidden="true"><span class="i-mdi:trophy-outline text-xl"></span></span>
                 <h2 id="competitions-heading" class="font-heading text-lg font-semibold text-ink-950 dark:text-paper-50">{aboutContent.competitionsHeading}</h2>
               </div>
-              <div class="grid gap-2 sm:grid-cols-2">
-                {aboutContent.competitions.map((competition) => (
-                  <div class="rounded-xl border border-emerald-100/90 bg-white/75 px-4 py-3 shadow-sm dark:border-emerald-900/60 dark:bg-ink-900/55">
+              <div class="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+                {aboutContent.competitions.map((competition, index) => (
+                  <div class:list={["rounded-xl border border-emerald-100/90 bg-white/75 px-4 py-3 shadow-sm dark:border-emerald-900/60 dark:bg-ink-900/55", aboutContent.competitions.length % 2 === 1 && index === aboutContent.competitions.length - 1 && "sm:col-span-2 xl:col-span-1"]}>
                     <p class="text-sm font-bold leading-6 text-ink-900 dark:text-paper-100">{competition.title}</p>
                     <p class="mt-0.5 text-xs font-semibold leading-5 text-emerald-800 dark:text-emerald-200">{competition.detail}</p>
                   </div>
@@ -582,7 +591,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
         </div>
         <p class="mt-2 max-w-2xl text-sm leading-6 text-ink-600 dark:text-paper-300">{copy.projectDescription}</p>
       </div>
-      <div class="grid gap-5 md:grid-cols-2">
+      <div class="grid gap-5 md:grid-cols-6">
         {projects.map((project, index) => {
           const translated = isEnglish ? projectCopy[project.id] : undefined;
           const subtitle = translated?.subtitle ?? project.data.subtitle;
@@ -590,10 +599,10 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           const highlights = translated?.highlights ?? project.data.highlights;
           const starCount = githubStars[project.id];
           return (
-          <article class:list={["surface-card flex min-w-0 flex-col overflow-hidden p-0", project.id === "dataflow" && "md:col-span-2 !border-cyan-400/80 dark:!border-cyan-700/80"]}>
+          <article class:list={["surface-card flex min-w-0 flex-col overflow-hidden p-0", project.id === "dataflow" ? "md:col-span-6 !border-cyan-400/80 dark:!border-cyan-700/80" : "md:col-span-3 xl:col-span-2", project.id === "datamind" && "md:col-span-6 xl:col-span-2"]}>
             {project.data.cover && (
               <a href={project.data.links[0]?.href} target="_blank" rel="noopener noreferrer" class="group block overflow-hidden border-b border-cyan-100 bg-slate-50 dark:border-cyan-950 dark:bg-ink-950" aria-label={`${translated?.title ?? project.data.title} GitHub`}>
-                <Image src={project.data.cover} alt={project.data.coverAlt ?? ""} widths={[640, 960, 1280]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[2/1] h-auto w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
+                <Image src={project.data.cover} alt={project.data.coverAlt ?? ""} widths={[640, 960, 1280]} sizes="(min-width: 1280px) 24vw, (min-width: 768px) 50vw, 100vw" class="aspect-[2/1] h-auto w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
               </a>
             )}
             <div class="flex flex-1 flex-col p-5 sm:p-6" >
@@ -647,9 +656,19 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                 </a>
               </div>
             )}
-            <div class="mt-auto flex flex-wrap gap-3 pt-5">
+            <div class:list={["mt-auto flex flex-wrap gap-3 pt-5", project.id === "omniedu" && "gap-2"]}>
               {project.data.links.map((link, linkIndex) => (
-                <a href={link.href} target="_blank" rel="noopener noreferrer" class="action-link px-0 text-xs">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class:list={[
+                    "action-link text-xs",
+                    project.id === "omniedu"
+                      ? "rounded-lg border border-cyan-200/90 bg-cyan-50/65 px-2.5 py-1.5 no-underline shadow-sm hover:border-cyan-400 hover:bg-cyan-50 dark:border-cyan-900 dark:bg-cyan-950/35"
+                      : "px-0",
+                  ]}
+                >
                   {translated?.linkLabels[linkIndex] ?? link.label}<span class="i-mdi:open-in-new text-sm" aria-hidden="true"></span>
                 </a>
               ))}

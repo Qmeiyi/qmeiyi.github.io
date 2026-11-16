@@ -1,3 +1,11 @@
+- date: "2026.11"
+  dateEn: Nov. 2026
+  category: award
+  text: 获得 2026 上海开源软件应用创新大赛冠军。
+  textEn: Won the championship at the 2026 Shanghai Open Source Software Application Innovation Competition.
+  strong: [2026 上海开源软件应用创新大赛, 冠军]
+  strongEn: [2026 Shanghai Open Source Software Application Innovation Competition, championship]
+
 - date: "2026.10"
   dateEn: Oct. 2026
   category: business

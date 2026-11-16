@@ -307,25 +307,26 @@ type ProjectEcosystemItem = {
   nameEn: string;
   href: string;
   logo: string;
+  kind: "deployment" | "ecosystem";
   logoCrop?: "left-square";
 };
 
 const projectEcosystem: Record<string, ProjectEcosystemItem[]> = {
   dataflow: [
-    { name: "腾讯混元", nameEn: "Tencent Hunyuan", href: "https://hunyuan.tencent.com/", logo: "/images/ecosystem/tencent-hunyuan.svg" },
-    { name: "库帕斯", nameEn: "KuPas", href: "https://www.kupasai.com/", logo: "/images/ecosystem/kupas.png" },
-    { name: "苏州实验室", nameEn: "Suzhou Laboratory", href: "https://www.szlab.ac.cn/", logo: "/images/ecosystem/suzhou-lab.png", logoCrop: "left-square" },
-    { name: "中国电信", nameEn: "China Telecom", href: "https://www.chinatelecom.com.cn/", logo: "/images/ecosystem/china-telecom.png" },
-    { name: "深势科技", nameEn: "DP Technology", href: "https://www.dp.tech/", logo: "/images/ecosystem/dp-technology.png" },
-    { name: "PyroMind", nameEn: "PyroMind", href: "https://pyromind.ai/", logo: "/images/ecosystem/pyromind.png" },
-    { name: "CAMEL", nameEn: "CAMEL", href: "https://www.camel-ai.org/", logo: "/images/ecosystem/camel.png" },
+    { name: "腾讯混元", nameEn: "Tencent Hunyuan", href: "https://hunyuan.tencent.com/", logo: "/images/ecosystem/tencent-hunyuan.svg", kind: "deployment" },
+    { name: "库帕斯", nameEn: "KuPas", href: "https://www.kupasai.com/", logo: "/images/ecosystem/kupas.png", kind: "deployment" },
+    { name: "苏州实验室", nameEn: "Suzhou Laboratory", href: "https://www.szlab.ac.cn/", logo: "/images/ecosystem/suzhou-lab.png", logoCrop: "left-square", kind: "deployment" },
+    { name: "中国电信", nameEn: "China Telecom", href: "https://www.chinatelecom.com.cn/", logo: "/images/ecosystem/china-telecom.png", kind: "deployment" },
+    { name: "深势科技", nameEn: "DP Technology", href: "https://www.dp.tech/", logo: "/images/ecosystem/dp-technology.png", kind: "deployment" },
+    { name: "PyroMind", nameEn: "PyroMind", href: "https://pyromind.ai/", logo: "/images/ecosystem/pyromind.png", kind: "deployment" },
+    { name: "CAMEL", nameEn: "CAMEL", href: "https://www.camel-ai.org/", logo: "/images/ecosystem/camel.png", kind: "ecosystem" },
   ],
   dataflex: [
-    { name: "LLaMA-Factory", nameEn: "LLaMA-Factory", href: "https://github.com/hiyouga/LlamaFactory", logo: "/images/ecosystem/llamafactory.png" },
-    { name: "中国联通", nameEn: "China Unicom", href: "https://www.chinaunicom.com.cn/", logo: "/images/ecosystem/china-unicom.png" },
+    { name: "LLaMA-Factory", nameEn: "LLaMA-Factory", href: "https://github.com/hiyouga/LlamaFactory", logo: "/images/ecosystem/llamafactory.png", kind: "ecosystem" },
+    { name: "中国联通", nameEn: "China Unicom", href: "https://www.chinaunicom.com.cn/", logo: "/images/ecosystem/china-unicom.png", kind: "deployment" },
   ],
   datamind: [
-    { name: "北京通明湖中心", nameEn: "Beijing Tongming Lake Center", href: "https://www.tlaic.ac.cn/", logo: "/images/ecosystem/tongming-lake.png" },
+    { name: "北京通明湖中心", nameEn: "Beijing Tongming Lake Center", href: "https://www.tlaic.ac.cn/", logo: "/images/ecosystem/tongming-lake.png", kind: "deployment" },
   ],
 };
 
@@ -624,6 +625,10 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           const highlights = translated?.highlights ?? project.data.highlights;
           const starCount = githubStars[project.id];
           const ecosystem = projectEcosystem[project.id] ?? [];
+          const ecosystemGroups = [
+            { label: isEnglish ? "Deployment partners" : "落地企业", items: ecosystem.filter((item) => item.kind === "deployment") },
+            { label: isEnglish ? "Open-source ecosystem" : "开源生态", items: ecosystem.filter((item) => item.kind === "ecosystem") },
+          ].filter((group) => group.items.length > 0);
           return (
           <article class:list={["surface-card flex min-w-0 flex-col overflow-hidden p-0", project.id === "dataflow" ? "md:col-span-6 !border-cyan-400/80 dark:!border-cyan-700/80" : "md:col-span-3 xl:col-span-2", project.id === "datamind" && "md:col-span-6 xl:col-span-2"]}>
             {project.data.cover && (
@@ -655,20 +660,22 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
               </ul>
             )}
             {ecosystem.length > 0 && (
-              <div class="mt-5 border-t border-cyan-100/90 pt-4 dark:border-cyan-950">
-                <p class="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ink-500 dark:text-paper-400">
-                  {isEnglish ? "Partners & open-source ecosystem" : "合作与开源生态"}
-                </p>
-                <div class="mt-3 flex flex-wrap items-center gap-2">
-                  {ecosystem.map((item) => (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-9 items-center gap-2 rounded-xl border border-slate-200/90 bg-white/90 px-2.5 py-1.5 text-xs font-semibold text-ink-700 no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-800 dark:border-ink-700 dark:bg-ink-900/75 dark:text-paper-200 dark:hover:border-cyan-700 dark:hover:text-cyan-200">
-                      <span class="flex h-5 w-5 shrink-0 items-center justify-start overflow-hidden" aria-hidden="true">
-                        <img src={item.logo} alt="" loading="lazy" class:list={item.logoCrop === "left-square" ? "h-5 w-auto max-w-none shrink-0" : "h-5 w-5 object-contain"} />
-                      </span>
-                      <span>{isEnglish ? item.nameEn : item.name}</span>
-                    </a>
-                  ))}
-                </div>
+              <div class="mt-5 space-y-4 border-t border-cyan-100/90 pt-4 dark:border-cyan-950">
+                {ecosystemGroups.map((group) => (
+                  <div>
+                    <p class="text-[0.68rem] font-bold uppercase tracking-[0.12em] text-ink-500 dark:text-paper-400">{group.label}</p>
+                    <div class="mt-2 flex flex-wrap items-center gap-2">
+                      {group.items.map((item) => (
+                        <a href={item.href} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-9 items-center gap-2 rounded-xl border border-slate-200/90 bg-white/90 px-2.5 py-1.5 text-xs font-semibold text-ink-700 no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-800 dark:border-ink-700 dark:bg-ink-900/75 dark:text-paper-200 dark:hover:border-cyan-700 dark:hover:text-cyan-200">
+                          <span class="flex h-5 w-5 shrink-0 items-center justify-start overflow-hidden" aria-hidden="true">
+                            <img src={item.logo} alt="" loading="lazy" class:list={item.logoCrop === "left-square" ? "h-5 w-auto max-w-none shrink-0" : "h-5 w-5 object-contain"} />
+                          </span>
+                          <span>{isEnglish ? item.nameEn : item.name}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
             {project.id === "dataflow" && (

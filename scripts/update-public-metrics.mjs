@@ -36,7 +36,15 @@ async function curlText(url, headers = {}) {
 }
 
 async function refreshGitHub() {
-  const repositories = { dataflow: "OpenDCAI/DataFlow", dataflex: "OpenDCAI/DataFlex", omniedu: "haolpku/Omni-Edu", datamind: "OpenDCAI/DataMind" };
+  const repositories = {
+    dataflow: "OpenDCAI/DataFlow",
+    dataflex: "OpenDCAI/DataFlex",
+    omniedu: "haolpku/Omni-Edu",
+    datamind: "OpenDCAI/DataMind",
+    camel: "camel-ai/camel",
+    llamafactory: "hiyouga/LlamaFactory",
+    mineru: "opendatalab/MinerU",
+  };
   const headers = { Accept: "application/vnd.github+json", "User-Agent": "qmeiyi.github.io metrics updater" };
   if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   metrics.github = Object.fromEntries(await Promise.all(Object.entries(repositories).map(async ([key, repository]) => {

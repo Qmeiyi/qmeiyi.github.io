@@ -308,21 +308,23 @@ type ProjectEcosystemItem = {
   href: string;
   logo: string;
   kind: "deployment" | "ecosystem";
+  starKey?: string;
   logoCrop?: "left-square";
 };
 
 const projectEcosystem: Record<string, ProjectEcosystemItem[]> = {
   dataflow: [
     { name: "腾讯混元", nameEn: "Tencent Hunyuan", href: "https://hunyuan.tencent.com/", logo: "/images/ecosystem/tencent-hunyuan.svg", kind: "deployment" },
-    { name: "库帕斯", nameEn: "KuPas", href: "https://www.kupasai.com/", logo: "/images/ecosystem/kupas.png", kind: "deployment" },
+    { name: "库帕思", nameEn: "KuPas", href: "https://www.kupasai.com/", logo: "/images/ecosystem/kupas.png", kind: "deployment" },
     { name: "苏州实验室", nameEn: "Suzhou Laboratory", href: "https://www.szlab.ac.cn/", logo: "/images/ecosystem/suzhou-lab.png", logoCrop: "left-square", kind: "deployment" },
     { name: "中国电信", nameEn: "China Telecom", href: "https://www.chinatelecom.com.cn/", logo: "/images/ecosystem/china-telecom.png", kind: "deployment" },
     { name: "深势科技", nameEn: "DP Technology", href: "https://www.dp.tech/", logo: "/images/ecosystem/dp-technology.png", kind: "deployment" },
     { name: "PyroMind", nameEn: "PyroMind", href: "https://pyromind.ai/", logo: "/images/ecosystem/pyromind.png", kind: "deployment" },
-    { name: "CAMEL", nameEn: "CAMEL", href: "https://www.camel-ai.org/", logo: "/images/ecosystem/camel.png", kind: "ecosystem" },
+    { name: "CAMEL", nameEn: "CAMEL", href: "https://www.camel-ai.org/", logo: "/images/ecosystem/camel.png", kind: "ecosystem", starKey: "camel" },
+    { name: "MinerU", nameEn: "MinerU", href: "https://github.com/opendatalab/MinerU", logo: "/images/ecosystem/mineru.png", kind: "ecosystem", starKey: "mineru" },
   ],
   dataflex: [
-    { name: "LLaMA-Factory", nameEn: "LLaMA-Factory", href: "https://github.com/hiyouga/LlamaFactory", logo: "/images/ecosystem/llamafactory.png", kind: "ecosystem" },
+    { name: "LLaMA-Factory", nameEn: "LLaMA-Factory", href: "https://github.com/hiyouga/LlamaFactory", logo: "/images/ecosystem/llamafactory.png", kind: "ecosystem", starKey: "llamafactory" },
     { name: "中国联通", nameEn: "China Unicom", href: "https://www.chinaunicom.com.cn/", logo: "/images/ecosystem/china-unicom.png", kind: "deployment" },
   ],
   datamind: [
@@ -347,7 +349,8 @@ const socialLinks = siteConfig.socialLinks.map((link) => ({
 }));
 
 const githubStars: Record<string, number> = publicMetrics.github;
-const totalGithubStars = Object.values(githubStars)
+const totalGithubStars = ["dataflow", "dataflex", "omniedu", "datamind"]
+  .map((id) => githubStars[id])
   .filter((stars) => Number.isFinite(stars))
   .reduce((sum, stars) => sum + stars, 0);
 
@@ -627,7 +630,7 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
           const ecosystem = projectEcosystem[project.id] ?? [];
           const ecosystemGroups = [
             { label: isEnglish ? "Deployment partners" : "落地企业", items: ecosystem.filter((item) => item.kind === "deployment") },
-            { label: isEnglish ? "Open-source ecosystem" : "开源生态", items: ecosystem.filter((item) => item.kind === "ecosystem") },
+            { label: isEnglish ? "Open-source ecosystem integrations" : "开源生态联动", items: ecosystem.filter((item) => item.kind === "ecosystem") },
           ].filter((group) => group.items.length > 0);
           return (
           <article class:list={["surface-card flex min-w-0 flex-col overflow-hidden p-0", project.id === "dataflow" ? "md:col-span-6 !border-cyan-400/80 dark:!border-cyan-700/80" : "md:col-span-3 xl:col-span-2", project.id === "datamind" && "md:col-span-6 xl:col-span-2"]}>
@@ -671,6 +674,12 @@ const profileImageUrl = /^https?:/i.test(rawProfileImage)
                             <img src={item.logo} alt="" loading="lazy" class:list={item.logoCrop === "left-square" ? "h-5 w-auto max-w-none shrink-0" : "h-5 w-5 object-contain"} />
                           </span>
                           <span>{isEnglish ? item.nameEn : item.name}</span>
+                          {item.starKey && Number.isFinite(githubStars[item.starKey]) && (
+                            <span class="ml-0.5 inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[0.65rem] font-bold tabular-nums text-emerald-800 dark:bg-emerald-950/55 dark:text-emerald-200">
+                              <span class="i-mdi:star text-[0.7rem]" aria-hidden="true"></span>
+                              {githubStars[item.starKey].toLocaleString("en-US")}
+                            </span>
+                          )}
                         </a>
                       ))}
                     </div>
